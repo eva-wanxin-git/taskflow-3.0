@@ -70,3 +70,6 @@ node_modules/
 
 # macOS
 __MACOSX/
+# 数据库备份文件
+*.db.backup*
+database/data/*.backup*
