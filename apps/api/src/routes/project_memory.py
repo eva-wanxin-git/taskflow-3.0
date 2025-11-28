@@ -6,12 +6,17 @@
 """
 
 from fastapi import APIRouter, HTTPException, Query
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ValidationError
 from typing import List, Dict, Any, Optional
 from datetime import datetime
 from pathlib import Path
 import sys
 import json
+import logging
+import sqlite3
+
+# 配置日志
+logger = logging.getLogger(__name__)
 
 # TODO: 实际导入ProjectMemoryService
 # from packages.core_domain.src.services.project_memory_service import (
@@ -145,7 +150,14 @@ def get_event_emitter():
                 / "tasks.db"
             )
             _event_emitter = create_event_emitter(db_path=str(db_path))
-        except Exception:
+        except (ImportError, AttributeError) as e:
+            logger.warning(f"Failed to create event emitter: {e}")
+            _event_emitter = None
+        except (OSError, sqlite3.Error) as e:
+            logger.error(f"Database error when creating event emitter: {e}")
+            _event_emitter = None
+        except Exception as e:
+            logger.exception(f"Unexpected error creating event emitter: {e}")
             _event_emitter = None
     return _event_emitter
 
@@ -215,16 +227,29 @@ async def create_project_memory(
                         "importance": request.importance,
                     },
                 )
-            except Exception:
-                # 事件失败不影响主流程
-                pass
+            except (AttributeError, TypeError) as e:
+                # 事件数据格式错误，记录但不影响主流程
+                logger.warning(f"Failed to emit memory creation event: {e}")
+            except Exception as e:
+                # 其他事件错误，记录但不影响主流程
+                logger.error(f"Unexpected error emitting event: {e}")
 
         return {
             "success": True,
             "memory": memory
         }
+    except ValidationError as e:
+        logger.warning(f"Validation error creating memory: {e}")
+        raise HTTPException(status_code=422, detail=f"Validation error: {e}")
+    except (KeyError, ValueError) as e:
+        logger.error(f"Invalid data creating memory: {e}")
+        raise HTTPException(status_code=400, detail=f"Invalid request data: {e}")
+    except (OSError, sqlite3.Error) as e:
+        logger.error(f"Database error creating memory: {e}")
+        raise HTTPException(status_code=503, detail="Database error, please try again later")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.exception(f"Unexpected error creating memory: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @router.get("/{project_code}/memories")

@@ -10,11 +10,16 @@
 """
 
 from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ValidationError
 from typing import Dict, Any, Optional
 from datetime import datetime
 from pathlib import Path
 import sys
+import logging
+import sqlite3
+
+# 配置日志
+logger = logging.getLogger(__name__)
 
 # 导入ProjectMemoryService
 packages_path = (
@@ -75,7 +80,14 @@ def get_event_emitter():
                 / "tasks.db"
             )
             _event_emitter = create_event_emitter(db_path=str(db_path))
-        except Exception:
+        except (ImportError, AttributeError) as e:
+            logger.warning(f"Failed to create event emitter: {e}")
+            _event_emitter = None
+        except (OSError, sqlite3.Error) as e:
+            logger.error(f"Database error when creating event emitter: {e}")
+            _event_emitter = None
+        except Exception as e:
+            logger.exception(f"Unexpected error creating event emitter: {e}")
             _event_emitter = None
     return _event_emitter
 
@@ -179,8 +191,10 @@ async def auto_record_conversation_hook(
                             }
                         )
                     event_emitted = True
+                except (AttributeError, TypeError) as e:
+                    logger.warning(f"Event emission failed due to data error: {e}")
                 except Exception as e:
-                    print(f"事件发射失败: {e}")
+                    logger.error(f"Unexpected error emitting event: {e}")
         
         return {
             "success": True,
@@ -190,11 +204,18 @@ async def auto_record_conversation_hook(
             "timestamp": datetime.now().isoformat()
         }
         
+    except ValidationError as e:
+        logger.warning(f"Validation error in auto-record: {e}")
+        raise HTTPException(status_code=422, detail=f"Validation error: {e}")
+    except (KeyError, ValueError) as e:
+        logger.error(f"Invalid data in auto-record: {e}")
+        raise HTTPException(status_code=400, detail=f"Invalid request data: {e}")
+    except (OSError, sqlite3.Error) as e:
+        logger.error(f"Database error in auto-record: {e}")
+        raise HTTPException(status_code=503, detail="Database error, please try again later")
     except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"自动记录失败: {str(e)}"
-        )
+        logger.exception(f"Unexpected error in auto-record: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @router.post("/hook/batch-auto-record")
@@ -241,11 +262,18 @@ async def batch_auto_record(
             "processed_at": datetime.now().isoformat()
         }
         
+    except ValidationError as e:
+        logger.warning(f"Validation error in batch auto-record: {e}")
+        raise HTTPException(status_code=422, detail=f"Validation error: {e}")
+    except (KeyError, ValueError) as e:
+        logger.error(f"Invalid data in batch auto-record: {e}")
+        raise HTTPException(status_code=400, detail=f"Invalid request data: {e}")
+    except (OSError, sqlite3.Error) as e:
+        logger.error(f"Database error in batch auto-record: {e}")
+        raise HTTPException(status_code=503, detail="Database error, please try again later")
     except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"批量记录失败: {str(e)}"
-        )
+        logger.exception(f"Unexpected error in batch auto-record: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @router.get("/hook/stats")
@@ -299,9 +327,10 @@ async def get_auto_record_stats(project_code: str) -> Dict[str, Any]:
             "retrieved_at": datetime.now().isoformat()
         }
         
+    except (OSError, sqlite3.Error) as e:
+        logger.error(f"Database error getting stats: {e}")
+        raise HTTPException(status_code=503, detail="Database error, please try again later")
     except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"获取统计失败: {str(e)}"
-        )
+        logger.exception(f"Unexpected error getting stats: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
 

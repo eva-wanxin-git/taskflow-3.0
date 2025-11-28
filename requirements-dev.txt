@@ -1,0 +1,39 @@
+# 任务所·Flow 开发环境依赖
+# 安装方式: pip install -r requirements.txt -r requirements-dev.txt
+
+# 基础依赖
+-r requirements.txt
+
+# ============================================================================
+# 开发工具
+# ============================================================================
+
+# 代码质量
+ruff>=0.1.0                    # 代码检查和格式化
+black>=23.10.0                 # 代码格式化（可选，已有 Ruff）
+isort>=5.12.0                  # 导入排序（可选，已有 Ruff）
+mypy>=1.6.0                    # 类型检查
+
+# 测试工具
+pytest>=7.4.0                  # 测试框架
+pytest-asyncio>=0.21.0         # 异步测试支持
+pytest-cov>=4.1.0              # 测试覆盖率
+pytest-mock>=3.12.0            # Mock 支持
+pytest-xdist>=3.4.0            # 并行测试
+
+# 调试工具
+ipython>=8.16.0                # 增强的 Python Shell
+ipdb>=0.13.13                  # IPython 调试器
+
+# 文档工具
+mkdocs>=1.5.0                  # 文档生成
+mkdocs-material>=9.4.0         # Material 主题
+
+# API 文档
+httpie>=3.2.0                  # HTTP 客户端（API 测试）
+
+# 性能分析
+py-spy>=0.3.14                 # Python 性能分析器
+
+# Git hooks
+pre-commit>=3.5.0              # Git pre-commit 钩子管理

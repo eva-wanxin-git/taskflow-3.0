@@ -1,0 +1,13 @@
+# 任务所·Flow API 服务依赖
+# FastAPI 异步 Web 框架
+
+# 核心依赖
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.4.0
+
+# HTTP 客户端
+httpx>=0.25.0
+
+# 工具
+python-multipart>=0.0.6  # 文件上传支持
