@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>模块对齐诊断工具</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #000;
+            margin-bottom: 24px;
+        }
+        .instruction {
+            background: #fffbea;
+            border-left: 4px solid #f39c12;
+            padding: 16px;
+            margin-bottom: 24px;
+            line-height: 1.8;
+        }
+        .code-box {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 6px;
+            font-family: 'Consolas', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .button:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Dashboard模块对齐诊断工具</h1>
+        
+        <div class="instruction">
+            <strong>使用方法：</strong><br>
+            1. 访问 <a href="http://localhost:8877" target="_blank">http://localhost:8877</a><br>
+            2. 按 <kbd>F12</kbd> 打开开发者工具<br>
+            3. 切换到 <strong>Console</strong> 选项卡<br>
+            4. 复制下面的诊断代码并运行
+        </div>
+
+        <h3>🔧 诊断代码：</h3>
+        <div class="code-box" id="diagnosticCode">// Dashboard模块对齐深度诊断
+console.clear();
+console.log('%c=== Dashboard模块对齐深度诊断 ===', 'color: #000; font-size: 16px; font-weight: bold; background: #f0f0f0; padding: 10px;');
+console.log('');
+
+// 1. 检查container
+const container = document.querySelector('.container');
+if (container) {
+    const cRect = container.getBoundingClientRect();
+    console.log('%cContainer信息:', 'color: #0066cc; font-weight: bold;');
+    console.log(`  Left: ${cRect.left.toFixed(1)}px`);
+    console.log(`  Right: ${cRect.right.toFixed(1)}px`);
+    console.log(`  Width: ${cRect.width.toFixed(1)}px`);
+    console.log('');
+} else {
+    console.log('%c❌ 未找到.container!', 'color: red; font-weight: bold;');
+}
+
+// 2. 检查所有模块
+const selectors = [
+    '.features-section',
+    '.progress-section',
+    '.todo-section',
+    '.developer-section',
+    '.architect-monitor',
+    '.user-testing-section',
+    '.ops-section',
+    '.code-butler-section'
+];
+
+console.log('%c模块边界检查:', 'color: #0066cc; font-weight: bold;');
+console.log('');
+
+const modules = [];
+selectors.forEach(selector => {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach((el, idx) => {
+        const rect = el.getBoundingClientRect();
+        const computedStyle = window.getComputedStyle(el);
+        
+        // 检查父元素
+        const parent = el.parentElement;
+        const parentClass = parent ? parent.className : 'none';
+        const isInContainer = parent && parent.classList.contains('container');
+        
+        modules.push({
+            selector: selector,
+            index: idx,
+            className: el.className,
+            left: rect.left,
+            right: rect.right,
+            width: rect.width,
+            parent: parentClass,
+            inContainer: isInContainer,
+            computedWidth: computedStyle.width,
+            computedMaxWidth: computedStyle.maxWidth,
+            computedMarginLeft: computedStyle.marginLeft,
+            computedMarginRight: computedStyle.marginRight,
+            computedPaddingLeft: computedStyle.paddingLeft,
+            computedPaddingRight: computedStyle.paddingRight,
+            computedBoxSizing: computedStyle.boxSizing
+        });
+    });
+});
+
+// 按照在页面中的顺序排序
+modules.sort((a, b) => {
+    const aTop = document.querySelector(a.selector).getBoundingClientRect().top;
+    const bTop = document.querySelector(b.selector).getBoundingClientRect().top;
+    return aTop - bTop;
+});
+
+// 显示详细信息
+modules.forEach((m, idx) => {
+    const prefix = m.inContainer ? '✓' : '✗';
+    const containerStatus = m.inContainer ? '在container内' : '❌ 不在container内';
+    
+    console.log(`${idx + 1}. ${prefix} ${m.className}`);
+    console.log(`   Left: ${m.left.toFixed(1)}px | Right: ${m.right.toFixed(1)}px | Width: ${m.width.toFixed(1)}px`);
+    console.log(`   Parent: ${m.parent} (${containerStatus})`);
+    console.log(`   Computed width: ${m.computedWidth}`);
+    console.log(`   Computed max-width: ${m.computedMaxWidth}`);
+    console.log(`   Margin: ${m.computedMarginLeft} / ${m.computedMarginRight}`);
+    console.log(`   Padding: ${m.computedPaddingLeft} / ${m.computedPaddingRight}`);
+    console.log(`   Box-sizing: ${m.computedBoxSizing}`);
+    console.log('');
+});
+
+// 3. 对齐分析
+const leftValues = modules.map(m => m.left);
+const rightValues = modules.map(m => m.right);
+
+const minLeft = Math.min(...leftValues);
+const maxLeft = Math.max(...leftValues);
+const minRight = Math.min(...rightValues);
+const maxRight = Math.max(...rightValues);
+
+const leftDiff = maxLeft - minLeft;
+const rightDiff = maxRight - minRight;
+
+console.log('%c对齐分析:', 'color: #0066cc; font-weight: bold;');
+console.log(`左边缘范围: ${minLeft.toFixed(1)}px ~ ${maxLeft.toFixed(1)}px (差异: ${leftDiff.toFixed(1)}px)`);
+console.log(`右边缘范围: ${minRight.toFixed(1)}px ~ ${maxRight.toFixed(1)}px (差异: ${rightDiff.toFixed(1)}px)`);
+console.log('');
+
+// 4. 找出不对齐的模块
+if (leftDiff > 2 || rightDiff > 2) {
+    console.log('%c❌ 发现不对齐的模块:', 'color: red; font-weight: bold;');
+    modules.forEach((m, idx) => {
+        const leftOff = Math.abs(m.left - minLeft);
+        const rightOff = Math.abs(m.right - maxRight);
+        if (leftOff > 2 || rightOff > 2) {
+            console.log(`  ${idx + 1}. ${m.className}`);
+            console.log(`     左偏移: ${leftOff.toFixed(1)}px`);
+            console.log(`     右偏移: ${rightOff.toFixed(1)}px`);
+            if (!m.inContainer) {
+                console.log(`     ⚠️ 该模块不在.container内！`);
+            }
+        }
+    });
+} else {
+    console.log('%c✅ 所有模块完美对齐！', 'color: green; font-weight: bold; font-size: 14px;');
+}
+
+console.log('');
+console.log('%c=== 诊断完成 ===', 'color: #000; font-size: 16px; font-weight: bold; background: #f0f0f0; padding: 10px;');
+</div>
+
+        <button class="button" onclick="copyCode()">📋 复制诊断代码</button>
+    </div>
+
+    <script>
+        function copyCode() {
+            const code = document.getElementById('diagnosticCode').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('✅ 诊断代码已复制！\n\n请到 Dashboard 的浏览器开发者工具 Console 中粘贴并运行。');
+            });
+        }
+    </script>
+</body>
+</html>
+

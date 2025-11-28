@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+api.log
+dashboard.log
+insight_api.log
+
+# Database
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Backup files
+*.backup
+*.backup-*
+*backup-*.tar.gz
+
+# Temporary files
+*.tmp
+*.temp
+test_*.py
+check_*.py
+
+# Node modules (if any)
+node_modules/
+
+# Environment
+.env
+.env.local
+
+# Cache
+.cache/
+*.cache
+
+# macOS
+__MACOSX/

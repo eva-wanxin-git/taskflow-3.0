@@ -1,0 +1,124 @@
+
+    <script>
+        // ========== 项目切换功能 ==========
+        const projectConfigs = {
+            taskflow: {
+                logo: 'F',
+                name: '任务所',
+                module: 'Flow',
+                version: 'v1.7 - 指挥舱',
+                description: '用对话开工，用流程收工 —— AI开发工厂新实践',
+                meta: [
+                    { label: '项目描述', value: '企业级AI任务中枢 | 多项目支持 · 智能跟踪管理' },
+                    { label: '预计开发时间', value: '6个月 (2025年11月 - 2026年4月)' },
+                    { label: '技术栈', value: 'Python, FastAPI, React, TypeScript' },
+                    { label: '核心功能', value: 'AI任务自动化、代码审查、进度监控' },
+                    { label: '应用场景', value: 'AI辅助开发、自动化工作流' },
+                    { label: '当前版本', value: 'v2.0 升级开发中' }
+                ]
+            },
+            mold: {
+                logo: 'M',
+                name: '模具',
+                module: 'Dashboard',
+                version: 'v2.3 - 生产控制台',
+                description: '智能模具管理系统，实时监控生产状态，优化制造流程',
+                meta: [
+                    { label: '项目描述', value: '工业级模具生产管理 | 实时监控 · 质量追溯' },
+                    { label: '预计开发时间', value: '4个月 (2025年9月 - 2026年1月)' },
+                    { label: '技术栈', value: 'Java, Spring Boot, Vue.js, MySQL' },
+                    { label: '核心功能', value: '模具库管理、生产计划、质量检测' },
+                    { label: '应用场景', value: '制造业、模具厂、生产车间' },
+                    { label: '当前版本', value: 'v2.3 稳定运行中' }
+                ]
+            },
+            ecommerce: {
+                logo: 'E',
+                name: '电商平台',
+                module: 'Admin',
+                version: 'v3.1 - 运营中心',
+                description: '全渠道电商管理平台，数据驱动决策，助力业务增长',
+                meta: [
+                    { label: '项目描述', value: '新零售电商管理系统 | 全渠道整合 · 智能营销' },
+                    { label: '预计开发时间', value: '8个月 (2025年8月 - 2026年4月)' },
+                    { label: '技术栈', value: 'Node.js, Next.js, PostgreSQL, Redis' },
+                    { label: '核心功能', value: '商品管理、订单处理、用户分析、营销工具' },
+                    { label: '应用场景', value: '电商运营、新零售、O2O业务' },
+                    { label: '当前版本', value: 'v3.1 功能增强中' }
+                ]
+            },
+            iot: {
+                logo: 'I',
+                name: '智能物联',
+                module: 'Monitor',
+                version: 'v1.5 - 监控舱',
+                description: '物联网设备统一管理平台，实时数据采集，智能预警分析',
+                meta: [
+                    { label: '项目描述', value: '工业物联网平台 | 设备接入 · 数据分析 · 远程控制' },
+                    { label: '预计开发时间', value: '10个月 (2025年6月 - 2026年4月)' },
+                    { label: '技术栈', value: 'Go, MQTT, InfluxDB, Grafana' },
+                    { label: '核心功能', value: '设备管理、数据采集、实时监控、告警系统' },
+                    { label: '应用场景', value: '智能制造、工业4.0、设备运维' },
+                    { label: '当前版本', value: 'v1.5 Beta测试中' }
+                ]
+            }
+        };
+
+        function switchProject(projectKey) {
+            const config = projectConfigs[projectKey];
+            if (!config) return;
+
+            document.getElementById('projectLogo').textContent = config.logo;
+            document.getElementById('projectName').textContent = config.name;
+            document.getElementById('projectModule').textContent = config.module;
+            document.getElementById('projectVersion').textContent = config.version;
+            document.getElementById('projectDesc').textContent = config.description;
+            
+            const metaGrid = document.getElementById('projectMeta');
+            metaGrid.innerHTML = config.meta.map(item => `
+                <div class="meta-card">
+                    <div class="meta-label">${item.label}</div>
+                    <div class="meta-value">${item.value}</div>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('.project-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            event.target.closest('.project-option').classList.add('active');
+
+            document.title = `${config.name}·${config.module} - Flow System`;
+        }
+
+        // 初始化
+        window.addEventListener('DOMContentLoaded', () => {
+            switchProject('taskflow');
+        });
+
+        // ========== 运维工程师模块函数 ==========
+        function switchDevOpsTab(tabName) {
+            const devopsModule = document.querySelector('.devops-module');
+            if (!devopsModule) return;
+            
+            devopsModule.querySelectorAll('.tab-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            devopsModule.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+
+            event.target.closest('.tab-item').classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        function updateDevOpsStats() {
+            const responseTime = document.querySelector('.devops-module .quick-stats .stat-value');
+            const randomTime = Math.floor(Math.random() * 50) + 100;
+            if (responseTime) {
+                responseTime.textContent = randomTime + 'ms';
+            }
+        }
+
+        setInterval(updateDevOpsStats, 30000);
+    </script>
+

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记忆关系图谱 - 知识星图 - 任务所·Flow</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --black: #000000;
+            --gray-900: #212121;
+            --gray-700: #616161;
+            --gray-600: #757575;
+            --gray-500: #9E9E9E;
+            --gray-300: #E0E0E0;
+            --gray-100: #F5F5F5;
+            --white: #FFFFFF;
+            --red: #985239;
+            --blue: #537696;
+            
+            --color-decision: #D32F2F;
+            --color-solution: #2E7D32;
+            --color-problem: #F57C00;
+            --color-architecture: #1976D2;
+            --color-knowledge: #757575;
+            
+            --space-2: 8px;
+            --space-4: 16px;
+            --space-6: 24px;
+            --space-8: 32px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--white);
+            color: var(--gray-900);
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .container {
+            display: flex;
+            height: 100vh;
+            flex-direction: column;
+        }
+        
+        /* 头部 */
+        .header {
+            background: var(--black);
+            color: var(--white);
+            padding: var(--space-4) var(--space-8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .close-btn {
+            background: transparent;
+            color: var(--white);
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .page-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: var(--space-4);
+        }
+        
+        .btn {
+            padding: var(--space-2) var(--space-4);
+            font-size: 12px;
+            background: var(--white);
+            color: var(--black);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--gray-300);
+        }
+        
+        /* 主布局 */
+        .main-layout {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        
+        /* 左侧信息面板 */
+        .info-panel {
+            width: 320px;
+            background: var(--gray-50);
+            border-right: 1px solid var(--gray-300);
+            overflow-y: auto;
+            padding: var(--space-6);
+        }
+        
+        .panel-section {
+            margin-bottom: var(--space-8);
+        }
+        
+        .panel-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: var(--space-2);
+        }
+        
+        .stat-label {
+            color: var(--gray-600);
+        }
+        
+        .stat-value {
+            font-weight: 600;
+            color: var(--black);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-2);
+            font-size: 13px;
+        }
+        
+        .legend-circle {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+        
+        .legend-line {
+            width: 30px;
+            height: 2px;
+            margin-right: var(--space-2);
+        }
+        
+        .node-detail {
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            padding: var(--space-4);
+            font-size: 12px;
+        }
+        
+        .node-detail-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: var(--space-4);
+        }
+        
+        .detail-row {
+            margin-bottom: var(--space-2);
+        }
+        
+        .detail-label {
+            color: var(--gray-600);
+        }
+        
+        .relation-list {
+            font-size: 11px;
+            color: var(--gray-700);
+            margin-top: var(--space-2);
+        }
+        
+        .relation-item {
+            padding: var(--space-2) 0;
+        }
+        
+        .node-actions {
+            display: flex;
+            gap: var(--space-2);
+            margin-top: var(--space-4);
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: var(--space-2);
+            font-size: 11px;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-300);
+            cursor: pointer;
+        }
+        
+        .action-btn:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+        
+        /* 画布区域 */
+        .canvas-area {
+            flex: 1;
+            position: relative;
+            background: var(--white);
+        }
+        
+        #graphCanvas {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* D3图谱样式 */
+        .node {
+            cursor: pointer;
+        }
+        
+        .node circle {
+            stroke: var(--white);
+            stroke-width: 2px;
+        }
+        
+        .node:hover circle {
+            stroke: var(--black);
+            stroke-width: 3px;
+        }
+        
+        .node text {
+            font-size: 11px;
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        .link {
+            stroke: var(--gray-300);
+            stroke-opacity: 0.6;
+        }
+        
+        .link.highlighted {
+            stroke: var(--blue);
+            stroke-width: 3px;
+            stroke-opacity: 1;
+        }
+        
+        /* 工具提示 */
+        .tooltip {
+            position: absolute;
+            background: var(--black);
+            color: var(--white);
+            padding: var(--space-2) var(--space-4);
+            font-size: 12px;
+            border-radius: 4px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <button class="close-btn" onclick="closeGraph()">✕ 关闭</button>
+            <div class="page-title">🕸️ 记忆关系图谱 - 知识星图</div>
+            <div class="header-actions">
+                <button class="btn" onclick="resetLayout()">🎨 重新布局</button>
+                <button class="btn" onclick="exportGraph()">📷 导出</button>
+            </div>
+        </div>
+        
+        <!-- 主布局 -->
+        <div class="main-layout">
+            <!-- 左侧信息面板 -->
+            <div class="info-panel">
+                <!-- 图谱统计 -->
+                <div class="panel-section">
+                    <div class="panel-title">📊 图谱统计</div>
+                    <div class="stat-row">
+                        <span class="stat-label">节点:</span>
+                        <span class="stat-value" id="nodeCount">45个</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">关系:</span>
+                        <span class="stat-value" id="linkCount">67条</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">孤立节点:</span>
+                        <span class="stat-value">3个</span>
+                    </div>
+                </div>
+                
+                <!-- 节点图例 -->
+                <div class="panel-section">
+                    <div class="panel-title">🎨 节点图例</div>
+                    <div class="legend-item">
+                        <div class="legend-circle" style="background: var(--color-decision);"></div>
+                        <span>决策记忆</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-circle" style="background: var(--color-solution);"></div>
+                        <span>解决方案</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-circle" style="background: var(--color-problem);"></div>
+                        <span>问题记忆</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-circle" style="background: var(--color-architecture);"></div>
+                        <span>架构知识</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-circle" style="background: var(--color-knowledge);"></div>
+                        <span>一般知识</span>
+                    </div>
+                </div>
+                
+                <!-- 关系图例 -->
+                <div class="panel-section">
+                    <div class="panel-title">🔗 关系图例</div>
+                    <div class="legend-item">
+                        <div class="legend-line" style="background: var(--gray-300);"></div>
+                        <span>related</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-line" style="background: var(--gray-300); height: 1px; border: 1px dashed var(--gray-500);"></div>
+                        <span>solved-by</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-line" style="background: var(--gray-300); height: 1px; border: 1px dotted var(--gray-500);"></div>
+                        <span>caused-by</span>
+                    </div>
+                </div>
+                
+                <!-- 当前选中 -->
+                <div class="panel-section" id="selectedNodePanel" style="display: none;">
+                    <div class="panel-title">🎯 当前选中</div>
+                    <div class="node-detail" id="nodeDetail">
+                        <div class="node-detail-title">请点击节点查看详情</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 画布区域 -->
+            <div class="canvas-area">
+                <svg id="graphCanvas"></svg>
+                <div class="tooltip" id="tooltip"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 示例数据
+        const graphData = {
+            nodes: [
+                { id: 'MEM-001', title: 'Monorepo架构', type: 'decision', importance: 8 },
+                { id: 'MEM-002', title: 'Tab切换bug', type: 'problem', importance: 7 },
+                { id: 'MEM-003', title: '修复Tab切换', type: 'solution', importance: 8 },
+                { id: 'MEM-004', title: 'React性能优化', type: 'knowledge', importance: 7 },
+                { id: 'MEM-005', title: 'Dashboard架构', type: 'architecture', importance: 9 },
+                { id: 'MEM-006', title: 'FastAPI选型', type: 'decision', importance: 9 },
+                { id: 'MEM-007', title: 'SQLite优化', type: 'solution', importance: 8 },
+                { id: 'MEM-008', title: '锁表问题', type: 'problem', importance: 7 }
+            ],
+            links: [
+                { source: 'MEM-001', target: 'MEM-005', type: 'related', strength: 0.9 },
+                { source: 'MEM-002', target: 'MEM-003', type: 'solved-by', strength: 1.0 },
+                { source: 'MEM-003', target: 'MEM-005', type: 'related', strength: 0.8 },
+                { source: 'MEM-004', target: 'MEM-005', type: 'related', strength: 0.7 },
+                { source: 'MEM-007', target: 'MEM-008', type: 'solved-by', strength: 1.0 },
+                { source: 'MEM-006', target: 'MEM-007', type: 'related', strength: 0.6 }
+            ]
+        };
+        
+        let simulation;
+        let selectedNode = null;
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🕸️ 知识星图已加载');
+            initGraph();
+        });
+        
+        // 初始化图谱
+        function initGraph() {
+            const svg = d3.select('#graphCanvas');
+            const width = document.querySelector('.canvas-area').offsetWidth;
+            const height = document.querySelector('.canvas-area').offsetHeight;
+            
+            svg.attr('width', width).attr('height', height);
+            
+            // 创建力导向图
+            simulation = d3.forceSimulation(graphData.nodes)
+                .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(100))
+                .force('charge', d3.forceManyBody().strength(-300))
+                .force('center', d3.forceCenter(width / 2, height / 2))
+                .force('collision', d3.forceCollide().radius(50));
+            
+            // 绘制连线
+            const link = svg.append('g')
+                .selectAll('line')
+                .data(graphData.links)
+                .join('line')
+                .attr('class', 'link')
+                .attr('stroke-width', d => d.strength * 3)
+                .attr('stroke-dasharray', d => {
+                    if (d.type === 'solved-by') return '5,5';
+                    if (d.type === 'caused-by') return '2,2';
+                    return null;
+                });
+            
+            // 绘制节点
+            const node = svg.append('g')
+                .selectAll('g')
+                .data(graphData.nodes)
+                .join('g')
+                .attr('class', 'node')
+                .call(drag(simulation));
+            
+            // 节点圆形
+            node.append('circle')
+                .attr('r', d => 10 + d.importance * 2)
+                .attr('fill', d => getNodeColor(d.type))
+                .on('click', handleNodeClick)
+                .on('mouseover', handleNodeMouseOver)
+                .on('mouseout', handleNodeMouseOut);
+            
+            // 节点标签
+            node.append('text')
+                .attr('dx', 0)
+                .attr('dy', d => (10 + d.importance * 2) + 16)
+                .attr('text-anchor', 'middle')
+                .attr('font-size', '10px')
+                .attr('fill', 'var(--gray-900)')
+                .text(d => d.id);
+            
+            // 更新位置
+            simulation.on('tick', () => {
+                link
+                    .attr('x1', d => d.source.x)
+                    .attr('y1', d => d.source.y)
+                    .attr('x2', d => d.target.x)
+                    .attr('y2', d => d.target.y);
+                
+                node
+                    .attr('transform', d => `translate(${d.x},${d.y})`);
+            });
+            
+            // 更新统计
+            document.getElementById('nodeCount').textContent = `${graphData.nodes.length}个`;
+            document.getElementById('linkCount').textContent = `${graphData.links.length}条`;
+        }
+        
+        // 节点颜色
+        function getNodeColor(type) {
+            const colors = {
+                'decision': 'var(--color-decision)',
+                'solution': 'var(--color-solution)',
+                'problem': 'var(--color-problem)',
+                'architecture': 'var(--color-architecture)',
+                'knowledge': 'var(--color-knowledge)'
+            };
+            return colors[type] || 'var(--color-knowledge)';
+        }
+        
+        // 节点点击
+        function handleNodeClick(event, d) {
+            selectedNode = d;
+            showNodeDetail(d);
+            
+            // 高亮相关节点和连线
+            highlightConnections(d);
+        }
+        
+        // 显示节点详情
+        function showNodeDetail(node) {
+            const panel = document.getElementById('selectedNodePanel');
+            const detail = document.getElementById('nodeDetail');
+            
+            panel.style.display = 'block';
+            
+            // 查找相关记忆
+            const relatedLinks = graphData.links.filter(l => 
+                l.source.id === node.id || l.target.id === node.id
+            );
+            
+            detail.innerHTML = `
+                <div class="node-detail-title">${node.id}</div>
+                <div class="node-detail-title" style="font-size: 12px; font-weight: 500; color: var(--gray-700);">
+                    ${node.title}
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">类型:</span>
+                    <span>${getTypeText(node.type)}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">重要性:</span>
+                    <span>${node.importance}/10</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">关联记忆:</span>
+                    <span>${relatedLinks.length}个</span>
+                </div>
+                ${relatedLinks.length > 0 ? `
+                    <div class="relation-list">
+                        ${relatedLinks.map(l => {
+                            const target = l.source.id === node.id ? l.target : l.source;
+                            return `<div class="relation-item">→ ${target.id} (${l.type})</div>`;
+                        }).join('')}
+                    </div>
+                ` : ''}
+                <div class="node-actions">
+                    <button class="action-btn" onclick="viewMemoryDetail('${node.id}')">查看详情</button>
+                    <button class="action-btn" onclick="editMemory('${node.id}')">编辑</button>
+                </div>
+            `;
+        }
+        
+        // 高亮连接
+        function highlightConnections(node) {
+            d3.selectAll('.link')
+                .classed('highlighted', false)
+                .attr('stroke', 'var(--gray-300)');
+            
+            d3.selectAll('.link')
+                .filter(l => l.source.id === node.id || l.target.id === node.id)
+                .classed('highlighted', true)
+                .attr('stroke', 'var(--blue)');
+        }
+        
+        // 节点悬停
+        function handleNodeMouseOver(event, d) {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.style.opacity = '1';
+            tooltip.style.left = (event.pageX + 10) + 'px';
+            tooltip.style.top = (event.pageY - 30) + 'px';
+            tooltip.textContent = d.title;
+        }
+        
+        function handleNodeMouseOut() {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.style.opacity = '0';
+        }
+        
+        // 拖拽行为
+        function drag(simulation) {
+            function dragstarted(event) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                event.subject.fx = event.subject.x;
+                event.subject.fy = event.subject.y;
+            }
+            
+            function dragged(event) {
+                event.subject.fx = event.x;
+                event.subject.fy = event.y;
+            }
+            
+            function dragended(event) {
+                if (!event.active) simulation.alphaTarget(0);
+                event.subject.fx = null;
+                event.subject.fy = null;
+            }
+            
+            return d3.drag()
+                .on('start', dragstarted)
+                .on('drag', dragged)
+                .on('end', dragended);
+        }
+        
+        // 重新布局
+        function resetLayout() {
+            simulation.alpha(1).restart();
+        }
+        
+        // 导出图谱
+        function exportGraph() {
+            alert('导出功能开发中...');
+        }
+        
+        // 关闭图谱
+        function closeGraph() {
+            window.history.back();
+        }
+        
+        // 查看记忆详情
+        function viewMemoryDetail(memoryId) {
+            console.log('查看记忆详情:', memoryId);
+            alert('记忆详情功能开发中...');
+        }
+        
+        // 编辑记忆
+        function editMemory(memoryId) {
+            console.log('编辑记忆:', memoryId);
+            alert('编辑功能开发中...');
+        }
+        
+        // 获取类型文字
+        function getTypeText(type) {
+            const texts = {
+                'decision': '决策',
+                'solution': '解决方案',
+                'problem': '问题',
+                'architecture': '架构',
+                'knowledge': '知识'
+            };
+            return texts[type] || type;
+        }
+    </script>
+</body>
+</html>
+

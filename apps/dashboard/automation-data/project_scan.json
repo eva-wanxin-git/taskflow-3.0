@@ -1,0 +1,441 @@
+{
+  "scan_time": "2025-11-19T11:49:42.298301",
+  "project_path": "C:\\Users\\Administrator\\Desktop\\cursor工作盘\\taskflow-v1.7-monorepo\\apps\\dashboard",
+  "project_name": "",
+  "project_type": "未知类型",
+  "files_count": {
+    "python": 28,
+    "javascript": 0,
+    "typescript": 0,
+    "markdown": 81,
+    "json": 15,
+    "yaml": 0,
+    "total": 124
+  },
+  "technologies": [
+    "未识别"
+  ],
+  "features": {
+    "implemented": [
+      {
+        "name": "API接口 - knowledge_base_initializer",
+        "file": "src\\automation\\knowledge_base_initializer.py",
+        "type": "后端API",
+        "status": "已实现"
+      },
+      {
+        "name": "API接口 - project_scanner",
+        "file": "src\\automation\\project_scanner.py",
+        "type": "后端API",
+        "status": "已实现"
+      },
+      {
+        "name": "StateManagerAdapter类",
+        "file": "src\\industrial_dashboard\\adapters.py",
+        "type": "核心模块",
+        "status": "已实现"
+      },
+      {
+        "name": "DataProvider类",
+        "file": "src\\industrial_dashboard\\data_provider.py",
+        "type": "核心模块",
+        "status": "已实现"
+      }
+    ],
+    "partial": [
+      {
+        "name": "FastAPI主应用入口(main.py)",
+        "file": "",
+        "type": "后端",
+        "status": "部分实现",
+        "completion": 0,
+        "missing": [
+          "apps/api/src/main.py文件不存在",
+          "无法启动API服务"
+        ],
+        "priority": "P0",
+        "estimated_hours": 0
+      },
+      {
+        "name": "ArchitectOrchestrator数据库集成",
+        "file": "",
+        "type": "后端",
+        "status": "部分实现",
+        "completion": 0.1,
+        "missing": [
+          "_ensure_project_exists()未实现",
+          "_create_tasks_from_suggestions()未实现",
+          "_create_issues_from_problems()未实现"
+        ],
+        "priority": "P0",
+        "estimated_hours": 0
+      },
+      {
+        "name": "架构师API端到端测试",
+        "file": "",
+        "type": "测试",
+        "status": "部分实现",
+        "completion": 0,
+        "missing": [
+          "tests/integration/test_architect_api.py不存在",
+          "无E2E测试脚本"
+        ],
+        "priority": "P0",
+        "estimated_hours": 0
+      },
+      {
+        "name": "领域模型层(core-domain)",
+        "file": "",
+        "type": "重构",
+        "status": "部分实现",
+        "completion": 0,
+        "missing": [
+          "packages/core-domain/entities/目录为空",
+          "models.py未迁移"
+        ],
+        "priority": "P2",
+        "estimated_hours": 0
+      },
+      {
+        "name": "基础设施层(infra)",
+        "file": "",
+        "type": "重构",
+        "status": "部分实现",
+        "completion": 0,
+        "missing": [
+          "packages/infra/database/目录为空",
+          "state_manager.py未迁移"
+        ],
+        "priority": "P2",
+        "estimated_hours": 0
+      },
+      {
+        "name": "算法库(algorithms)",
+        "file": "",
+        "type": "重构",
+        "status": "部分实现",
+        "completion": 0,
+        "missing": [
+          "packages/algorithms/目录为空",
+          "dependency_analyzer.py未迁移"
+        ],
+        "priority": "P3",
+        "estimated_hours": 0
+      },
+      {
+        "name": "单元测试覆盖",
+        "file": "",
+        "type": "测试",
+        "status": "部分实现",
+        "completion": 0.05,
+        "missing": [
+          "覆盖率<5%",
+          "核心模块无测试"
+        ],
+        "priority": "P1",
+        "estimated_hours": 0
+      },
+      {
+        "name": "集成测试",
+        "file": "",
+        "type": "测试",
+        "status": "部分实现",
+        "completion": 0,
+        "missing": [
+          "无API集成测试",
+          "无数据库集成测试"
+        ],
+        "priority": "P1",
+        "estimated_hours": 0
+      },
+      {
+        "name": "API认证授权",
+        "file": "",
+        "type": "安全",
+        "status": "部分实现",
+        "completion": 0,
+        "missing": [
+          "无JWT认证",
+          "无权限控制"
+        ],
+        "priority": "P1",
+        "estimated_hours": 0
+      },
+      {
+        "name": "性能优化",
+        "file": "",
+        "type": "性能",
+        "status": "部分实现",
+        "completion": 0.3,
+        "missing": [
+          "无缓存机制",
+          "无连接池",
+          "无并发优化"
+        ],
+        "priority": "P2",
+        "estimated_hours": 0
+      },
+      {
+        "name": "错误处理统一化",
+        "file": "",
+        "type": "质量",
+        "status": "部分实现",
+        "completion": 0.5,
+        "missing": [
+          "部分模块错误处理不完整",
+          "无统一异常处理中间件"
+        ],
+        "priority": "P2",
+        "estimated_hours": 0
+      },
+      {
+        "name": "API文档(OpenAPI)",
+        "file": "",
+        "type": "文档",
+        "status": "部分实现",
+        "completion": 0.3,
+        "missing": [
+          "仅有/docs自动文档",
+          "缺少使用示例"
+        ],
+        "priority": "P2",
+        "estimated_hours": 0
+      },
+      {
+        "name": "FastAPI主应用入口",
+        "file": "apps/api/src/main.py",
+        "type": "基础设施",
+        "status": "部分实现",
+        "completion": 0.0,
+        "missing": [
+          "main.py文件不存在",
+          "无法启动API服务",
+          "无法访问架构师API"
+        ],
+        "priority": "P0",
+        "estimated_hours": 2.0
+      },
+      {
+        "name": "ArchitectOrchestrator数据库集成",
+        "file": "apps/api/src/services/architect_orchestrator.py",
+        "type": "架构师服务",
+        "status": "部分实现",
+        "completion": 0.1,
+        "missing": [
+          "_ensure_project_exists() - TODO",
+          "_ensure_components_exist() - TODO",
+          "_create_tasks_from_suggestions() - TODO",
+          "_create_issues_from_problems() - TODO",
+          "_create_feature_articles() - TODO"
+        ],
+        "priority": "P0",
+        "estimated_hours": 3.0
+      },
+      {
+        "name": "领域模型层(core-domain)",
+        "file": "packages/core-domain/entities/",
+        "type": "基础设施",
+        "status": "部分实现",
+        "completion": 0.0,
+        "missing": [
+          "entities/目录为空",
+          "repositories/目录为空",
+          "use-cases/目录为空",
+          "需要迁移models.py"
+        ],
+        "priority": "P2",
+        "estimated_hours": 2.0
+      },
+      {
+        "name": "基础设施层(infra)",
+        "file": "packages/infra/database/",
+        "type": "基础设施",
+        "status": "部分实现",
+        "completion": 0.0,
+        "missing": [
+          "database/目录为空（需要StateManager）",
+          "llm/目录为空",
+          "monitoring/目录为空"
+        ],
+        "priority": "P2",
+        "estimated_hours": 3.0
+      },
+      {
+        "name": "算法库(algorithms)",
+        "file": "packages/algorithms/",
+        "type": "基础设施",
+        "status": "部分实现",
+        "completion": 0.0,
+        "missing": [
+          "目录为空",
+          "需要迁移dependency_analyzer.py等"
+        ],
+        "priority": "P3",
+        "estimated_hours": 1.5
+      }
+    ],
+    "conflicts": [
+      {
+        "name": "FastAPI主入口缺失",
+        "severity": "Critical",
+        "impact": "架构师API完全无法启动，核心功能不可用",
+        "affected_features": [
+          "AI-009",
+          "API-014"
+        ],
+        "suggestion": "立即创建apps/api/src/main.py，参考dashboard.py结构",
+        "estimated_fix_hours": 2.0,
+        "type": "冲突"
+      },
+      {
+        "name": "ArchitectOrchestrator数据库未集成",
+        "severity": "Critical",
+        "impact": "架构分析无法持久化，数据库写入全是TODO",
+        "affected_features": [
+          "AI-009"
+        ],
+        "suggestion": "临时从v1.6引用StateManager或快速迁移到packages/infra/",
+        "estimated_fix_hours": 3.0,
+        "type": "冲突"
+      },
+      {
+        "name": "缺少单元测试",
+        "severity": "High",
+        "impact": "代码质量无法保证，重构风险高",
+        "affected_features": [
+          "所有代码模块"
+        ],
+        "suggestion": "优先为核心模块添加测试，目标覆盖率50%+",
+        "estimated_fix_hours": 8.0,
+        "type": "冲突"
+      },
+      {
+        "name": "无API认证授权",
+        "severity": "High",
+        "impact": "API完全开放，生产环境安全风险",
+        "affected_features": [
+          "API-002",
+          "API-003",
+          "API-007~014"
+        ],
+        "suggestion": "添加JWT认证+RBAC权限控制",
+        "estimated_fix_hours": 6.0,
+        "type": "冲突"
+      },
+      {
+        "name": "Dashboard代码位置不合理",
+        "severity": "Medium",
+        "impact": "automation模块在dashboard/src/下，架构不清晰",
+        "affected_features": [
+          "INFRA-002",
+          "DEP-001~004"
+        ],
+        "suggestion": "保持现状，v1.6独立运行，v1.7专注AI体系",
+        "estimated_fix_hours": 0,
+        "type": "冲突"
+      },
+      {
+        "name": "SQLite并发写入限制",
+        "severity": "Medium",
+        "impact": "QPS>100时可能出现database locked错误",
+        "affected_features": [
+          "INFRA-001"
+        ],
+        "suggestion": "添加连接池+重试机制，或切换PostgreSQL",
+        "estimated_fix_hours": 4.0,
+        "type": "冲突"
+      },
+      {
+        "name": "缺少性能测试",
+        "severity": "Medium",
+        "impact": "不知道系统性能瓶颈在哪",
+        "affected_features": [
+          "所有API"
+        ],
+        "suggestion": "使用locust/ab进行压测，建立性能基线",
+        "estimated_fix_hours": 3.0,
+        "type": "冲突"
+      },
+      {
+        "name": "代码重复(Service层)",
+        "severity": "Low",
+        "impact": "可维护性下降",
+        "affected_features": [],
+        "suggestion": "抽取装饰器统一错误处理",
+        "estimated_fix_hours": 4.0,
+        "type": "冲突"
+      },
+      {
+        "name": "配置管理分散",
+        "severity": "Low",
+        "impact": "配置难以统一管理",
+        "affected_features": [
+          "INFRA-005"
+        ],
+        "suggestion": "集中到config/目录，使用配置类",
+        "estimated_fix_hours": 2.0,
+        "type": "冲突"
+      },
+      {
+        "name": "Phase C是唯一的P0任务",
+        "severity": "Strategic",
+        "impact": "v1.7的核心价值是AI体系，不是Monorepo",
+        "suggestion": "聚焦Phase C(6.5小时)实现架构师API，Phase D(代码迁移)可延后或跳过",
+        "rationale": [
+          "AI Prompts 25000字已完成 ⭐⭐⭐⭐⭐",
+          "架构师API 90%完成,6.5小时可用 ⭐⭐⭐⭐⭐",
+          "知识库12表已完成 ⭐⭐⭐⭐⭐",
+          "代码迁移0%但v1.6可独立运行 ⭐⭐⭐",
+          "遵循YAGNI原则"
+        ],
+        "type": "建议"
+      },
+      {
+        "name": "进度数据不一致已修正",
+        "severity": "Critical",
+        "impact": "architecture-review和task-board显示60%，实际是46.3%",
+        "suggestion": "已修正为46.3% (25/54任务)，基于2025-11-19 05:30最新扫描",
+        "rationale": [],
+        "type": "建议"
+      },
+      {
+        "name": "v1.6应继续独立运行",
+        "severity": "Strategic",
+        "impact": "代码迁移到Monorepo不是必须的",
+        "suggestion": "v1.6和v1.7并行运行，数据共享(同一数据库)，逐步迁移(如果需要)",
+        "rationale": [
+          "v1.6代码完整稳定(3500行)",
+          "Dashboard已复制到v1.7",
+          "端口8877独立不冲突",
+          "避免过度重构",
+          "保持灵活性"
+        ],
+        "type": "建议"
+      },
+      {
+        "name": "缺少E2E测试",
+        "severity": "High",
+        "impact": "架构师API无端到端测试验证",
+        "suggestion": "TASK-C.3: 编写完整E2E测试(1.5小时)，验证架构师工作流",
+        "rationale": [],
+        "type": "建议"
+      }
+    ]
+  },
+  "structure": {
+    "has_tests": false,
+    "has_docs": false,
+    "has_config": false,
+    "has_api": false,
+    "has_database": false
+  },
+  "knowledge_base": {
+    "status": "success",
+    "created_dirs": 0,
+    "created_files": 0,
+    "dirs": [],
+    "files": [],
+    "initialized_at": "2025-11-18T18:39:18.193436"
+  },
+  "last_updated_by": "architect"
+}

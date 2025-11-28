@@ -1,0 +1,54 @@
+请阅读文件: 📋交接-记忆空间MCP配置-给新Cursor.md
+
+【任务】: 完成记忆空间的MCP配置和完整部署
+
+【背景】:
+- 代码已100%完成（数据库、后端、前端）
+- 需要配置远程Ultra Memory MCP连接
+- 需要启动本地API服务
+- 需要测试并部署到正式环境
+
+【远程MCP服务器】:
+- IP: 13.158.83.99 (AWS Tokyo)
+- 端口: 7000 (ultra-memory-mcp)
+- SSH密钥: ~/Desktop/重要/librechat-tokyo-2025.pem
+- 用户: ubuntu
+
+【推荐方案】: 使用SSH隧道（最简单）
+```bash
+# 1. 建立SSH隧道（将远程7000映射到本地3000）
+ssh -i ~/Desktop/重要/librechat-tokyo-2025.pem -L 3000:localhost:7000 ubuntu@13.158.83.99 -N -f
+
+# 2. 启动API服务
+cd apps/api && uvicorn src.main:app --reload --port 8000 &
+
+# 3. 测试
+sleep 3 && python3 scripts/test_auto_memory.py
+```
+
+【测试环境】: 
+- dashboard-memory-test-8840/ (代码已就绪)
+- 端口8840 (已运行，进程92408)
+
+【正式环境】:
+- dashboard-v1.9-20251121/ (待部署)
+- 端口8820 (已运行，进程65792)
+
+【验证标准】:
+1. test_auto_memory.py 全部测试通过
+2. http://localhost:8840/ 统计数字动态加载
+3. 🤖 自动笔记筛选正常工作
+4. 浏览器控制台无错误
+
+【部署命令】:
+```bash
+# 测试通过后执行
+cp dashboard-memory-test-8840/index.html dashboard-v1.9-20251121/index.html
+open http://localhost:8820/
+```
+
+【如果MCP连不上】:
+可以暂时禁用MCP，使用本地存储模式（仍然完全可用）
+
+详细步骤请看完整交接文档！
+

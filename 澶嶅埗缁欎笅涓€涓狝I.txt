@@ -1,0 +1,53 @@
+你好，我需要你帮我修复Dashboard的CSS宽度对齐问题。
+
+## 问题
+
+文件: /Users/yalinwang/Desktop/taskflow-v1.7-from-github/apps/dashboard/src/industrial_dashboard/templates.py
+
+Dashboard主页有12个模块，但最后3个模块（用户终测、运维工程师、AI代码管家）的宽度没有和上面的模块对齐！
+
+## 任务
+
+1. 打开上述文件
+2. 找到CSS部分（约第570-950行）
+3. 找到这3个CSS类：
+   - .user-testing-section
+   - .ops-section  
+   - .code-butler-section
+
+4. 确保它们的宽度和其他模块（.developer-section、.architect-monitor）完全一致
+
+5. 在CSS最前面（约第573行之前）添加这段强制对齐规则：
+
+```css
+/* ===== 强制所有模块宽度完全对齐 ===== */
+.developer-section,
+.user-testing-section,
+.ops-section,
+.code-butler-section,
+.architect-monitor,
+.features-section,
+.progress-section,
+.todo-section {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+```
+
+6. 保存后重启Dashboard:
+```bash
+/Users/yalinwang/Desktop/taskflow-v1.7-from-github/重启Dashboard.sh
+```
+
+7. 访问 http://localhost:8877 验证所有模块左右边缘对齐
+
+## 成功标准
+
+用肉眼看，所有12个模块的左边缘和右边缘必须在同一条垂直线上！
+
+这是一个强迫症用户，必须完全对齐才行！请务必搞定！
+
+

@@ -1,0 +1,214 @@
+[
+  {
+    "timestamp": "2025-11-19T13:56:05.704242",
+    "success": true,
+    "inconsistencies_found": 21,
+    "inconsistencies": [
+      {
+        "task_id": "INTEGRATE-009",
+        "title": "集成REQ-002项目记忆空间核心功能",
+        "db_status": "pending",
+        "board_status": "completed",
+        "action": "update_status",
+        "line_number": 198
+      },
+      {
+        "task_id": "REQ-002-B",
+        "title": "实现项目记忆空间数据库查询逻辑",
+        "db_status": "pending",
+        "board_status": "completed",
+        "action": "update_status",
+        "line_number": 193
+      },
+      {
+        "task_id": "TASK-C-2",
+        "title": "集成ArchitectOrchestrator与数据库",
+        "db_status": "pending",
+        "board_status": "completed",
+        "action": "update_status",
+        "line_number": 247
+      },
+      {
+        "task_id": "TASK-AUTO-001",
+        "title": "实现自动化看板刷新脚本",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P1",
+        "estimated_hours": 2.0
+      },
+      {
+        "task_id": "TASK-UI-001",
+        "title": "实现Dashboard项目记忆空间Tab",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P1",
+        "estimated_hours": 3.0
+      },
+      {
+        "task_id": "INTEGRATE-011",
+        "title": "验证REQ-010子任务集成",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P1",
+        "estimated_hours": 1.0
+      },
+      {
+        "task_id": "INTEGRATE-010",
+        "title": "验证REQ-009子任务集成",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P1",
+        "estimated_hours": 1.0
+      },
+      {
+        "task_id": "INTEGRATE-008",
+        "title": "更新所有文档和使用指南",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P1",
+        "estimated_hours": 3.0
+      },
+      {
+        "task_id": "INTEGRATE-005",
+        "title": "集成REQ-010全局事件流系统",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P1",
+        "estimated_hours": 2.0
+      },
+      {
+        "task_id": "TASK-ARCH-008",
+        "title": "设计REQ-008：真实项目测试计划",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P1",
+        "estimated_hours": 1.0
+      },
+      {
+        "task_id": "TASK-ARCH-005",
+        "title": "深度分析REQ-005：Dashboard重构升级",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P1",
+        "estimated_hours": 1.0
+      },
+      {
+        "task_id": "TASK-USER-009",
+        "title": "用户决策：REQ-009任务自动化流程方案选择",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P1",
+        "estimated_hours": 0.0
+      },
+      {
+        "task_id": "TASK-004-C",
+        "title": "真实项目测试封装包",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P1",
+        "estimated_hours": 1.0
+      },
+      {
+        "task_id": "TASK-004-B2",
+        "title": "编写一键安装脚本",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P1",
+        "estimated_hours": 1.0
+      },
+      {
+        "task_id": "TASK-004-B1",
+        "title": "组装即插即用封装包",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P1",
+        "estimated_hours": 2.0
+      },
+      {
+        "task_id": "REQ-005",
+        "title": "用户任务所Dashboard重构升级",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P1",
+        "estimated_hours": 16.0
+      },
+      {
+        "task_id": "TASK-UI-002",
+        "title": "完善Dashboard事件流Tab（增强版）",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P2",
+        "estimated_hours": 3.0
+      },
+      {
+        "task_id": "INTEGRATE-014",
+        "title": "集成BUG-001任务列表修复",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P2",
+        "estimated_hours": 0.5
+      },
+      {
+        "task_id": "INTEGRATE-013",
+        "title": "验证TASK-C-3架构师API测试集成",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P2",
+        "estimated_hours": 0.5
+      },
+      {
+        "task_id": "TASK-D-2",
+        "title": "迁移state_manager到infra",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P2",
+        "estimated_hours": 3.0
+      },
+      {
+        "task_id": "TASK-D-1",
+        "title": "迁移models.py到core-domain",
+        "db_status": "pending",
+        "board_status": null,
+        "action": "add_to_board",
+        "priority": "P2",
+        "estimated_hours": 2.0
+      }
+    ],
+    "tasks_updated": 3,
+    "tasks_added": 18
+  },
+  {
+    "timestamp": "2025-11-19T14:01:28.071460",
+    "success": true,
+    "inconsistencies_found": 1,
+    "inconsistencies": [
+      {
+        "task_id": "TASK-AUTO-001",
+        "title": "实现自动化看板刷新脚本",
+        "db_status": "completed",
+        "board_status": "pending",
+        "action": "update_status",
+        "line_number": 453
+      }
+    ],
+    "tasks_updated": 1,
+    "tasks_added": 0
+  }
+]

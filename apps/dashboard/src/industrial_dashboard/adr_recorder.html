@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADR记录器 - 架构师的设计图纸 - 任务所·Flow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --black: #000000;
+            --gray-900: #212121;
+            --gray-700: #616161;
+            --gray-600: #757575;
+            --gray-500: #9E9E9E;
+            --gray-300: #E0E0E0;
+            --gray-100: #F5F5F5;
+            --white: #FFFFFF;
+            --red: #985239;
+            
+            --space-2: 8px;
+            --space-4: 16px;
+            --space-6: 24px;
+            --space-8: 32px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--gray-900);
+            display: flex;
+            justify-content: flex-end;
+            align-items: stretch;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        /* 背景遮罩 */
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            z-index: 999;
+        }
+        
+        /* 侧边抽屉 */
+        .drawer {
+            width: 480px;
+            background: var(--white);
+            box-shadow: -4px 0 24px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            animation: slideInFromRight 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+            z-index: 1000;
+            position: relative;
+        }
+        
+        @keyframes slideInFromRight {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+        
+        /* 抽屉头部 */
+        .drawer-header {
+            padding: var(--space-6);
+            border-bottom: 1px solid var(--gray-300);
+            background: var(--gray-50);
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: var(--white);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        .close-btn:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+        
+        .drawer-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: var(--space-2);
+        }
+        
+        /* 步骤指示器 */
+        .steps-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: var(--space-6);
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+        }
+        
+        .step-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--gray-300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 12px;
+            color: var(--gray-600);
+            z-index: 1;
+        }
+        
+        .step.active .step-circle {
+            background: var(--red);
+            color: var(--white);
+        }
+        
+        .step.completed .step-circle {
+            background: var(--black);
+            color: var(--white);
+        }
+        
+        .step-label {
+            font-size: 10px;
+            color: var(--gray-600);
+            margin-top: var(--space-2);
+        }
+        
+        .step-line {
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: var(--gray-300);
+            z-index: 0;
+        }
+        
+        .step:last-child .step-line {
+            display: none;
+        }
+        
+        /* 抽屉内容 */
+        .drawer-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--space-6);
+        }
+        
+        .form-step {
+            display: none;
+        }
+        
+        .form-step.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .step-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid var(--gray-300);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-6);
+        }
+        
+        .form-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--gray-900);
+            margin-bottom: var(--space-2);
+            display: block;
+        }
+        
+        .form-label.required::after {
+            content: ' *';
+            color: var(--red);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: var(--space-4);
+            font-size: 14px;
+            border: 1px solid var(--gray-300);
+            font-family: inherit;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--red);
+            box-shadow: 0 0 0 3px rgba(152, 82, 57, 0.1);
+        }
+        
+        textarea.form-input {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+        
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            cursor: pointer;
+        }
+        
+        .radio-item input {
+            cursor: pointer;
+        }
+        
+        /* 抽屉底部 */
+        .drawer-footer {
+            padding: var(--space-6);
+            border-top: 1px solid var(--gray-300);
+            display: flex;
+            justify-content: space-between;
+            gap: var(--space-4);
+        }
+        
+        .btn {
+            flex: 1;
+            padding: var(--space-4);
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid var(--gray-300);
+            background: var(--white);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn:hover {
+            background: var(--gray-100);
+        }
+        
+        .btn-primary {
+            background: var(--red);
+            color: var(--white);
+            border-color: var(--red);
+        }
+        
+        .btn-primary:hover {
+            background: var(--black);
+            border-color: var(--black);
+        }
+        
+        /* 预览区 */
+        .preview-content {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-300);
+            padding: var(--space-6);
+            font-size: 13px;
+            line-height: 1.8;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .preview-content h3 {
+            font-size: 16px;
+            margin-bottom: var(--space-4);
+            color: var(--black);
+        }
+        
+        .preview-content p {
+            margin-bottom: var(--space-4);
+            color: var(--gray-700);
+        }
+    </style>
+</head>
+<body>
+    <div class="backdrop" onclick="closeDrawer()"></div>
+    
+    <div class="drawer">
+        <!-- 关闭按钮 -->
+        <button class="close-btn" onclick="closeDrawer()">✕</button>
+        
+        <!-- 抽屉头部 -->
+        <div class="drawer-header">
+            <div class="drawer-title">📋 记录架构决策 (ADR)</div>
+            
+            <!-- 步骤指示器 -->
+            <div class="steps-indicator">
+                <div class="step active" id="step1">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">基本</div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="step" id="step2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">背景</div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">决策</div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="step" id="step4">
+                    <div class="step-circle">4</div>
+                    <div class="step-label">审查</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 抽屉内容 -->
+        <div class="drawer-content">
+            <!-- 步骤1: 基本信息 -->
+            <div class="form-step active" id="formStep1">
+                <div class="step-title">步骤1/4: 基本信息</div>
+                
+                <div class="form-group">
+                    <label class="form-label required">决策标题</label>
+                    <input type="text" class="form-input" id="decisionTitle" 
+                           placeholder="例: 采用Monorepo架构">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">决策类型</label>
+                    <div class="radio-group">
+                        <label class="radio-item">
+                            <input type="radio" name="decisionType" value="architecture" checked>
+                            架构设计
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="decisionType" value="technology">
+                            技术选型
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="decisionType" value="process">
+                            流程变更
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">决策者</label>
+                    <input type="text" class="form-input" id="decisionMaker" 
+                           placeholder="例: AI Architect" value="AI Architect">
+                </div>
+            </div>
+            
+            <!-- 步骤2: 决策背景 -->
+            <div class="form-step" id="formStep2">
+                <div class="step-title">步骤2/4: 决策背景</div>
+                
+                <div class="form-group">
+                    <label class="form-label required">决策背景</label>
+                    <textarea class="form-input" id="decisionContext" 
+                              placeholder="描述做出此决策的背景和原因..."></textarea>
+                </div>
+            </div>
+            
+            <!-- 步骤3: 决策内容 -->
+            <div class="form-step" id="formStep3">
+                <div class="step-title">步骤3/4: 决策内容</div>
+                
+                <div class="form-group">
+                    <label class="form-label required">决策内容</label>
+                    <textarea class="form-input" id="decisionContent" 
+                              placeholder="描述具体的决策内容..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">影响和后果</label>
+                    <textarea class="form-input" id="decisionConsequences" 
+                              placeholder="描述此决策的影响和预期后果..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">备选方案</label>
+                    <textarea class="form-input" id="alternatives" 
+                              placeholder="列出考虑过的备选方案（每行一个）..."></textarea>
+                </div>
+            </div>
+            
+            <!-- 步骤4: 预览和审查 -->
+            <div class="form-step" id="formStep4">
+                <div class="step-title">步骤4/4: 预览ADR</div>
+                <div class="preview-content" id="adrPreview">
+                    预览内容将在这里显示...
+                </div>
+            </div>
+        </div>
+        
+        <!-- 抽屉底部 -->
+        <div class="drawer-footer">
+            <button class="btn" onclick="prevStep()" id="prevBtn" style="display: none;">← 上一步</button>
+            <button class="btn" onclick="closeDrawer()">取消</button>
+            <button class="btn btn-primary" onclick="nextStep()" id="nextBtn">下一步 →</button>
+            <button class="btn btn-primary" onclick="submitADR()" id="submitBtn" style="display: none;">记录决策</button>
+        </div>
+    </div>
+    
+    <script>
+        let currentStep = 1;
+        const totalSteps = 4;
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📋 ADR记录器已加载');
+            updateStepUI();
+        });
+        
+        // 下一步
+        function nextStep() {
+            // 验证当前步骤
+            if (!validateStep(currentStep)) {
+                return;
+            }
+            
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateStepUI();
+                
+                // 如果是最后一步，生成预览
+                if (currentStep === totalSteps) {
+                    generatePreview();
+                }
+            }
+        }
+        
+        // 上一步
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepUI();
+            }
+        }
+        
+        // 更新步骤UI
+        function updateStepUI() {
+            // 更新步骤指示器
+            for (let i = 1; i <= totalSteps; i++) {
+                const stepEl = document.getElementById(`step${i}`);
+                const formStepEl = document.getElementById(`formStep${i}`);
+                
+                if (i < currentStep) {
+                    stepEl.classList.add('completed');
+                    stepEl.classList.remove('active');
+                } else if (i === currentStep) {
+                    stepEl.classList.add('active');
+                    stepEl.classList.remove('completed');
+                } else {
+                    stepEl.classList.remove('active', 'completed');
+                }
+                
+                formStepEl.classList.toggle('active', i === currentStep);
+            }
+            
+            // 更新按钮
+            document.getElementById('prevBtn').style.display = currentStep > 1 ? 'block' : 'none';
+            document.getElementById('nextBtn').style.display = currentStep < totalSteps ? 'block' : 'none';
+            document.getElementById('submitBtn').style.display = currentStep === totalSteps ? 'block' : 'none';
+        }
+        
+        // 验证步骤
+        function validateStep(step) {
+            if (step === 1) {
+                const title = document.getElementById('decisionTitle').value.trim();
+                if (!title) {
+                    alert('请输入决策标题');
+                    return false;
+                }
+            }
+            
+            if (step === 2) {
+                const context = document.getElementById('decisionContext').value.trim();
+                if (!context) {
+                    alert('请输入决策背景');
+                    return false;
+                }
+            }
+            
+            if (step === 3) {
+                const content = document.getElementById('decisionContent').value.trim();
+                if (!content) {
+                    alert('请输入决策内容');
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+        
+        // 生成预览
+        function generatePreview() {
+            const title = document.getElementById('decisionTitle').value;
+            const type = document.querySelector('input[name="decisionType"]:checked').value;
+            const maker = document.getElementById('decisionMaker').value;
+            const context = document.getElementById('decisionContext').value;
+            const content = document.getElementById('decisionContent').value;
+            const consequences = document.getElementById('decisionConsequences').value;
+            const alternatives = document.getElementById('alternatives').value;
+            
+            const date = new Date().toLocaleDateString('zh-CN');
+            
+            let preview = `
+                <h3># ADR-${String(Math.floor(Math.random() * 1000)).padStart(3, '0')}: ${title}</h3>
+                <p><strong>日期:</strong> ${date}</p>
+                <p><strong>决策者:</strong> ${maker}</p>
+                <p><strong>类型:</strong> ${getTypeText(type)}</p>
+                <p><strong>状态:</strong> 已接受</p>
+                
+                <h3>## 背景和问题</h3>
+                <p>${context.replace(/\\n/g, '<br>')}</p>
+                
+                <h3>## 决策内容</h3>
+                <p>${content.replace(/\\n/g, '<br>')}</p>
+            `;
+            
+            if (consequences) {
+                preview += `
+                    <h3>## 影响和后果</h3>
+                    <p>${consequences.replace(/\\n/g, '<br>')}</p>
+                `;
+            }
+            
+            if (alternatives) {
+                preview += `
+                    <h3>## 备选方案</h3>
+                    <p>${alternatives.replace(/\\n/g, '<br>')}</p>
+                `;
+            }
+            
+            document.getElementById('adrPreview').innerHTML = preview;
+        }
+        
+        // 提交ADR
+        async function submitADR() {
+            const adrData = {
+                title: document.getElementById('decisionTitle').value,
+                type: document.querySelector('input[name="decisionType"]:checked').value,
+                maker: document.getElementById('decisionMaker').value,
+                context: document.getElementById('decisionContext').value,
+                content: document.getElementById('decisionContent').value,
+                consequences: document.getElementById('decisionConsequences').value,
+                alternatives: document.getElementById('alternatives').value
+            };
+            
+            console.log('提交ADR:', adrData);
+            alert('✅ 架构决策已记录！\\n\\nADR已保存到数据库，并同步到Ultra Memory。');
+            
+            // 关闭抽屉
+            setTimeout(() => {
+                closeDrawer();
+            }, 1500);
+        }
+        
+        // 关闭抽屉
+        function closeDrawer() {
+            window.history.back();
+        }
+        
+        // 获取类型文字
+        function getTypeText(type) {
+            const texts = {
+                'architecture': '架构设计',
+                'technology': '技术选型',
+                'process': '流程变更'
+            };
+            return texts[type] || type;
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,1884 @@
+
+                        <div class="engineer-list-item" data-task-id="INTEGRATE-003">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">INTEGRATE-003 | 集成REQ-006 Token实时同步功能</div>
+                                <div class="engineer-item-time">预估2.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                将REQ-006的Token同步功能集成到Dashboard。
+
+【已完成功能】:
+- ✅ 4种同步方式 (Cursor状态栏/手动输入/历史推算/窗口检测)
+- ✅ Token显示组件
+- ✅ 对话历史库集成
+- ✅ 一键同步按钮
+
+【集...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">进行中</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-011">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-011 | 系统监控增强API</div>
+                                <div class="engineer-item-time">预估3.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                扩展系统健康检查端点
+
+扩展端点: GET /api/system/health
+- 当前仅简单检查，需要增强为完整监控
+- 返回6个服务状态：
+  * API Server (端口8800)
+  * Dashboard (端口8820)
+...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-004">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-004 | 任务看板格式化API</div>
+                                <div class="engineer-item-time">预估2.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                扩展任务查询API，支持看板格式输出
+
+端点: GET /api/tasks/kanban
+- 参数：project_id, assigned_to
+- 返回格式：
+  {
+    pending: [...],
+    in_progre...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-003">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-003 | 创建问题和建议管理API</div>
+                                <div class="engineer-item-time">预估2.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                创建问题和建议管理端点
+
+端点1: GET /api/issues
+- 返回问题清单（~15个）
+- 包含：标题、描述、优先级、影响、建议方案
+
+端点2: POST /api/issues/{id}/generate-task
+- 将问题转...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-002">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-002 | 创建功能清单API</div>
+                                <div class="engineer-item-time">预估2.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                创建功能清单查询端点
+
+端点1: GET /api/features/implemented
+- 返回已实现功能列表（~132个）
+- 数据源：automation-data/v17-complete-features.json
+
+端点2:...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-001">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-001 | 创建统一统计API</div>
+                                <div class="engineer-item-time">预估2.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                创建 GET /api/stats/overview 端点
+        
+功能：提供Dashboard顶部9个统计卡片的数据
+- 总任务数
+- 进行中/待处理/已完成
+- 完成率
+- P0任务数
+- 事件总数
+- 记忆数量
+- 会话数
+...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="INTEGRATE-009">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">INTEGRATE-009 | 集成REQ-002项目记忆空间核心功能</div>
+                                <div class="engineer-item-time">预估3.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                将REQ-002的项目记忆空间完整集成到v1.7系统。
+
+【已完成功能】:
+- ✅ 12表知识库数据库设计
+- ✅ 项目记忆API设计（11个端点）
+- ✅ 自动记录ADR和解决方案
+- ⚠️ 数据库查询逻辑待完善（REQ-002-B）
+
+...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="INTEGRATE-001">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">INTEGRATE-001 | 集成REQ-001端口冲突解决功能</div>
+                                <div class="engineer-item-time">预估2.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                将REQ-001的端口管理和缓存清除功能集成到v1.7 Dashboard。
+
+【已完成功能】:
+- ✅ PortManager端口自动分配 (8870-8899)
+- ✅ 缓存版本管理 (dashboard_version.json)
+-...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-INTEGRATE-003">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-INTEGRATE-003 | 集成REQ-003对话历史库到Dashboard</div>
+                                <div class="engineer-item-time">预估1.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                将REQ-003的代码真正替换Dashboard上的"对话交流"Tab。
+
+【用户反馈】:
+Dashboard上Tab还叫"对话交流"，不是"对话历史库"
+说明REQ-003的代码没有集成
+
+【任务目标】:
+替换templates.py中"...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-004-A2">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-004-A2 | 补充企业级知识库Schema</div>
+                                <div class="engineer-item-time">预估2.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                扩展知识库数据库，添加企业级表和记忆系统表。
+
+【当前状态】:
+- v1: 3个任务表
+- v2: 9个知识库表
+- 需要补充: 企业级表 + 记忆系统表
+
+【需要创建】:
+database/schemas/v3_enterprise_kn...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-002-B">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-002-B | 实现项目记忆空间数据库查询逻辑</div>
+                                <div class="engineer-item-time">预估4.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                基于架构师审查REQ-002发现的问题，实现核心数据库查询逻辑。
+
+【审查发现】:
+REQ-002架构优秀（10/10），但核心查询方法全部为TODO，导致功能不可用：
+- _query_memories() - 返回空列表
+- _quer...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-008">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-008 | 真实项目测试与反向改进</div>
+                                <div class="engineer-item-time">预估12.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                将v1.7部署到一个真实项目(如librechat-desktop)中运行测试，发现问题并反向改进任务所本身。包括：1)选择测试项目 2)完整部署v1.7 3)架构师接手分析 4)记录所有问题 5)反向优化任务所 6)形成最佳实践文档。
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">architect+fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-004">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-004 | 架构师即插即用强制流程</div>
+                                <div class="engineer-item-time">预估8.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                确保架构师接手新项目时，明确知道要做的所有事情，并强制性完成Dashboard更新。实现：1)自动检查清单 2)强制流程提醒 3)未完成项警告 4)一键执行脚本。让架构师Dashboard更新标准流程.md中的8个阶段自动落地。
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-C-2">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-C-2 | 集成ArchitectOrchestrator与数据库</div>
+                                <div class="engineer-item-time">预估3.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                将ArchitectOrchestrator与StateManager集成，实现真正的数据库读写
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-EXT-003">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-EXT-003 | 知识库API完善</div>
+                                <div class="engineer-item-time">预估1.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                完善知识库查询API
+
+验证端点: GET /api/knowledge-base
+- 表结构已存在（knowledge_articles）
+- 验证API端点是否完整
+- 如缺失则补充
+
+位置：apps/api/src/routes/kn...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-EXT-002">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-EXT-002 | 任务API增加分配者筛选</div>
+                                <div class="engineer-item-time">预估0.5小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                扩展任务查询API
+
+扩展端点: GET /api/tasks
+- 新增参数：assigned_to（筛选指定执行者的任务）
+
+位置：apps/api/src/routes/task_board.py（扩展）
+预期结果：Noah任务队列Ta...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-EXT-001">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-EXT-001 | 对话API增加角色筛选</div>
+                                <div class="engineer-item-time">预估0.5小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                扩展对话查询API
+
+扩展端点: GET /api/conversations
+- 新增参数：role（architect/fullstack-engineer/sre）
+- 按角色筛选对话历史
+
+位置：apps/api/src/route...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-012">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-012 | 代码清单统计API</div>
+                                <div class="engineer-item-time">预估2.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                创建代码清单端点
+
+端点: GET /api/code/inventory
+- 扫描项目代码目录
+- 返回文件列表（~45个文件）
+- 包含：路径、代码行数、复杂度、最后修改时间、语言
+
+位置：apps/api/src/routes/cod...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-010">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-010 | 运维日志查询API</div>
+                                <div class="engineer-item-time">预估1.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                创建运维日志查询端点
+
+端点: GET /api/logs/operations
+- 参数：project_id, level（INFO/WARN/ERROR）, limit, page
+- 返回日志列表（~847条）
+- 数据源：系统日志...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-009">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-009 | Bug管理API</div>
+                                <div class="engineer-item-time">预估2.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                创建Bug管理端点
+
+端点1: GET /api/bugs
+- 返回看板格式（待修复/修复中/已验证）
+- 基于issues表，type='bug'
+
+端点2: POST /api/bugs
+- 创建新Bug
+
+端点3: PUT /api/...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-008">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-008 | 技术文档索引API</div>
+                                <div class="engineer-item-time">预估2.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                创建文档索引端点
+
+端点1: GET /api/documents
+- 参数：project_id, category（technical/api/architecture）
+- 返回文档列表（~68篇）
+- 扫描docs/目录生成
+
+端点...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-007">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-007 | 代码审查结果API</div>
+                                <div class="engineer-item-time">预估2.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                创建代码审查管理端点
+
+端点1: GET /api/code-reviews
+- 返回审查清单（~15个审查项）
+- 包含：文件路径、审查结果、问题数、建议
+
+端点2: POST /api/code-reviews
+- 提交新的审查结果
+
+...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-006">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-006 | 需求管理API</div>
+                                <div class="engineer-item-time">预估2.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                创建需求管理端点
+
+端点1: GET /api/requirements
+- 参数：project_id, source（user/architect）
+- 返回用户需求或架构师建议任务
+
+端点2: PUT /api/requirement...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-005">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-005 | 事件流参数扩展</div>
+                                <div class="engineer-item-time">预估1.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                为现有事件流API添加筛选参数
+
+扩展端点: GET /api/events
+- 新增参数：category（architecture/development/operations）
+- 新增参数：role（architect/fullst...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="INTEGRATE-011">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">INTEGRATE-011 | 验证REQ-010子任务集成</div>
+                                <div class="engineer-item-time">预估1.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                验证REQ-010的4个子任务是否正确集成。
+
+【子任务】:
+- ✅ REQ-010-A: 事件类型设计 (1h)
+- ✅ REQ-010-B: 事件存储系统 (3h)
+- ✅ REQ-010-C: 事件触发集成 (2h)
+- ✅ REQ-...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">architect</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="INTEGRATE-010">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">INTEGRATE-010 | 验证REQ-009子任务集成</div>
+                                <div class="engineer-item-time">预估1.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                验证REQ-009的3个子任务是否正确集成到Dashboard。
+
+【子任务】:
+- ✅ REQ-009-A: 一键复制按钮 (2h)
+- ✅ REQ-009-B: 状态管理脚本和API (1.5h)
+- ✅ REQ-009-C: 自动刷新...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">architect</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="INTEGRATE-008">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">INTEGRATE-008 | 更新所有文档和使用指南</div>
+                                <div class="engineer-item-time">预估3.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                更新文档以反映集成后的功能。
+
+【更新内容】:
+1. 主README.md
+   - 添加v1.7新功能说明
+   - 更新快速开始指南
+   - 更新架构图
+
+2. API文档
+   - 更新端点列表
+   - 添加使用示例
+   - 更...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">architect</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="INTEGRATE-005">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">INTEGRATE-005 | 集成REQ-010全局事件流系统</div>
+                                <div class="engineer-item-time">预估2.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                将REQ-010的事件流系统集成到Dashboard。
+
+【已完成功能】:
+- ✅ 事件类型定义 (6大类15+小类)
+- ✅ 事件存储 (JSON文件)
+- ✅ 事件流UI (5个Tab)
+- ✅ 事件筛选功能
+- ✅ 事件统计功能
+
+【...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-ARCH-008">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-ARCH-008 | 设计REQ-008：真实项目测试计划</div>
+                                <div class="engineer-item-time">预估1.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                设计真实项目测试的完整计划。
+
+【原始需求】:
+- REQ-008：真实项目测试与反向改进（12h，P0）
+- 建议项目：librechat-desktop
+
+【我的任务】:
+1. 确认测试项目（librechat-desktop？）
+2....
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">architect</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-ARCH-005">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-ARCH-005 | 深度分析REQ-005：Dashboard重构升级</div>
+                                <div class="engineer-item-time">预估1.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                分析Dashboard重构需求，拆解成可执行任务。
+
+【原始需求】:
+- REQ-005: Dashboard重构升级（16h，P1）
+- 来源：用户需求清单
+
+【我的任务】:
+1. 追问用户：
+   - Dashboard哪些模块需要重构...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">architect</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-USER-009">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-USER-009 | 用户决策：REQ-009任务自动化流程方案选择</div>
+                                <div class="engineer-item-time">预估未估算小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                请用户选择REQ-009的实施方案。
+
+【背景】:
+REQ-009要求：李明自己更新任务状态（待处理→进行中→已完成），Dashboard有一键复制按钮。
+
+【已设计3个方案】:
+- 方案A：文件监听自动化（8h，完全自动）
+- 方案B：A...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">user</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-004-C">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-004-C | 真实项目测试封装包</div>
+                                <div class="engineer-item-time">预估1.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                在真实项目（librechat-desktop）测试即插即用封装包。
+
+【测试步骤】:
+1. 复制封装包到librechat-desktop项目
+2. 运行一键安装脚本
+3. 在Cursor中激活架构师
+4. 验证Phase 0-6工作流
+...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">architect</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-004-B2">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-004-B2 | 编写一键安装脚本</div>
+                                <div class="engineer-item-time">预估1.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                编写Windows和Linux/Mac的一键安装脚本。
+
+【Windows版本】(一键安装.bat):
+1. 检测目标项目
+2. 创建标准目录结构
+3. 初始化知识库DB
+4. 生成初始文档模板
+5. 显示激活命令
+
+【Linux/Mac版...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-004-B1">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-004-B1 | 组装即插即用封装包</div>
+                                <div class="engineer-item-time">预估2.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                创建标准化的封装包目录，复制所有必需文件。
+
+【封装包结构】:
+任务所Flow-即插即用封装包-v1.7/
+├── README-即插即用.md
+├── 一键安装.bat / install.sh
+├── docs/ai/（4个AI提示词）...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-005">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-005 | 用户任务所Dashboard重构升级</div>
+                                <div class="engineer-item-time">预估16.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                重构和升级Dashboard的功能和展示，完整实现v1.7的多个功能，让用户感知到系统的运作逻辑。包括：1)细粒度功能展示优化 2)2Tab任务分类优化 3)实时更新机制优化 4)交互体验提升 5)数据可视化增强 6)响应式设计。
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-015">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-015 | WebSocket实时推送</div>
+                                <div class="engineer-item-time">预估2.0小时 · P2</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                创建WebSocket连接端点
+
+端点: WS /ws/events
+- 实时推送新事件到前端
+- 避免轮询，降低服务器负载
+
+位置：apps/api/src/websockets/events.py
+预期结果：Dashboard可实时显示...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-014">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-014 | AI协作链可视化API</div>
+                                <div class="engineer-item-time">预估2.0小时 · P2</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                创建协作链数据端点
+
+端点: GET /api/collaboration/chain
+- 返回节点：各角色（架构师/工程师/SRE）的任务数和活跃数
+- 返回边：角色间任务流转数量
+
+位置：apps/api/src/routes/coll...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-API-013">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-API-013 | 实时脉搏统计API</div>
+                                <div class="engineer-item-time">预估2.0小时 · P2</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                创建实时脉搏数据端点
+
+端点: GET /api/pulse/realtime
+- 更新间隔：30秒
+- 返回：活跃任务数、最近事件数、平均响应时间、最后活动时间
+
+位置：apps/api/src/routes/pulse.py
+预期结果：...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="INTEGRATE-014">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">INTEGRATE-014 | 集成BUG-001任务列表修复</div>
+                                <div class="engineer-item-time">预估0.5小时 · P2</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                验证BUG-001的修复是否已部署到生产环境。
+
+【已完成】:
+- ✅ 修复state_manager.py兼容性
+- ✅ 7分钟快速修复
+- ✅ 验证测试通过
+
+【验证任务】:
+1. 确认修复代码已合并到主分支
+2. Dashboard任...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">architect</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="INTEGRATE-013">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">INTEGRATE-013 | 验证TASK-C-3架构师API测试集成</div>
+                                <div class="engineer-item-time">预估0.5小时 · P2</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                验证TASK-C-3的E2E测试是否集成到测试套件。
+
+【已完成】:
+- ✅ 架构师API端到端测试
+- ✅ 测试脚本编写
+- ✅ 测试通过
+
+【验证任务】:
+1. 测试文件是否在tests/目录
+2. 测试是否可以运行
+3. 测试覆盖率是...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">architect</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-D-2">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-D-2 | 迁移state_manager到infra</div>
+                                <div class="engineer-item-time">预估3.0小时 · P2</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                将StateManager迁移到packages/infra/database/
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-D-1">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-D-1 | 迁移models.py到core-domain</div>
+                                <div class="engineer-item-time">预估2.0小时 · P2</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                将v1.6的automation/models.py迁移到packages/core-domain/entities/
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">待处理</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="INTEGRATE-007" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">INTEGRATE-007 | E2E集成测试</div>
+                                <div class="engineer-item-time">预估4.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                端到端集成测试，验证所有功能协同工作。
+
+【测试范围】:
+1. 完整工作流测试
+   - 架构师创建任务
+   - 全栈工程师领取任务
+   - 状态流转
+   - 代码审查
+   - 知识记录
+
+2. 数据一致性测试
+   - Dashb...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="INTEGRATE-002" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">INTEGRATE-002 | 集成REQ-003对话历史库功能</div>
+                                <div class="engineer-item-time">预估3.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                将REQ-003的对话历史库功能集成到v1.7 API和Dashboard。
+
+【已完成功能】:
+- ✅ 会话管理UI (4个Tab)
+- ✅ 会话CRUD API
+- ✅ 会话统计功能
+- ✅ 会话标签管理
+
+【集成任务】:
+1. 部署会...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="BUG-001" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">BUG-001 | 紧急修复：全栈开发工程师任务列表加载失败</div>
+                                <div class="engineer-item-time">预估1.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                Dashboard"全栈开发工程师"模块显示"Loading..."，任务列表无法加载。
+
+【Bug现象】:
+- Dashboard → 全栈开发工程师 → 任务清单 Tab
+- 显示"Loading..."
+- 任务列表不显示
+- 其他T...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-009-B" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-009-B | 实现李明状态管理脚本和API</div>
+                                <div class="engineer-item-time">预估1.5小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                创建李明使用的脚本和对应API端点。
+
+【脚本】（2个）:
+1. scripts/李明收到任务.py
+   - 用法: python 李明收到任务.py TASK-C-1
+   - 功能: 待处理 → 进行中
+   - API: PUT /...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-009-A" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-009-A | 实现Dashboard一键复制按钮</div>
+                                <div class="engineer-item-time">预估2.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                在Dashboard任务卡片上添加一键复制按钮。
+
+【待处理任务卡片】:
+<button onclick="copyTaskPrompt('TASK-C-1')">
+  📋 一键复制提示词
+</button>
+
+【已完成任务卡片】:
+<bu...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-009" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-009 | 任务三态流转系统</div>
+                                <div class="engineer-item-time">预估4.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                实现任务的三种状态和对应按钮，让李明自己管理任务状态。
+
+【三种状态】:
+1. 待处理（pending）
+   - Dashboard显示：📋 一键复制提示词
+   - 点击：复制派发文档内容
+   
+2. 进行中（in_progress）...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">architect</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-010-C" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-010-C | 集成事件触发点到所有脚本和API</div>
+                                <div class="engineer-item-time">预估2.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                在所有关键操作点添加事件触发。
+
+【触发点清单】:
+
+1. 脚本触发点（5个脚本）:
+   - 录入任务.py → emit(task_created + task_dispatched)
+   - 李明开始任务.py → emit(tas...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-010-B" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-010-B | 实现事件发射和存储系统</div>
+                                <div class="engineer-item-time">预估3.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                实现完整的事件系统后端。
+
+【内容】:
+1. 创建project_events表（SQL Schema）
+2. 实现EventEmitter类（发射事件）
+   - emit(event_type, data)
+   - emit_batc...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-010-A" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-010-A | 设计项目事件类型体系</div>
+                                <div class="engineer-item-time">预估1.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                设计完整的项目事件类型、数据结构、生命周期。
+
+【内容】:
+1. 定义事件类型（20-30种）
+   - 任务生命周期（9种）
+   - 功能生命周期（5种）
+   - 问题生命周期（4种）
+   - 协作事件（4种）
+   
+2. 每种事...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">architect</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-010" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-010 | 项目全局事件流系统</div>
+                                <div class="engineer-item-time">预估16.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                升级事件流：从架构师视角→项目全局视角，实现事件驱动的自动化协作。
+
+【核心理念】:
+事件流 = 项目神经系统
+所有角色的动作都触发事件→其他角色监听→自动响应
+
+【核心功能】:
+1. 完整的事件类型体系（task/feature/issu...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">architect</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-VERIFY-006" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-VERIFY-006 | 验证REQ-006 Token同步功能是否集成</div>
+                                <div class="engineer-item-time">预估0.5小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                用户反馈：REQ-006审查通过了，但"没感觉到"功能。
+
+【验证内容】:
+1. 打开Dashboard: http://localhost:8877
+2. 查找"Token同步"按钮
+3. 测试Token同步功能
+4. 验证快捷脚本是否存...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">architect</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-VERIFY-001" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-VERIFY-001 | 验证REQ-001缓存清除功能是否集成</div>
+                                <div class="engineer-item-time">预估0.5小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                用户反馈：REQ-001审查通过了，但"没感觉到"功能。
+
+【验证内容】:
+1. 打开Dashboard: http://localhost:8877
+2. 查找"清除缓存"按钮（应该在页面显著位置）
+3. 查找"缓存版本"显示
+4. 点击...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">architect</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-004-A1" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-004-A1 | 创建企业级目录结构模板</div>
+                                <div class="engineer-item-time">预估2.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                基于用户提供的完整企业级Monorepo结构，创建标准模板文档。
+
+【任务目标】:
+创建docs/arch/monorepo-structure-template.md，详细说明企业级目录结构。
+
+【内容包括】:
+- apps/（5个应用：...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">architect</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-C-3" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-C-3 | 端到端测试架构师API</div>
+                                <div class="engineer-item-time">预估1.5小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                编写完整的E2E测试，验证架构师工作流
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-C-1" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-C-1 | 创建FastAPI主应用入口</div>
+                                <div class="engineer-item-time">预估2.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                创建apps/api/src/main.py，整合所有路由和中间件，启动FastAPI服务
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-AUTO-001" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-AUTO-001 | 实现自动化看板刷新脚本</div>
+                                <div class="engineer-item-time">预估2.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                
+## 任务描述
+创建自动化脚本，定期从事件流和数据库拉取最新状态，自动更新docs/tasks/task-board.md。
+
+## 背景
+- 手动更新看板效率低，容易遗漏
+- 事件流已记录所有状态变更
+- 需要自动化机制同步看板
+
+##...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-UI-001" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-UI-001 | 实现Dashboard项目记忆空间Tab</div>
+                                <div class="engineer-item-time">预估3.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                
+## 任务描述
+在Dashboard中新增"项目记忆空间"Tab，展示和管理项目记忆。
+
+## 背景
+- REQ-002项目记忆空间已完成 ✅
+- API已完整实现（project_memory.py，11个端点）✅
+- 缺少Dashbo...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="INTEGRATE-006" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">INTEGRATE-006 | 集成REQ-011动态进度计算功能</div>
+                                <div class="engineer-item-time">预估1.5小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                将REQ-011的动态进度计算集成到Dashboard。
+
+【已完成功能】:
+- ✅ 实时进度计算 (基于数据库)
+- ✅ 进度条自动更新
+- ✅ 统计数据实时刷新
+
+【集成任务】:
+1. 验证进度计算逻辑
+2. 测试进度条更新
+3. 验证...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="INTEGRATE-004" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">INTEGRATE-004 | 集成REQ-009任务三态流转系统</div>
+                                <div class="engineer-item-time">预估3.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                将REQ-009的任务自动化流转功能集成到API和Dashboard。
+
+【已完成功能】:
+- ✅ 三态流转逻辑 (待处理→进行中→已完成)
+- ✅ 状态转换API
+- ✅ 工时记录功能
+- ✅ Dashboard状态展示
+
+【集成任务】:...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-011" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-011 | Dashboard动态进度计算</div>
+                                <div class="engineer-item-time">预估2.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                实现Dashboard进度的动态计算，基于数据库实际任务统计。
+
+【用户需求】:
+"以后这个进度，就是统计目前所有任务的数量和已完成数量的办理，比如所有35个，完成了多少个，那么统计就是完成多少百分比"
+
+【当前问题】:
+Dashboard...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-009-C" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-009-C | Dashboard任务列表自动刷新</div>
+                                <div class="engineer-item-time">预估0.5小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                实现Dashboard任务列表的自动刷新机制。
+
+【功能】:
+1. 轮询机制（每5秒）
+2. 检测任务状态变化
+3. 自动更新UI
+4. 无需手动刷新页面
+
+【实现方式】:
+方案A: 轮询（简单）
+- setInterval(() => r...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-010-E" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-010-E | Dashboard事件流可视化升级</div>
+                                <div class="engineer-item-time">预估2.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                升级事件流UI，支持分类、筛选、实时更新。
+
+【UI功能】:
+1. 事件类型筛选（任务/功能/问题/协作）
+2. 角色筛选（架构师/李明/用户/系统）
+3. 时间轴视图（按时间排序）
+4. 实时刷新（轮询5秒或WebSocket）
+5. 事...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-010-D" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-010-D | 实现架构师事件监听器</div>
+                                <div class="engineer-item-time">预估2.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                实现自动化监听和响应机制。
+
+【内容】:
+1. EventListener类（轮询或WebSocket）
+2. 规则引擎（5个核心规则）:
+   - task_completed → 提醒架构师审查
+   - feature_develop...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-006" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-006 | Token显示准确实时同步</div>
+                                <div class="engineer-item-time">预估3.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                架构师Token余量显示必须准确实时，同步Cursor状态栏的真实Token使用量。实现：1)自动读取Cursor状态栏Token值 2)实时同步到Dashboard 3)每次操作后自动更新 4)多会话Token累加计算正确。避免手动更新导...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-002" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-002 | 项目记忆空间创立</div>
+                                <div class="engineer-item-time">预估6.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                利用当前使用的2个记忆插件(ultra-memory-cloud和session-memory)，为每个接入任务所的项目建立独立的记忆空间。实现：1)项目隔离存储 2)自动记录架构决策 3)自动记录问题解决方案 4)跨会话知识继承。
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-001" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-001 | 端口冲突彻底解决方案</div>
+                                <div class="engineer-item-time">预估4.0小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                现在每次更新都必须换新端口非常麻烦。需要实现：1)添加版本号到URL 2)设置no-cache HTTP头 3)Service Worker版本控制 4)提供清除缓存按钮。彻底解决浏览器缓存问题，不再需要换端口。
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-UI-002" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-UI-002 | 完善Dashboard事件流Tab（增强版）</div>
+                                <div class="engineer-item-time">预估3.0小时 · P2</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                
+## 任务描述
+完善现有的Dashboard事件流Tab，添加筛选、搜索和详情展开功能。
+
+## 背景
+- 事件流Tab已存在 ✅ (基础版)
+- 事件流API已完整 ✅（7个端点）
+- 需要增强功能 ⏳
+
+## 当前功能（已有）
+- ✅...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="INTEGRATE-012" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">INTEGRATE-012 | 集成TASK-004-A1企业级目录结构模板</div>
+                                <div class="engineer-item-time">预估1.0小时 · P2</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                将TASK-004-A1的企业级模板文档集成到知识库。
+
+【已完成】:
+- ✅ monorepo-structure-template.md (600行)
+- ✅ 完整的企业级目录结构
+- ✅ 详细的说明和注释
+
+【集成任务】:
+1. 验证...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">architect</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-003" data-status="completed">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-003 | 对话历史库功能</div>
+                                <div class="engineer-item-time">预估5.0小时 · P2</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                架构师面板上，将'对话交流'改为'对话历史库'，显示过去的多次对话（会话列表），点击可以查看某一次单独对话的完整内容。实现：1)会话列表展示 2)单次会话详情 3)时间/Token/主题标注 4)搜索过滤功能。
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已完成</span>
+                                <span class="engineer-tag">frontend-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-INTEGRATE-006">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-INTEGRATE-006 | 集成REQ-006 Token同步功能到Dashboard</div>
+                                <div class="engineer-item-time">预估1.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                验证并集成REQ-006的Token同步功能。
+
+【用户反馈】:
+"没感觉到"REQ-006的功能
+
+【任务目标】:
+确认"Token同步"按钮是否在Dashboard上
+
+【具体操作】:
+1. 检查Dashboard Token显示区域：...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已取消</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-INTEGRATE-001">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-INTEGRATE-001 | 集成REQ-001缓存清除功能到Dashboard</div>
+                                <div class="engineer-item-time">预估1.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                验证并集成REQ-001的缓存清除功能。
+
+【用户反馈】:
+"没感觉到"REQ-001的功能
+
+【任务目标】:
+确认"清除缓存"按钮和"缓存版本"显示是否在Dashboard上
+
+【具体操作】:
+1. 检查Dashboard页面：
+   -...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已取消</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="REQ-007">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">REQ-007 | 封装v1.7完整版为独立包</div>
+                                <div class="engineer-item-time">预估8.0小时 · P0</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                将任务所·Flow v1.7封装成完整的独立版本，可一键部署到新项目。包括：1)完整打包(代码+文档+数据库+工具) 2)一键安装脚本 3)配置向导 4)README使用说明 5)版本管理。类似v1.5的GitHub发布。
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已取消</span>
+                                <span class="engineer-tag">fullstack-engineer</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>
+
+
+                        <div class="engineer-list-item" data-task-id="TASK-USER-007">
+                            <div class="engineer-item-header">
+                                <div class="engineer-item-title">TASK-USER-007 | 用户确认：REQ-007需求是否与REQ-004重复</div>
+                                <div class="engineer-item-time">预估未估算小时 · P1</div>
+                            </div>
+                            <div class="engineer-item-content">
+                                请用户确认REQ-007的具体需求。
+
+【背景】:
+交接文档中有两个封装需求：
+- REQ-004：即插即用封装包（复制到其他项目使用）
+- REQ-007：封装v1.7完整版为独立包（一键部署？）
+
+【疑问】:
+这两个需求是否重复？还是：...
+                            </div>
+                            <div class="engineer-item-meta">
+                                <span class="engineer-tag">已取消</span>
+                                <span class="engineer-tag">user</span>
+                            </div>
+                            <div class="engineer-item-actions">
+                                <button class="engineer-action-btn primary" onclick="copyTaskPrompt(this)">复制提示词</button>
+                                <button class="engineer-action-btn">查看详情</button>
+                            </div>
+                        </div>

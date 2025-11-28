@@ -1,0 +1,75 @@
+<body>
+    <!-- 项目切换演示器（仅用于演示） -->
+    <div class="project-switcher">
+        <div class="switcher-title">切换项目查看效果 ↓</div>
+        <div class="project-option active" onclick="switchProject('taskflow')">
+            <div class="option-icon">F</div>
+            <div>任务所·Flow</div>
+        </div>
+        <div class="project-option" onclick="switchProject('mold')">
+            <div class="option-icon">M</div>
+            <div>模具·Dashboard</div>
+        </div>
+        <div class="project-option" onclick="switchProject('ecommerce')">
+            <div class="option-icon">E</div>
+            <div>电商平台·Admin</div>
+        </div>
+        <div class="project-option" onclick="switchProject('iot')">
+            <div class="option-icon">I</div>
+            <div>智能物联·Monitor</div>
+        </div>
+    </div>
+
+    <!-- 顶部导航栏（全局品牌，固定不变） -->
+    <nav class="top-navbar">
+        <div class="navbar-container">
+            <div class="brand-section">
+                <a href="#" class="brand-logo">
+                    <div class="logo-icon">F</div>
+                    <span class="brand-title">Flow System</span>
+                </a>
+                <span class="brand-subtitle">AI POWERED PLATFORM</span>
+            </div>
+            <div class="actions-section">
+                <div class="action-item">
+                    <span class="status-dot"></span>
+                    <span>ONLINE</span>
+                </div>
+                <div class="action-item" onclick="alert('清除缓存')">
+                    <span>清除缓存</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero区（项目标识，动态可配置） -->
+    <header class="page-hero" id="projectHero">
+        <div class="bg-grid"></div>
+        
+        <div class="hero-container">
+            <div class="hero-brand">
+                <!-- 项目Logo -->
+                <div class="project-logo" id="projectLogo">F</div>
+                
+                <!-- 项目标题 -->
+                <h1 class="project-title">
+                    <span id="projectName">任务所</span>·<span id="projectModule">Flow</span>
+                    <span class="version-badge" id="projectVersion">v1.7 - 指挥舱</span>
+                </h1>
+                
+                <!-- 项目描述 -->
+                <p class="project-description" id="projectDesc">
+                    用对话开工，用流程收工 —— AI开发工厂新实践
+                </p>
+            </div>
+
+            <!-- 项目元数据 -->
+            <div class="project-meta-grid" id="projectMeta">
+                <!-- 动态生成 -->
+            </div>
+        </div>
+    </header>
+
+    <!-- 主容器 -->
+    <main class="main-container">
+

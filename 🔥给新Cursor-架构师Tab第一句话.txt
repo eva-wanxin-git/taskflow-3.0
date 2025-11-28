@@ -1,0 +1,29 @@
+你好！我需要在架构师模块手动添加Tab（和全栈工程师一样的方式）。
+
+## 当前状态
+- 测试环境：8831
+- 工作目录：/Users/yalinwang/Desktop/任务所 1.8/taskflow-v1-2/taskflow-v1-2/dashboard-test-8831
+- 目标文件：index.html
+- 架构师当前Tab：事件流、认命指令、对话历史
+
+## 参考
+- UI演示：/Users/yalinwang/Dropbox/UI演示文稿/
+- 血泪教训：✅滚动条完全修复-左右双滚动-8831.md
+- 成功案例：全栈工程师代码审查Tab（第11623行）
+- 详细步骤：📋给新Cursor-架构师模块添加Tab.md
+
+## 任务
+1. 先查看UI演示文稿目录，列出可用文件
+2. 添加代码审查Tab到架构师（在认命指令之后）
+3. ID用 `architect-reviews`，class用 `architect-tab-pane`
+4. CSS选择器都加 `.architect-module` 前缀
+5. 应用血泪教训3要素确保滚动
+
+## 要求
+- ✅ 每步前备份
+- ✅ 用search_replace手动替换（禁止脚本）
+- ✅ 每步后刷新浏览器验证
+- ✅ 内容足够（8-10个卡片）
+
+请先查看UI演示文稿目录，告诉我有哪些可用文件。
+

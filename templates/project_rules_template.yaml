@@ -1,0 +1,97 @@
+# 项目工作规则配置
+# 初始化时自动生成，可自定义
+
+project:
+  name: "{PROJECT_NAME}"
+  code: "{PROJECT_CODE}"
+
+# AI角色配置
+roles:
+  architect:
+    enabled: true
+    custom_prompt: ""  # 留空使用默认，可自定义
+    workflow:
+      - "扫描项目结构"
+      - "生成架构文档"
+      - "拆解任务"
+      - "审查代码"
+
+  engineer:
+    enabled: true
+    custom_prompt: ""
+    workflow:
+      - "接收任务"
+      - "实现功能"
+      - "编写测试"
+      - "提交代码"
+
+  ui_designer:
+    enabled: false
+    custom_prompt: ""
+
+  ux_designer:
+    enabled: false
+    custom_prompt: ""
+
+  devops:
+    enabled: false
+    custom_prompt: ""
+
+# 代码规范
+code_standards:
+  style_guide: "默认"  # 默认/Google/Airbnb/自定义
+  linter:
+    python: "ruff"
+    javascript: "eslint"
+    typescript: "eslint"
+  formatter:
+    python: "black"
+    javascript: "prettier"
+    typescript: "prettier"
+
+# Git工作流
+git_workflow:
+  branch_strategy: "git-flow"  # git-flow/github-flow/trunk-based
+  commit_convention: "conventional-commits"  # conventional-commits/自定义
+  pr_required: true
+  code_review_required: true
+
+# 部署规则
+deployment:
+  environments:
+    - dev
+    - staging
+    - prod
+  auto_deploy:
+    dev: true
+    staging: false
+    prod: false
+  rollback_enabled: true
+
+# 记忆系统
+memory:
+  auto_save_conversations: true
+  auto_extract_decisions: true
+  auto_extract_solutions: true
+  importance_threshold: 7  # 重要性≥7自动提炼
+
+# Dashboard配置
+dashboard:
+  port: "{PORT}"
+  api_port: "{API_PORT}"
+  auto_refresh: true
+  refresh_interval: 30  # 秒
+
+# MCP记忆系统
+mcp:
+  session_memory:
+    enabled: true
+    url: "http://13.158.83.99:4000"
+    namespace: "{PROJECT_CODE}_sessions"
+
+  ultra_memory:
+    enabled: true
+    namespace: "{PROJECT_CODE}_ultra"
+    can_access_history: true  # 可访问wanxin_ultra历史记忆
+    history_namespace: "wanxin_ultra"
+

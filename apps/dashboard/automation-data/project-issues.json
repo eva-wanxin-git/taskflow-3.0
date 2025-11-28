@@ -1,0 +1,142 @@
+{
+  "updated_at": "2025-11-20T14:08:17.603663",
+  "project_id": "TASKFLOW",
+  "total": 15,
+  "issues": [
+    {
+      "id": "ISSUE-001",
+      "title": "端口配置不统一",
+      "description": "main.py使用8800端口，但文档中写的是8870，ports.json配置也不一致",
+      "priority": "P1",
+      "severity": "Medium",
+      "impact": "混淆开发者，部署时可能出错",
+      "estimated_hours": 2.0
+    },
+    {
+      "id": "ISSUE-002",
+      "title": "功能完成但看板不知道",
+      "description": "多个功能已实现，但看板状态未更新，导致进度评估不准确",
+      "priority": "P0",
+      "severity": "High",
+      "impact": "团队对项目进度认知错误",
+      "estimated_hours": 2.0
+    },
+    {
+      "id": "ISSUE-003",
+      "title": "Dashboard前后端数据未连接",
+      "description": "8820端口的前端Dashboard显示静态数据，未连接到8800端口的API",
+      "priority": "P0",
+      "severity": "Critical",
+      "impact": "Dashboard无法显示真实数据",
+      "estimated_hours": 10.0
+    },
+    {
+      "id": "ISSUE-004",
+      "title": "缺少统一的错误处理机制",
+      "description": "API端点没有统一的错误处理和响应格式",
+      "priority": "P1",
+      "severity": "Medium",
+      "impact": "错误信息不一致，难以调试",
+      "estimated_hours": 3.0
+    },
+    {
+      "id": "ISSUE-005",
+      "title": "API端点缺少认证授权",
+      "description": "所有API端点都没有认证机制，存在安全隐患",
+      "priority": "P2",
+      "severity": "High",
+      "impact": "生产环境部署时存在安全风险",
+      "estimated_hours": 4.0
+    },
+    {
+      "id": "ISSUE-006",
+      "title": "数据库Schema版本管理缺失",
+      "description": "缺少数据库迁移版本控制，升级时可能丢失数据",
+      "priority": "P1",
+      "severity": "Medium",
+      "impact": "数据库升级困难",
+      "estimated_hours": 3.0
+    },
+    {
+      "id": "ISSUE-007",
+      "title": "缺少API文档自动生成",
+      "description": "虽然使用FastAPI，但缺少完整的API文档和示例",
+      "priority": "P2",
+      "severity": "Low",
+      "impact": "开发者需要阅读代码",
+      "estimated_hours": 2.0
+    },
+    {
+      "id": "ISSUE-008",
+      "title": "前端没有错误边界处理",
+      "description": "Dashboard前端没有错误处理，API失败时页面崩溃",
+      "priority": "P1",
+      "severity": "Medium",
+      "impact": "用户体验差",
+      "estimated_hours": 1.5
+    },
+    {
+      "id": "ISSUE-009",
+      "title": "缺少性能监控",
+      "description": "没有API响应时间监控和性能分析工具",
+      "priority": "P2",
+      "severity": "Low",
+      "impact": "无法发现性能瓶颈",
+      "estimated_hours": 3.0
+    },
+    {
+      "id": "ISSUE-010",
+      "title": "测试覆盖率低",
+      "description": "大部分新增API端点没有单元测试",
+      "priority": "P1",
+      "severity": "Medium",
+      "impact": "代码质量无法保证",
+      "estimated_hours": 8.0
+    },
+    {
+      "id": "ISSUE-011",
+      "title": "缺少日志系统",
+      "description": "没有结构化日志，调试和问题排查困难",
+      "priority": "P1",
+      "severity": "Medium",
+      "impact": "生产环境问题难以定位",
+      "estimated_hours": 2.0
+    },
+    {
+      "id": "ISSUE-012",
+      "title": "Dashboard性能优化",
+      "description": "前端6815行HTML，加载较慢，需要优化",
+      "priority": "P2",
+      "severity": "Low",
+      "impact": "用户体验有提升空间",
+      "estimated_hours": 4.0
+    },
+    {
+      "id": "ISSUE-013",
+      "title": "缺少数据备份机制",
+      "description": "SQLite数据库没有自动备份，存在数据丢失风险",
+      "priority": "P1",
+      "severity": "High",
+      "impact": "数据丢失风险",
+      "estimated_hours": 2.0
+    },
+    {
+      "id": "ISSUE-014",
+      "title": "缺少环境配置管理",
+      "description": "开发、测试、生产环境配置混在一起",
+      "priority": "P1",
+      "severity": "Medium",
+      "impact": "部署配置容易出错",
+      "estimated_hours": 2.5
+    },
+    {
+      "id": "ISSUE-015",
+      "title": "缺少API速率限制",
+      "description": "API没有速率限制，可能被恶意调用",
+      "priority": "P2",
+      "severity": "Medium",
+      "impact": "服务可能被滥用",
+      "estimated_hours": 2.0
+    }
+  ]
+}

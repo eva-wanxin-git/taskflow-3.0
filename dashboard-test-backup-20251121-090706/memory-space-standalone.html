@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记忆空间 - 架构师工作台</title>
+    
+    <style>
+        /* ==================== 继承核心设计系统 ==================== */
+        :root {
+            /* 白色光谱 */
+            --blanc-pure: #FFFFFF;
+            --blanc-snow: #FAFBFC;
+            --blanc-pearl: #F6F8FA;
+            --blanc-silk: #F0F3F5;
+            --blanc-mist: #E8ECEF;
+            --blanc-cloud: #DFE4E8;
+            /* 黑色层次 */
+            --noir-ink: #0A0F14;
+            --noir-charcoal: #1A2027;
+            --noir-graphite: #2E3742;
+            --noir-steel: #495057;
+            --noir-silver: #6C757D;
+            --noir-ash: #8B95A1;
+            /* 阴影 */
+            --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+            /* 字体系统 */
+            --font-primary: 'SF Pro Display', 'Helvetica Neue', -apple-system, system-ui, sans-serif;
+            --font-secondary: 'Playfair Display', Georgia, serif;
+            --font-mono: 'SF Mono', Monaco, monospace;
+            /* 字号 */
+            --text-xs: 12px;
+            --text-sm: 14px;
+            --text-base: 16px;
+            --text-lg: 18px;
+            --text-xl: 21px;
+            --text-2xl: 28px;
+            /* 字重 */
+            --weight-light: 300;
+            --weight-regular: 400;
+            --weight-medium: 500;
+            --weight-semibold: 600;
+            /* 行高 */
+            --leading-tight: 1.2;
+            --leading-normal: 1.5;
+            --leading-relaxed: 1.75;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: var(--font-primary);
+            background: var(--blanc-pearl);
+            color: var(--noir-graphite);
+            line-height: var(--leading-normal);
+            padding: 40px;
+        }
+        /* ==================== 记忆空间布局 ==================== */
+        .memory-space {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: var(--blanc-pure);
+            border: 1px solid var(--blanc-mist);
+            height: calc(100vh - 80px);
+            display: flex;
+        }
+        /* 左侧：概览面板 */
+        .memory-overview {
+            width: 380px;
+            border-right: 1px solid var(--blanc-mist);
+            background: var(--blanc-snow);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        .overview-header {
+            padding: 32px 24px 24px 24px;
+            border-bottom: 1px solid var(--blanc-mist);
+        }
+        .overview-title {
+            font-family: var(--font-secondary);
+            font-size: var(--text-xl);
+            font-weight: var(--weight-light);
+            color: var(--noir-ink);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+        .overview-subtitle {
+            font-size: var(--text-xs);
+            color: var(--noir-silver);
+        }
+        /* 统计卡片网格 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            padding: 24px;
+            border-bottom: 1px solid var(--blanc-mist);
+        }
+        .stat-card {
+            background: var(--blanc-pure);
+            border: 1px solid var(--blanc-mist);
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .stat-card:hover {
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-2px);
+        }
+        .stat-label {
+            font-size: var(--text-xs);
+            color: var(--noir-silver);
+            margin-bottom: 8px;
+        }
+        .stat-value {
+            font-size: var(--text-2xl);
+            font-weight: var(--weight-light);
+            color: var(--noir-ink);
+            font-family: var(--font-mono);
+        }
+        /* 最新记忆列表 */
+        .recent-memories {
+            padding: 24px;
+        }
+        .recent-header {
+            font-size: var(--text-sm);
+            font-weight: var(--weight-semibold);
+            color: var(--noir-charcoal);
+            margin-bottom: 16px;
+        }
+        .recent-item {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--blanc-mist);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .recent-item:last-child {
+            border-bottom: none;
+        }
+        .recent-item:hover {
+            padding-left: 8px;
+        }
+        .recent-item-type {
+            font-size: 11px;
+            color: var(--noir-silver);
+            margin-bottom: 4px;
+        }
+        .recent-item-title {
+            font-size: var(--text-sm);
+            color: var(--noir-graphite);
+            line-height: var(--leading-tight);
+        }
+        /* 右侧：记忆流 */
+        .memory-stream {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--blanc-pure);
+        }
+        /* 筛选栏 */
+        .stream-filters {
+            display: flex;
+            gap: 12px;
+            padding: 24px 32px;
+            border-bottom: 1px solid var(--blanc-mist);
+            background: var(--blanc-snow);
+        }
+        .filter-chip {
+            padding: 8px 16px;
+            font-size: var(--text-sm);
+            border: 1px solid var(--blanc-cloud);
+            background: var(--blanc-pure);
+            color: var(--noir-graphite);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .filter-chip:hover {
+            border-color: var(--noir-steel);
+        }
+        .filter-chip.active {
+            background: var(--noir-ink);
+            color: var(--blanc-pure);
+            border-color: var(--noir-ink);
+        }
+        /* 记忆时间线 */
+        .memory-timeline {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px 32px 40px 72px;
+            position: relative;
+        }
+        .memory-timeline::before {
+            content: '';
+            position: absolute;
+            left: 32px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--blanc-mist);
+        }
+        /* ... 其他样式省略 ... */
+    </style>
+</head>
+<body>
+    <div class="memory-space">
+        <!-- 测试用，简化版 -->
+        <div style="width:380px; background: #FAFBFC; border-right: 1px solid #E8ECEF;">
+            左侧
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column;">
+            <div style="padding: 24px; background: #FAFBFC; border-bottom: 1px solid #E8ECEF;">
+                筛选栏
+            </div>
+            <div style="flex: 1; overflow-y: auto; padding: 40px; background: white;">
+                <div style="height: 2000px; background: linear-gradient(red, blue);">
+                    长内容测试 - 2000px高
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

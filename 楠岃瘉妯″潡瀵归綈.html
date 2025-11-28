@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard模块对齐验证工具</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #000;
+            margin-bottom: 24px;
+        }
+        .instruction {
+            background: #fffbea;
+            border-left: 4px solid #f39c12;
+            padding: 16px;
+            margin-bottom: 24px;
+            line-height: 1.8;
+        }
+        .code-box {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 6px;
+            font-family: 'Consolas', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .button:hover {
+            background: #333;
+        }
+        .result {
+            margin-top: 24px;
+            padding: 20px;
+            border-radius: 6px;
+            display: none;
+        }
+        .result.success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            color: #155724;
+        }
+        .result.warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            color: #856404;
+        }
+        .result.error {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📐 Dashboard模块对齐验证工具</h1>
+        
+        <div class="instruction">
+            <strong>使用方法：</strong><br>
+            1. 打开 Dashboard：<a href="http://localhost:8877" target="_blank">http://localhost:8877</a><br>
+            2. 按 <kbd>F12</kbd> 打开浏览器开发者工具<br>
+            3. 切换到 <strong>Console</strong> 选项卡<br>
+            4. 复制下面的代码，粘贴到Console中<br>
+            5. 按 <kbd>Enter</kbd> 运行
+        </div>
+
+        <h3>🔧 验证代码：</h3>
+        <div class="code-box" id="verificationCode">// Dashboard模块对齐验证脚本
+console.clear();
+console.log('%c=== Dashboard模块对齐验证 ===', 'color: #000; font-size: 16px; font-weight: bold; background: #f0f0f0; padding: 10px; border-radius: 4px;');
+console.log('');
+
+// 获取所有section模块
+const selectors = [
+    '.features-section',
+    '.progress-section', 
+    '.todo-section',
+    '.developer-section',
+    '.architect-monitor',
+    '.user-testing-section',
+    '.ops-section',
+    '.code-butler-section'
+];
+
+const sections = [];
+selectors.forEach(selector => {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(el => sections.push(el));
+});
+
+if (sections.length === 0) {
+    console.log('%c❌ 未找到任何模块！', 'color: red; font-size: 14px; font-weight: bold;');
+} else {
+    console.log(`✅ 找到 ${sections.length} 个模块\n`);
+    
+    // 收集所有模块的边界信息
+    const boundaries = [];
+    sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        const className = section.className.split(' ').find(c => c.endsWith('-section') || c === 'architect-monitor') || section.className;
+        
+        boundaries.push({
+            index: index + 1,
+            className: className,
+            left: Math.round(rect.left * 10) / 10,
+            right: Math.round(rect.right * 10) / 10,
+            width: Math.round(rect.width * 10) / 10
+        });
+    });
+    
+    // 显示每个模块的信息
+    console.log('%c模块边界信息：', 'color: #333; font-size: 13px; font-weight: bold;');
+    boundaries.forEach(b => {
+        console.log(`${b.index}. ${b.className.padEnd(30)} | Left: ${String(b.left).padStart(8)}px | Right: ${String(b.right).padStart(8)}px | Width: ${String(b.width).padStart(8)}px`);
+    });
+    
+    console.log('');
+    
+    // 检查对齐情况
+    const leftValues = boundaries.map(b => b.left);
+    const rightValues = boundaries.map(b => b.right);
+    
+    const minLeft = Math.min(...leftValues);
+    const maxLeft = Math.max(...leftValues);
+    const minRight = Math.min(...rightValues);
+    const maxRight = Math.max(...rightValues);
+    
+    const leftDiff = maxLeft - minLeft;
+    const rightDiff = maxRight - minRight;
+    
+    console.log('%c对齐检查结果：', 'color: #333; font-size: 13px; font-weight: bold;');
+    console.log(`左边缘差异: ${leftDiff.toFixed(1)}px (${minLeft.toFixed(1)}px ~ ${maxLeft.toFixed(1)}px)`);
+    console.log(`右边缘差异: ${rightDiff.toFixed(1)}px (${minRight.toFixed(1)}px ~ ${maxRight.toFixed(1)}px)`);
+    console.log('');
+    
+    // 判断结果
+    const threshold = 2; // 允许的误差范围（像素）
+    
+    if (leftDiff <= threshold && rightDiff <= threshold) {
+        console.log('%c✅ 完美对齐！', 'color: white; font-size: 16px; font-weight: bold; background: #28a745; padding: 10px 20px; border-radius: 4px;');
+        console.log('%c所有模块的左右边缘完全对齐，强迫症满意！', 'color: #28a745; font-size: 14px;');
+    } else if (leftDiff <= 5 && rightDiff <= 5) {
+        console.log('%c⚠️ 基本对齐', 'color: white; font-size: 16px; font-weight: bold; background: #ffc107; padding: 10px 20px; border-radius: 4px;');
+        console.log('%c存在轻微偏差，可以接受', 'color: #856404; font-size: 14px;');
+    } else {
+        console.log('%c❌ 未对齐！', 'color: white; font-size: 16px; font-weight: bold; background: #dc3545; padding: 10px 20px; border-radius: 4px;');
+        console.log('%c存在明显偏差，需要进一步调整', 'color: #721c24; font-size: 14px;');
+        
+        // 找出有问题的模块
+        console.log('\n%c有问题的模块：', 'color: #dc3545; font-weight: bold;');
+        boundaries.forEach(b => {
+            const leftOff = Math.abs(b.left - minLeft);
+            const rightOff = Math.abs(b.right - maxRight);
+            if (leftOff > threshold || rightOff > threshold) {
+                console.log(`- ${b.className}: 左偏移 ${leftOff.toFixed(1)}px, 右偏移 ${rightOff.toFixed(1)}px`);
+            }
+        });
+    }
+    
+    console.log('');
+    console.log('%c=== 验证完成 ===', 'color: #000; font-size: 16px; font-weight: bold; background: #f0f0f0; padding: 10px; border-radius: 4px;');
+}
+        </div>
+
+        <button class="button" onclick="copyCode()">📋 复制验证代码</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function copyCode() {
+            const code = document.getElementById('verificationCode').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const result = document.getElementById('result');
+                result.className = 'result success';
+                result.style.display = 'block';
+                result.textContent = '✅ 验证代码已复制到剪贴板！现在打开 Dashboard 的开发者工具，粘贴到 Console 中运行。';
+                
+                setTimeout(() => {
+                    result.style.display = 'none';
+                }, 5000);
+            }).catch(err => {
+                const result = document.getElementById('result');
+                result.className = 'result error';
+                result.style.display = 'block';
+                result.textContent = '❌ 复制失败：' + err.message;
+            });
+        }
+    </script>
+</body>
+</html>
+

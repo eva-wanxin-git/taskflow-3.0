@@ -1,0 +1,870 @@
+<div id="architect-suggestions" class="tab-pane">
+                    <div class="task-grid">
+                        <div class="task-card high-priority">
+                            <div class="task-header">
+                                <div>
+                                    <div class="task-id">TASK-API-011</div>
+                                    <h3 class="task-title">系统监控增强API</h3>
+                                </div>
+                                <span class="task-source architect">架构师建议</span>
+                            </div>
+                            <div class="task-description">
+                                扩展系统健康检查端点
+
+扩展端点: GET /api/system/health
+- 当前仅简单检查，需要增强为完整监控
+- 返回6个服务状态：
+  * API Server (端口8800)
+  * Dashboard (端口8820)
+  * 其他服务
+- 每个服务包含：状态、端口、响应时间、CPU、内存
+- 系统总览：总CPU、总内存、磁盘空间
+
+位置：apps/api/src/routes...
+                            </div>
+                            <div class="review-info">
+                                <div class="review-info-title">架构师诊断:</div>
+                                <div class="review-info-content">
+                                    预估工时: 3.0小时 | 
+                                    优先级: P0 - 紧急 | 
+                                    创建时间: 2025-11-20 13:59
+                                </div>
+                            </div>
+                            <div class="task-tags">
+                                <span class="task-tag">API开发</span>
+                            </div>
+                            <div class="task-meta">
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">优先级:</span>
+                                    <span class="task-priority high">P0 - 紧急</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">预计工时:</span>
+                                    <span class="task-meta-value">3.0小时</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">创建时间:</span>
+                                    <span class="task-meta-value">2025-11-20 13:59</span>
+                                </div>
+                            </div>
+                            
+                            <div class="user-decision-area">
+                                <div class="decision-title">请决策:</div>
+                                <div class="decision-buttons">
+                                    <button class="decision-button accept" onclick="acceptSuggestion('TASK-API-011')">
+                                        采纳建议 - 立即执行
+                                    </button>
+                                    <button class="decision-button reject" onclick="rejectSuggestion('TASK-API-011')">
+                                        拒绝建议
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-card high-priority">
+                            <div class="task-header">
+                                <div>
+                                    <div class="task-id">TASK-API-004</div>
+                                    <h3 class="task-title">任务看板格式化API</h3>
+                                </div>
+                                <span class="task-source architect">架构师建议</span>
+                            </div>
+                            <div class="task-description">
+                                扩展任务查询API，支持看板格式输出
+
+端点: GET /api/tasks/kanban
+- 参数：project_id, assigned_to
+- 返回格式：
+  {
+    pending: [...],
+    in_progress: [...],
+    completed: [...]
+  }
+- 任务卡片包含：ID、标题、优先级、预估工时、标签
+
+位置：apps/api/src/...
+                            </div>
+                            <div class="review-info">
+                                <div class="review-info-title">架构师诊断:</div>
+                                <div class="review-info-content">
+                                    预估工时: 2.0小时 | 
+                                    优先级: P0 - 紧急 | 
+                                    创建时间: 2025-11-20 13:59
+                                </div>
+                            </div>
+                            <div class="task-tags">
+                                <span class="task-tag">API开发</span>
+                            </div>
+                            <div class="task-meta">
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">优先级:</span>
+                                    <span class="task-priority high">P0 - 紧急</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">预计工时:</span>
+                                    <span class="task-meta-value">2.0小时</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">创建时间:</span>
+                                    <span class="task-meta-value">2025-11-20 13:59</span>
+                                </div>
+                            </div>
+                            
+                            <div class="user-decision-area">
+                                <div class="decision-title">请决策:</div>
+                                <div class="decision-buttons">
+                                    <button class="decision-button accept" onclick="acceptSuggestion('TASK-API-004')">
+                                        采纳建议 - 立即执行
+                                    </button>
+                                    <button class="decision-button reject" onclick="rejectSuggestion('TASK-API-004')">
+                                        拒绝建议
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-card high-priority">
+                            <div class="task-header">
+                                <div>
+                                    <div class="task-id">TASK-API-003</div>
+                                    <h3 class="task-title">创建问题和建议管理API</h3>
+                                </div>
+                                <span class="task-source architect">架构师建议</span>
+                            </div>
+                            <div class="task-description">
+                                创建问题和建议管理端点
+
+端点1: GET /api/issues
+- 返回问题清单（~15个）
+- 包含：标题、描述、优先级、影响、建议方案
+
+端点2: POST /api/issues/{id}/generate-task
+- 将问题转换为任务
+
+端点3: GET /api/suggestions
+- 返回架构建议清单（~12条）
+
+端点4: POST /api/suggestions/{id...
+                            </div>
+                            <div class="review-info">
+                                <div class="review-info-title">架构师诊断:</div>
+                                <div class="review-info-content">
+                                    预估工时: 2.0小时 | 
+                                    优先级: P0 - 紧急 | 
+                                    创建时间: 2025-11-20 13:59
+                                </div>
+                            </div>
+                            <div class="task-tags">
+                                <span class="task-tag">API开发</span>
+                            </div>
+                            <div class="task-meta">
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">优先级:</span>
+                                    <span class="task-priority high">P0 - 紧急</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">预计工时:</span>
+                                    <span class="task-meta-value">2.0小时</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">创建时间:</span>
+                                    <span class="task-meta-value">2025-11-20 13:59</span>
+                                </div>
+                            </div>
+                            
+                            <div class="user-decision-area">
+                                <div class="decision-title">请决策:</div>
+                                <div class="decision-buttons">
+                                    <button class="decision-button accept" onclick="acceptSuggestion('TASK-API-003')">
+                                        采纳建议 - 立即执行
+                                    </button>
+                                    <button class="decision-button reject" onclick="rejectSuggestion('TASK-API-003')">
+                                        拒绝建议
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-card high-priority">
+                            <div class="task-header">
+                                <div>
+                                    <div class="task-id">TASK-API-002</div>
+                                    <h3 class="task-title">创建功能清单API</h3>
+                                </div>
+                                <span class="task-source architect">架构师建议</span>
+                            </div>
+                            <div class="task-description">
+                                创建功能清单查询端点
+
+端点1: GET /api/features/implemented
+- 返回已实现功能列表（~132个）
+- 数据源：automation-data/v17-complete-features.json
+
+端点2: GET /api/features/partial
+- 返回部分实现功能列表（~17个）
+- 包含进度百分比和缺失部分
+
+位置：apps/api/src/ro...
+                            </div>
+                            <div class="review-info">
+                                <div class="review-info-title">架构师诊断:</div>
+                                <div class="review-info-content">
+                                    预估工时: 2.0小时 | 
+                                    优先级: P0 - 紧急 | 
+                                    创建时间: 2025-11-20 13:59
+                                </div>
+                            </div>
+                            <div class="task-tags">
+                                <span class="task-tag">API开发</span>
+                            </div>
+                            <div class="task-meta">
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">优先级:</span>
+                                    <span class="task-priority high">P0 - 紧急</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">预计工时:</span>
+                                    <span class="task-meta-value">2.0小时</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">创建时间:</span>
+                                    <span class="task-meta-value">2025-11-20 13:59</span>
+                                </div>
+                            </div>
+                            
+                            <div class="user-decision-area">
+                                <div class="decision-title">请决策:</div>
+                                <div class="decision-buttons">
+                                    <button class="decision-button accept" onclick="acceptSuggestion('TASK-API-002')">
+                                        采纳建议 - 立即执行
+                                    </button>
+                                    <button class="decision-button reject" onclick="rejectSuggestion('TASK-API-002')">
+                                        拒绝建议
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-card high-priority">
+                            <div class="task-header">
+                                <div>
+                                    <div class="task-id">TASK-API-001</div>
+                                    <h3 class="task-title">创建统一统计API</h3>
+                                </div>
+                                <span class="task-source architect">架构师建议</span>
+                            </div>
+                            <div class="task-description">
+                                创建 GET /api/stats/overview 端点
+        
+功能：提供Dashboard顶部9个统计卡片的数据
+- 总任务数
+- 进行中/待处理/已完成
+- 完成率
+- P0任务数
+- 事件总数
+- 记忆数量
+- 会话数
+
+输出格式：JSON
+位置：apps/api/src/routes/stats.py
+预期结果：前端9个统计卡片显示真实数据
+                            </div>
+                            <div class="review-info">
+                                <div class="review-info-title">架构师诊断:</div>
+                                <div class="review-info-content">
+                                    预估工时: 2.0小时 | 
+                                    优先级: P0 - 紧急 | 
+                                    创建时间: 2025-11-20 13:59
+                                </div>
+                            </div>
+                            <div class="task-tags">
+                                <span class="task-tag">API开发</span>
+                            </div>
+                            <div class="task-meta">
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">优先级:</span>
+                                    <span class="task-priority high">P0 - 紧急</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">预计工时:</span>
+                                    <span class="task-meta-value">2.0小时</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">创建时间:</span>
+                                    <span class="task-meta-value">2025-11-20 13:59</span>
+                                </div>
+                            </div>
+                            
+                            <div class="user-decision-area">
+                                <div class="decision-title">请决策:</div>
+                                <div class="decision-buttons">
+                                    <button class="decision-button accept" onclick="acceptSuggestion('TASK-API-001')">
+                                        采纳建议 - 立即执行
+                                    </button>
+                                    <button class="decision-button reject" onclick="rejectSuggestion('TASK-API-001')">
+                                        拒绝建议
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-card high-priority">
+                            <div class="task-header">
+                                <div>
+                                    <div class="task-id">INTEGRATE-009</div>
+                                    <h3 class="task-title">集成REQ-002项目记忆空间核心功能</h3>
+                                </div>
+                                <span class="task-source architect">架构师建议</span>
+                            </div>
+                            <div class="task-description">
+                                将REQ-002的项目记忆空间完整集成到v1.7系统。
+
+【已完成功能】:
+- ✅ 12表知识库数据库设计
+- ✅ 项目记忆API设计（11个端点）
+- ✅ 自动记录ADR和解决方案
+- ⚠️ 数据库查询逻辑待完善（REQ-002-B）
+
+【集成任务】:
+1. 确保数据库表已创建（project_memories等4表）
+2. 部署记忆空间API端点到主API服务
+3. 在Dashboard添加"...
+                            </div>
+                            <div class="review-info">
+                                <div class="review-info-title">架构师诊断:</div>
+                                <div class="review-info-content">
+                                    预估工时: 3.0小时 | 
+                                    优先级: P0 - 紧急 | 
+                                    创建时间: 2025-11-18 22:54
+                                </div>
+                            </div>
+                            <div class="task-tags">
+                                <span class="task-tag">系统集成</span>
+                            </div>
+                            <div class="task-meta">
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">优先级:</span>
+                                    <span class="task-priority high">P0 - 紧急</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">预计工时:</span>
+                                    <span class="task-meta-value">3.0小时</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">创建时间:</span>
+                                    <span class="task-meta-value">2025-11-18 22:54</span>
+                                </div>
+                            </div>
+                            
+                            <div class="user-decision-area">
+                                <div class="decision-title">请决策:</div>
+                                <div class="decision-buttons">
+                                    <button class="decision-button accept" onclick="acceptSuggestion('INTEGRATE-009')">
+                                        采纳建议 - 立即执行
+                                    </button>
+                                    <button class="decision-button reject" onclick="rejectSuggestion('INTEGRATE-009')">
+                                        拒绝建议
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-card high-priority">
+                            <div class="task-header">
+                                <div>
+                                    <div class="task-id">INTEGRATE-001</div>
+                                    <h3 class="task-title">集成REQ-001端口冲突解决功能</h3>
+                                </div>
+                                <span class="task-source architect">架构师建议</span>
+                            </div>
+                            <div class="task-description">
+                                将REQ-001的端口管理和缓存清除功能集成到v1.7 Dashboard。
+
+【已完成功能】:
+- ✅ PortManager端口自动分配 (8870-8899)
+- ✅ 缓存版本管理 (dashboard_version.json)
+- ✅ 清除缓存功能
+
+【集成任务】:
+1. 验证Dashboard显示"清除缓存"按钮
+2. 测试端口自动分配功能
+3. 验证缓存版本控制
+4. 集成到启动脚本...
+                            </div>
+                            <div class="review-info">
+                                <div class="review-info-title">架构师诊断:</div>
+                                <div class="review-info-content">
+                                    预估工时: 2.0小时 | 
+                                    优先级: P0 - 紧急 | 
+                                    创建时间: 2025-11-18 22:06
+                                </div>
+                            </div>
+                            <div class="task-tags">
+                                <span class="task-tag">系统集成</span>
+                            </div>
+                            <div class="task-meta">
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">优先级:</span>
+                                    <span class="task-priority high">P0 - 紧急</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">预计工时:</span>
+                                    <span class="task-meta-value">2.0小时</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">创建时间:</span>
+                                    <span class="task-meta-value">2025-11-18 22:06</span>
+                                </div>
+                            </div>
+                            
+                            <div class="user-decision-area">
+                                <div class="decision-title">请决策:</div>
+                                <div class="decision-buttons">
+                                    <button class="decision-button accept" onclick="acceptSuggestion('INTEGRATE-001')">
+                                        采纳建议 - 立即执行
+                                    </button>
+                                    <button class="decision-button reject" onclick="rejectSuggestion('INTEGRATE-001')">
+                                        拒绝建议
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-card high-priority">
+                            <div class="task-header">
+                                <div>
+                                    <div class="task-id">TASK-INTEGRATE-003</div>
+                                    <h3 class="task-title">集成REQ-003对话历史库到Dashboard</h3>
+                                </div>
+                                <span class="task-source architect">架构师建议</span>
+                            </div>
+                            <div class="task-description">
+                                将REQ-003的代码真正替换Dashboard上的"对话交流"Tab。
+
+【用户反馈】:
+Dashboard上Tab还叫"对话交流"，不是"对话历史库"
+说明REQ-003的代码没有集成
+
+【任务目标】:
+替换templates.py中"对话交流"Tab的代码，使用REQ-003的新实现
+
+【具体操作】:
+1. 定位templates.py中"对话交流"Tab代码段
+2. 完全替换为REQ-00...
+                            </div>
+                            <div class="review-info">
+                                <div class="review-info-title">架构师诊断:</div>
+                                <div class="review-info-content">
+                                    预估工时: 1.0小时 | 
+                                    优先级: P0 - 紧急 | 
+                                    创建时间: 2025-11-18 20:55
+                                </div>
+                            </div>
+                            <div class="task-tags">
+                                <span class="task-tag">系统集成</span>
+                            </div>
+                            <div class="task-meta">
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">优先级:</span>
+                                    <span class="task-priority high">P0 - 紧急</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">预计工时:</span>
+                                    <span class="task-meta-value">1.0小时</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">创建时间:</span>
+                                    <span class="task-meta-value">2025-11-18 20:55</span>
+                                </div>
+                            </div>
+                            
+                            <div class="user-decision-area">
+                                <div class="decision-title">请决策:</div>
+                                <div class="decision-buttons">
+                                    <button class="decision-button accept" onclick="acceptSuggestion('TASK-INTEGRATE-003')">
+                                        采纳建议 - 立即执行
+                                    </button>
+                                    <button class="decision-button reject" onclick="rejectSuggestion('TASK-INTEGRATE-003')">
+                                        拒绝建议
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-card high-priority">
+                            <div class="task-header">
+                                <div>
+                                    <div class="task-id">TASK-004-A2</div>
+                                    <h3 class="task-title">补充企业级知识库Schema</h3>
+                                </div>
+                                <span class="task-source architect">架构师建议</span>
+                            </div>
+                            <div class="task-description">
+                                扩展知识库数据库，添加企业级表和记忆系统表。
+
+【当前状态】:
+- v1: 3个任务表
+- v2: 9个知识库表
+- 需要补充: 企业级表 + 记忆系统表
+
+【需要创建】:
+database/schemas/v3_enterprise_knowledge_schema.sql
+
+【新增表】（5个）:
+1. environments - 环境表（dev/staging/prod）
+2. deploy...
+                            </div>
+                            <div class="review-info">
+                                <div class="review-info-title">架构师诊断:</div>
+                                <div class="review-info-content">
+                                    预估工时: 2.0小时 | 
+                                    优先级: P0 - 紧急 | 
+                                    创建时间: 2025-11-18 20:33
+                                </div>
+                            </div>
+                            <div class="task-tags">
+                                <span class="task-tag">架构建议</span>
+                            </div>
+                            <div class="task-meta">
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">优先级:</span>
+                                    <span class="task-priority high">P0 - 紧急</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">预计工时:</span>
+                                    <span class="task-meta-value">2.0小时</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">创建时间:</span>
+                                    <span class="task-meta-value">2025-11-18 20:33</span>
+                                </div>
+                            </div>
+                            
+                            <div class="user-decision-area">
+                                <div class="decision-title">请决策:</div>
+                                <div class="decision-buttons">
+                                    <button class="decision-button accept" onclick="acceptSuggestion('TASK-004-A2')">
+                                        采纳建议 - 立即执行
+                                    </button>
+                                    <button class="decision-button reject" onclick="rejectSuggestion('TASK-004-A2')">
+                                        拒绝建议
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-card high-priority">
+                            <div class="task-header">
+                                <div>
+                                    <div class="task-id">REQ-002-B</div>
+                                    <h3 class="task-title">实现项目记忆空间数据库查询逻辑</h3>
+                                </div>
+                                <span class="task-source architect">架构师建议</span>
+                            </div>
+                            <div class="task-description">
+                                基于架构师审查REQ-002发现的问题，实现核心数据库查询逻辑。
+
+【审查发现】:
+REQ-002架构优秀（10/10），但核心查询方法全部为TODO，导致功能不可用：
+- _query_memories() - 返回空列表
+- _query_memory_by_id() - 返回空
+- _query_related_memories() - 返回空
+- _query_memory_stats()...
+                            </div>
+                            <div class="review-info">
+                                <div class="review-info-title">架构师诊断:</div>
+                                <div class="review-info-content">
+                                    预估工时: 4.0小时 | 
+                                    优先级: P0 - 紧急 | 
+                                    创建时间: 2025-11-18 20:06
+                                </div>
+                            </div>
+                            <div class="task-tags">
+                                <span class="task-tag">架构建议</span>
+                            </div>
+                            <div class="task-meta">
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">优先级:</span>
+                                    <span class="task-priority high">P0 - 紧急</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">预计工时:</span>
+                                    <span class="task-meta-value">4.0小时</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">创建时间:</span>
+                                    <span class="task-meta-value">2025-11-18 20:06</span>
+                                </div>
+                            </div>
+                            
+                            <div class="user-decision-area">
+                                <div class="decision-title">请决策:</div>
+                                <div class="decision-buttons">
+                                    <button class="decision-button accept" onclick="acceptSuggestion('REQ-002-B')">
+                                        采纳建议 - 立即执行
+                                    </button>
+                                    <button class="decision-button reject" onclick="rejectSuggestion('REQ-002-B')">
+                                        拒绝建议
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-card high-priority">
+                            <div class="task-header">
+                                <div>
+                                    <div class="task-id">REQ-004</div>
+                                    <h3 class="task-title">架构师即插即用强制流程</h3>
+                                </div>
+                                <span class="task-source architect">架构师建议</span>
+                            </div>
+                            <div class="task-description">
+                                确保架构师接手新项目时，明确知道要做的所有事情，并强制性完成Dashboard更新。实现：1)自动检查清单 2)强制流程提醒 3)未完成项警告 4)一键执行脚本。让架构师Dashboard更新标准流程.md中的8个阶段自动落地。
+                            </div>
+                            <div class="review-info">
+                                <div class="review-info-title">架构师诊断:</div>
+                                <div class="review-info-content">
+                                    预估工时: 8.0小时 | 
+                                    优先级: P0 - 紧急 | 
+                                    创建时间: 2025-11-18 19:15
+                                </div>
+                            </div>
+                            <div class="task-tags">
+                                <span class="task-tag">架构设计</span>
+                            </div>
+                            <div class="task-meta">
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">优先级:</span>
+                                    <span class="task-priority high">P0 - 紧急</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">预计工时:</span>
+                                    <span class="task-meta-value">8.0小时</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">创建时间:</span>
+                                    <span class="task-meta-value">2025-11-18 19:15</span>
+                                </div>
+                            </div>
+                            
+                            <div class="user-decision-area">
+                                <div class="decision-title">请决策:</div>
+                                <div class="decision-buttons">
+                                    <button class="decision-button accept" onclick="acceptSuggestion('REQ-004')">
+                                        采纳建议 - 立即执行
+                                    </button>
+                                    <button class="decision-button reject" onclick="rejectSuggestion('REQ-004')">
+                                        拒绝建议
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-card high-priority">
+                            <div class="task-header">
+                                <div>
+                                    <div class="task-id">TASK-C-2</div>
+                                    <h3 class="task-title">集成ArchitectOrchestrator与数据库</h3>
+                                </div>
+                                <span class="task-source architect">架构师建议</span>
+                            </div>
+                            <div class="task-description">
+                                将ArchitectOrchestrator与StateManager集成，实现真正的数据库读写
+                            </div>
+                            <div class="review-info">
+                                <div class="review-info-title">架构师诊断:</div>
+                                <div class="review-info-content">
+                                    预估工时: 3.0小时 | 
+                                    优先级: P0 - 紧急 | 
+                                    创建时间: 2025-11-18 16:56
+                                </div>
+                            </div>
+                            <div class="task-tags">
+                                <span class="task-tag">系统集成</span>
+                            </div>
+                            <div class="task-meta">
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">优先级:</span>
+                                    <span class="task-priority high">P0 - 紧急</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">预计工时:</span>
+                                    <span class="task-meta-value">3.0小时</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">创建时间:</span>
+                                    <span class="task-meta-value">2025-11-18 16:56</span>
+                                </div>
+                            </div>
+                            
+                            <div class="user-decision-area">
+                                <div class="decision-title">请决策:</div>
+                                <div class="decision-buttons">
+                                    <button class="decision-button accept" onclick="acceptSuggestion('TASK-C-2')">
+                                        采纳建议 - 立即执行
+                                    </button>
+                                    <button class="decision-button reject" onclick="rejectSuggestion('TASK-C-2')">
+                                        拒绝建议
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-card medium-priority">
+                            <div class="task-header">
+                                <div>
+                                    <div class="task-id">TASK-API-EXT-003</div>
+                                    <h3 class="task-title">知识库API完善</h3>
+                                </div>
+                                <span class="task-source architect">架构师建议</span>
+                            </div>
+                            <div class="task-description">
+                                完善知识库查询API
+
+验证端点: GET /api/knowledge-base
+- 表结构已存在（knowledge_articles）
+- 验证API端点是否完整
+- 如缺失则补充
+
+位置：apps/api/src/routes/knowledge_base.py
+预期结果：运维工程师知识库Tab显示128篇文档
+                            </div>
+                            <div class="review-info">
+                                <div class="review-info-title">架构师诊断:</div>
+                                <div class="review-info-content">
+                                    预估工时: 1.0小时 | 
+                                    优先级: P1 - 重要 | 
+                                    创建时间: 2025-11-20 13:59
+                                </div>
+                            </div>
+                            <div class="task-tags">
+                                <span class="task-tag">API开发</span>
+                            </div>
+                            <div class="task-meta">
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">优先级:</span>
+                                    <span class="task-priority medium">P1 - 重要</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">预计工时:</span>
+                                    <span class="task-meta-value">1.0小时</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">创建时间:</span>
+                                    <span class="task-meta-value">2025-11-20 13:59</span>
+                                </div>
+                            </div>
+                            
+                            <div class="user-decision-area">
+                                <div class="decision-title">请决策:</div>
+                                <div class="decision-buttons">
+                                    <button class="decision-button accept" onclick="acceptSuggestion('TASK-API-EXT-003')">
+                                        采纳建议 - 立即执行
+                                    </button>
+                                    <button class="decision-button reject" onclick="rejectSuggestion('TASK-API-EXT-003')">
+                                        拒绝建议
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-card medium-priority">
+                            <div class="task-header">
+                                <div>
+                                    <div class="task-id">TASK-API-EXT-002</div>
+                                    <h3 class="task-title">任务API增加分配者筛选</h3>
+                                </div>
+                                <span class="task-source architect">架构师建议</span>
+                            </div>
+                            <div class="task-description">
+                                扩展任务查询API
+
+扩展端点: GET /api/tasks
+- 新增参数：assigned_to（筛选指定执行者的任务）
+
+位置：apps/api/src/routes/task_board.py（扩展）
+预期结果：Noah任务队列Tab可用
+                            </div>
+                            <div class="review-info">
+                                <div class="review-info-title">架构师诊断:</div>
+                                <div class="review-info-content">
+                                    预估工时: 0.5小时 | 
+                                    优先级: P1 - 重要 | 
+                                    创建时间: 2025-11-20 13:59
+                                </div>
+                            </div>
+                            <div class="task-tags">
+                                <span class="task-tag">API开发</span>
+                            </div>
+                            <div class="task-meta">
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">优先级:</span>
+                                    <span class="task-priority medium">P1 - 重要</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">预计工时:</span>
+                                    <span class="task-meta-value">0.5小时</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">创建时间:</span>
+                                    <span class="task-meta-value">2025-11-20 13:59</span>
+                                </div>
+                            </div>
+                            
+                            <div class="user-decision-area">
+                                <div class="decision-title">请决策:</div>
+                                <div class="decision-buttons">
+                                    <button class="decision-button accept" onclick="acceptSuggestion('TASK-API-EXT-002')">
+                                        采纳建议 - 立即执行
+                                    </button>
+                                    <button class="decision-button reject" onclick="rejectSuggestion('TASK-API-EXT-002')">
+                                        拒绝建议
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-card medium-priority">
+                            <div class="task-header">
+                                <div>
+                                    <div class="task-id">TASK-API-EXT-001</div>
+                                    <h3 class="task-title">对话API增加角色筛选</h3>
+                                </div>
+                                <span class="task-source architect">架构师建议</span>
+                            </div>
+                            <div class="task-description">
+                                扩展对话查询API
+
+扩展端点: GET /api/conversations
+- 新增参数：role（architect/fullstack-engineer/sre）
+- 按角色筛选对话历史
+
+位置：apps/api/src/routes/conversations.py（扩展）
+预期结果：各工作台对话历史Tab显示对应角色的对话
+                            </div>
+                            <div class="review-info">
+                                <div class="review-info-title">架构师诊断:</div>
+                                <div class="review-info-content">
+                                    预估工时: 0.5小时 | 
+                                    优先级: P1 - 重要 | 
+                                    创建时间: 2025-11-20 13:59
+                                </div>
+                            </div>
+                            <div class="task-tags">
+                                <span class="task-tag">API开发</span>
+                            </div>
+                            <div class="task-meta">
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">优先级:</span>
+                                    <span class="task-priority medium">P1 - 重要</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">预计工时:</span>
+                                    <span class="task-meta-value">0.5小时</span>
+                                </div>
+                                <div class="task-meta-item">
+                                    <span class="task-meta-label">创建时间:</span>
+                                    <span class="task-meta-value">2025-11-20 13:59</span>
+                                </div>
+                            </div>
+                            
+                            <div class="user-decision-area">
+                                <div class="decision-title">请决策:</div>
+                                <div class="decision-buttons">
+                                    <button class="decision-button accept" onclick="acceptSuggestion('TASK-API-EXT-001')">
+                                        采纳建议 - 立即执行
+                                    </button>
+                                    <button class="decision-button reject" onclick="rejectSuggestion('TASK-API-EXT-001')">
+                                        拒绝建议
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>

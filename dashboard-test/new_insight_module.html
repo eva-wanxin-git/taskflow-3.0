@@ -1,0 +1,537 @@
+        <!-- ========== 项目透视模块 ========== -->
+        <div class="page-container version-content" data-version="1">
+            <!-- 页面头部 -->
+            <div class="page-header">
+                <div class="header-content">
+                    <h1 class="page-title">项目透视</h1>
+                    <p class="page-subtitle">
+                        架构师自动扫描项目代码，生成健康诊断报告。识别已实现功能、潜在问题、提供优化建议。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 扫描信息栏 -->
+            <div class="scan-info-bar">
+                <div class="scan-info-content">
+                    <div class="scan-meta">
+                        <div class="scan-meta-item">
+                            <span class="scan-meta-label">最后扫描</span>
+                            <span class="scan-meta-value">2025-11-19 14:30</span>
+                        </div>
+                        <div class="scan-meta-item">
+                            <span class="scan-meta-label">扫描范围</span>
+                            <span class="scan-meta-value">1,247 文件</span>
+                        </div>
+                        <div class="scan-meta-item">
+                            <span class="scan-meta-label">代码行数</span>
+                            <span class="scan-meta-value">45,892 行</span>
+                        </div>
+                        <div class="scan-meta-item">
+                            <span class="scan-meta-label">架构师版本</span>
+                            <span class="scan-meta-value">AI Architect v4.0</span>
+                        </div>
+                    </div>
+                    <div class="scan-actions">
+                        <button class="rescan-button" onclick="handleRescan()">重新扫描</button>
+                        <button class="export-button" onclick="handleExport()">导出报告</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 主要内容 -->
+            <div class="main-content">
+                <!-- 健康仪表盘 -->
+                <div class="health-dashboard">
+                    <h2 class="dashboard-title">项目健康概览</h2>
+                    <div class="metrics-grid">
+                        <div class="health-metric">
+                            <div class="metric-value metric-success">108</div>
+                            <div class="metric-label">已实现功能</div>
+                        </div>
+                        <div class="health-metric">
+                            <div class="metric-value metric-warning">24</div>
+                            <div class="metric-label">部分实现</div>
+                        </div>
+                        <div class="health-metric">
+                            <div class="metric-value metric-alert">15</div>
+                            <div class="metric-label">问题清单</div>
+                        </div>
+                        <div class="health-metric">
+                            <div class="metric-value">12</div>
+                            <div class="metric-label">架构建议</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab导航 -->
+                <div class="content-tabs">
+                    <button class="tab-button active" onclick="switchTab('implemented')">
+                        已实现功能
+                        <span class="tab-count">108</span>
+                    </button>
+                    <button class="tab-button" onclick="switchTab('partial')">
+                        部分实现
+                        <span class="tab-count">24</span>
+                    </button>
+                    <button class="tab-button" onclick="switchTab('issues')">
+                        问题清单
+                        <span class="tab-count">15</span>
+                    </button>
+                    <button class="tab-button" onclick="switchTab('recommendations')">
+                        架构建议
+                        <span class="tab-count">12</span>
+                    </button>
+                </div>
+
+                <!-- Tab 1: 已实现功能 -->
+                <div id="implemented" class="tab-panel active">
+                    <div class="section-header">
+                        <h2 class="section-title">已实现功能（108项）</h2>
+                        <button class="expand-button">展开全部</button>
+                    </div>
+
+                    <div class="feature-module">
+                        <div class="module-header-content">
+                            <div>
+                                <div class="module-title-text">Dashboard 模块</div>
+                                <div class="completeness-bar">
+                                    <span>完整度</span>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 92%"></div>
+                                    </div>
+                                    <span>92%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="module-meta">
+                            <span>📂 src/components/Dashboard/</span>
+                            <span>📄 TaskBoard.tsx +8个文件</span>
+                        </div>
+                        <div class="module-features">
+                            <div class="feature-item">
+                                <div class="feature-check"></div>
+                                <span>任务看板可视化（支持拖拽、筛选、排序）</span>
+                                <span class="feature-percentage">95%</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check"></div>
+                                <span>事件流时间线（实时更新、多维度筛选）</span>
+                                <span class="feature-percentage">88%</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check"></div>
+                                <span>对话历史展示（搜索、分页、导出）</span>
+                                <span class="feature-percentage">92%</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check"></div>
+                                <span>统计图表模块（多种图表类型支持）</span>
+                                <span class="feature-percentage">90%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-module">
+                        <div class="module-header-content">
+                            <div>
+                                <div class="module-title-text">知识库模块</div>
+                                <div class="completeness-bar">
+                                    <span>完整度</span>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 85%"></div>
+                                    </div>
+                                    <span>85%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="module-meta">
+                            <span>📂 src/services/knowledge/</span>
+                            <span>📄 Neo4jService.ts +5个文件</span>
+                        </div>
+                        <div class="module-features">
+                            <div class="feature-item">
+                                <div class="feature-check"></div>
+                                <span>Neo4j 图数据库集成（CRUD操作完整）</span>
+                                <span class="feature-percentage">90%</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check"></div>
+                                <span>知识图谱可视化（D3.js渲染）</span>
+                                <span class="feature-percentage">78%</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check"></div>
+                                <span>语义搜索功能（向量检索+关键词）</span>
+                                <span class="feature-percentage">82%</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check"></div>
+                                <span>知识点关联推荐算法</span>
+                                <span class="feature-percentage">88%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-module">
+                        <div class="module-header-content">
+                            <div>
+                                <div class="module-title-text">AI 对话模块</div>
+                                <div class="completeness-bar">
+                                    <span>完整度</span>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 75%"></div>
+                                    </div>
+                                    <span>75%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="module-meta">
+                            <span>📂 src/services/ai/</span>
+                            <span>📄 ClaudeAPI.ts +3个文件</span>
+                        </div>
+                        <div class="module-features">
+                            <div class="feature-item">
+                                <div class="feature-check"></div>
+                                <span>Claude API 集成（多模型支持）</span>
+                                <span class="feature-percentage">80%</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check"></div>
+                                <span>流式响应处理（SSE实时推送）</span>
+                                <span class="feature-percentage">70%</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check"></div>
+                                <span>对话历史管理（持久化+缓存）</span>
+                                <span class="feature-percentage">75%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-module">
+                        <div class="module-header-content">
+                            <div>
+                                <div class="module-title-text">Notion 集成模块</div>
+                                <div class="completeness-bar">
+                                    <span>完整度</span>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 68%"></div>
+                                    </div>
+                                    <span>68%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="module-meta">
+                            <span>📂 src/services/notion/</span>
+                            <span>📄 NotionAPI.ts +4个文件</span>
+                        </div>
+                        <div class="module-features">
+                            <div class="feature-item">
+                                <div class="feature-check"></div>
+                                <span>Notion API 基础集成（OAuth认证）</span>
+                                <span class="feature-percentage">75%</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check"></div>
+                                <span>页面/数据库同步功能</span>
+                                <span class="feature-percentage">60%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: 部分实现 -->
+                <div id="partial" class="tab-panel">
+                    <div class="empty-state">
+                        <div class="empty-state-title">24个部分实现的功能</div>
+                        <div class="empty-state-description">这些功能已经开始开发，但尚未完全实现或测试通过</div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: 问题清单 -->
+                <div id="issues" class="tab-panel">
+                    <div class="section-header">
+                        <h2 class="section-title">问题清单（15项，按优先级排序）</h2>
+                        <button class="expand-button">展开全部</button>
+                    </div>
+
+                    <div class="issue-card p0">
+                        <div class="issue-header">
+                            <div>
+                                <div class="issue-title">API密钥硬编码暴露风险</div>
+                            </div>
+                            <div class="issue-priority p0">P0 严重</div>
+                        </div>
+                        <div class="issue-details">
+                            <div class="issue-detail-row">
+                                <span class="detail-label">位置</span>
+                                <span class="detail-value">src/services/claude-api.ts:12-15</span>
+                            </div>
+                            <div class="issue-detail-row">
+                                <span class="detail-label">影响</span>
+                                <span class="detail-value">严重安全漏洞。API密钥直接写在代码中，一旦代码泄露可能导致API滥用和巨额费用损失。影响范围：所有Claude API调用。</span>
+                            </div>
+                            <div class="issue-detail-row">
+                                <span class="detail-label">建议修复</span>
+                                <span class="detail-value">立即迁移到环境变量（.env文件），使用 process.env.CLAUDE_API_KEY 读取。添加 .env 到 .gitignore，提供 .env.example 模板。</span>
+                            </div>
+                        </div>
+                        <div class="issue-actions">
+                            <button class="view-code-button">查看代码</button>
+                            <button class="generate-task-button" onclick="generateTask('ISSUE-001')">生成任务</button>
+                        </div>
+                    </div>
+
+                    <div class="issue-card p1">
+                        <div class="issue-header">
+                            <div>
+                                <div class="issue-title">Props Drilling 过度嵌套导致维护困难</div>
+                            </div>
+                            <div class="issue-priority p1">P1 重要</div>
+                        </div>
+                        <div class="issue-details">
+                            <div class="issue-detail-row">
+                                <span class="detail-label">位置</span>
+                                <span class="detail-value">src/components/Dashboard/TaskBoard.tsx</span>
+                            </div>
+                            <div class="issue-detail-row">
+                                <span class="detail-label">影响</span>
+                                <span class="detail-value">组件层级达到6层深度，状态通过props逐层传递。代码冗余度高，修改成本大，性能也受影响（不必要的re-render）。</span>
+                            </div>
+                            <div class="issue-detail-row">
+                                <span class="detail-label">建议修复</span>
+                                <span class="detail-value">引入状态管理方案：推荐 Zustand（轻量）或 Jotai（原子化）。也可考虑使用 React Context API + useReducer。</span>
+                            </div>
+                        </div>
+                        <div class="issue-actions">
+                            <button class="view-code-button">查看代码</button>
+                            <button class="generate-task-button" onclick="generateTask('ISSUE-002')">生成任务</button>
+                        </div>
+                    </div>
+
+                    <div class="issue-card p1">
+                        <div class="issue-header">
+                            <div>
+                                <div class="issue-title">缺少全局错误边界导致白屏风险</div>
+                            </div>
+                            <div class="issue-priority p1">P1 重要</div>
+                        </div>
+                        <div class="issue-details">
+                            <div class="issue-detail-row">
+                                <span class="detail-label">位置</span>
+                                <span class="detail-value">全局（未实现 ErrorBoundary 组件）</span>
+                            </div>
+                            <div class="issue-detail-row">
+                                <span class="detail-label">影响</span>
+                                <span class="detail-value">任何组件崩溃都会导致整个应用白屏，用户体验极差且难以追踪错误原因。生产环境问题难以复现和修复。</span>
+                            </div>
+                            <div class="issue-detail-row">
+                                <span class="detail-label">建议修复</span>
+                                <span class="detail-value">实现全局 ErrorBoundary 组件，捕获渲染错误并展示友好的错误页面。集成 Sentry 进行错误监控和日志上报。</span>
+                            </div>
+                        </div>
+                        <div class="issue-actions">
+                            <button class="view-code-button">查看代码</button>
+                            <button class="generate-task-button" onclick="generateTask('ISSUE-003')">生成任务</button>
+                        </div>
+                    </div>
+
+                    <div class="issue-card p1">
+                        <div class="issue-header">
+                            <div>
+                                <div class="issue-title">代码重复：API调用逻辑分散在多处</div>
+                            </div>
+                            <div class="issue-priority p1">P1 重要</div>
+                        </div>
+                        <div class="issue-details">
+                            <div class="issue-detail-row">
+                                <span class="detail-label">位置</span>
+                                <span class="detail-value">src/services/* (多个文件)</span>
+                            </div>
+                            <div class="issue-detail-row">
+                                <span class="detail-label">影响</span>
+                                <span class="detail-value">ClaudeAPI、NotionAPI、Neo4j各有独立的错误处理、重试逻辑、超时设置。修改一处需要同步修改多处，容易遗漏。</span>
+                            </div>
+                            <div class="issue-detail-row">
+                                <span class="detail-label">建议修复</span>
+                                <span class="detail-value">创建统一的 APIClient 基类，封装通用的请求拦截、错误处理、重试机制。各个API服务继承基类并专注于业务逻辑。</span>
+                            </div>
+                        </div>
+                        <div class="issue-actions">
+                            <button class="view-code-button">查看代码</button>
+                            <button class="generate-task-button" onclick="generateTask('ISSUE-004')">生成任务</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 4: 架构建议 -->
+                <div id="recommendations" class="tab-panel">
+                    <div class="section-header">
+                        <h2 class="section-title">架构师建议（12条优化方案）</h2>
+                        <button class="expand-button">展开全部</button>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <div class="recommendation-header">
+                            <div class="recommendation-id">RECOMMENDATION-001</div>
+                            <div class="recommendation-title">引入轻量级状态管理库（Zustand）</div>
+                        </div>
+                        <div class="rec-section">
+                            <div class="rec-section-label">当前状态分析</div>
+                            <div class="rec-section-content">
+                                组件间通过 Props Drilling 传递状态，导致代码冗余和维护困难。Dashboard 组件层级达到 6 层，
+                                每次状态更新需要逐层传递 props。TaskBoard、EventStream、ConversationHub 三个核心模块
+                                都需要共享 user、project、theme 等全局状态，当前实现方式效率低下。
+                            </div>
+                        </div>
+                        <div class="rec-section">
+                            <div class="rec-section-label">建议方案</div>
+                            <div class="rec-section-content">
+                                引入 Zustand 作为轻量级状态管理方案。相比 Redux，Zustand API 更简洁（无需 Provider、action、reducer），
+                                bundle size 仅 1KB，完全符合 React Hooks 风格。创建全局 store 管理用户信息、项目配置、主题设置等
+                                共享状态，组件通过 useStore Hook 直接访问，彻底消除 Props Drilling。
+                            </div>
+                        </div>
+                        <div class="recommendation-metrics">
+                            <div class="metric-item">
+                                <div class="metric-item-label">预期收益</div>
+                                <div class="metric-item-value">代码量 -30%</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-item-label">预估工时</div>
+                                <div class="metric-item-value">8 小时</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-item-label">影响范围</div>
+                                <div class="metric-item-value">3 个核心模块</div>
+                            </div>
+                        </div>
+                        <button class="adopt-button" onclick="adoptRecommendation('REC-001', this)">
+                            采纳建议 → 生成任务卡片
+                        </button>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <div class="recommendation-header">
+                            <div class="recommendation-id">RECOMMENDATION-002</div>
+                            <div class="recommendation-title">实现代码分割和路由懒加载</div>
+                        </div>
+                        <div class="rec-section">
+                            <div class="rec-section-label">当前状态分析</div>
+                            <div class="rec-section-content">
+                                所有模块在首次加载时一次性打包，main bundle 达到 2.8MB（gzip后850KB），首屏加载时间
+                                在 3G 网络下超过 4 秒。用户可能只使用 Dashboard 或 KnowledgeGraph 其中一个模块，
+                                但被迫加载了所有未使用的代码，造成带宽和时间浪费。
+                            </div>
+                        </div>
+                        <div class="rec-section">
+                            <div class="rec-section-label">建议方案</div>
+                            <div class="rec-section-content">
+                                使用 React.lazy() 和 Suspense 实现路由级别的代码分割。Dashboard、KnowledgeGraph、
+                                ConversationHub、ArchitectConsole 等大模块按需加载，配合 Loading 骨架屏提升加载体验。
+                                预计首屏 bundle 可压缩至 400KB，首屏时间降至 1.5 秒以内，LCP 指标提升 60%。
+                            </div>
+                        </div>
+                        <div class="recommendation-metrics">
+                            <div class="metric-item">
+                                <div class="metric-item-label">预期收益</div>
+                                <div class="metric-item-value">首屏时间 -62%</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-item-label">预估工时</div>
+                                <div class="metric-item-value">6 小时</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-item-label">影响范围</div>
+                                <div class="metric-item-value">5 个大模块</div>
+                            </div>
+                        </div>
+                        <button class="adopt-button" onclick="adoptRecommendation('REC-002', this)">
+                            采纳建议 → 生成任务卡片
+                        </button>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <span class="adopted-badge">已采纳</span>
+                        <div class="recommendation-header">
+                            <div class="recommendation-id">RECOMMENDATION-003</div>
+                            <div class="recommendation-title">统一 API 错误处理和监控机制</div>
+                        </div>
+                        <div class="rec-section">
+                            <div class="rec-section-label">当前状态分析</div>
+                            <div class="rec-section-content">
+                                各个 API 调用点分散处理错误，缺少统一的错误拦截和用户提示机制。Claude API、Notion API、
+                                Neo4j 各有不同的错误处理逻辑，导致错误提示不一致，日志格式混乱，难以追踪 API 调用失败的
+                                根本原因。生产环境问题排查效率低下。
+                            </div>
+                        </div>
+                        <div class="rec-section">
+                            <div class="rec-section-label">建议方案</div>
+                            <div class="rec-section-content">
+                                创建统一的 API Client 基类，使用 Axios 拦截器统一处理请求和响应。实现全局 Toast 提示系统，
+                                根据 HTTP 状态码自动展示友好的错误信息。集成 Sentry 进行错误监控和日志上报，
+                                包含错误堆栈、用户信息、请求参数等上下文，便于问题追踪和复现。
+                            </div>
+                        </div>
+                        <div class="recommendation-metrics">
+                            <div class="metric-item">
+                                <div class="metric-item-label">预期收益</div>
+                                <div class="metric-item-value">可维护性 +45%</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-item-label">预估工时</div>
+                                <div class="metric-item-value">10 小时</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-item-label">影响范围</div>
+                                <div class="metric-item-value">8 个 API 端点</div>
+                            </div>
+                        </div>
+                        <button class="adopt-button adopted" disabled>
+                            已生成任务 TASK-052
+                        </button>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <div class="recommendation-header">
+                            <div class="recommendation-id">RECOMMENDATION-004</div>
+                            <div class="recommendation-title">优化 Neo4j 查询性能（添加索引）</div>
+                        </div>
+                        <div class="rec-section">
+                            <div class="rec-section-label">当前状态分析</div>
+                            <div class="rec-section-content">
+                                知识图谱查询性能随着数据量增长显著下降。当前节点数超过 10,000 个后，复杂查询（3层关系遍历）
+                                响应时间超过 2 秒，严重影响用户体验。主要原因是缺少针对高频查询字段的索引，
+                                导致 Neo4j 需要全表扫描。
+                            </div>
+                        </div>
+                        <div class="rec-section">
+                            <div class="rec-section-label">建议方案</div>
+                            <div class="rec-section-content">
+                                分析慢查询日志，识别高频查询模式。为 KnowledgeNode 的 title、type、created_at 等字段
+                                创建索引。为常用的关系查询路径创建复合索引。考虑引入缓存层（Redis）缓存热点查询结果，
+                                TTL 设置为 5 分钟。预计查询性能提升 10-15 倍。
+                            </div>
+                        </div>
+                        <div class="recommendation-metrics">
+                            <div class="metric-item">
+                                <div class="metric-item-label">预期收益</div>
+                                <div class="metric-item-value">查询速度 +1200%</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-item-label">预估工时</div>
+                                <div class="metric-item-value">5 小时</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-item-label">影响范围</div>
+                                <div class="metric-item-value">知识图谱模块</div>
+                            </div>
+                        </div>
+                        <button class="adopt-button" onclick="adoptRecommendation('REC-004', this)">
+                            采纳建议 → 生成任务卡片
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+

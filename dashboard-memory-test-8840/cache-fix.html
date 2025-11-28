@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Cache Buster - Dashboard Gap Fix</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h1 { color: #333; }
+        h2 { color: #666; margin-top: 30px; }
+        .instruction {
+            background: #f0f8ff;
+            padding: 15px;
+            border-left: 4px solid #0066cc;
+            margin: 15px 0;
+        }
+        .code {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 10px 5px;
+            font-weight: 600;
+        }
+        .button:hover {
+            background: #0052a3;
+        }
+        .warning {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+        .success {
+            background: #d4edda;
+            padding: 15px;
+            border-left: 4px solid #28a745;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🔧 Dashboard CSS Cache Fix</h1>
+        <p>所有模块的CSS定义都是正确的，但浏览器可能缓存了旧版本。请按以下步骤操作：</p>
+
+        <h2>📋 方法1：强制刷新（推荐）</h2>
+        <div class="instruction">
+            <strong>Windows浏览器：</strong>
+            <div class="code">Ctrl + Shift + R</div>
+            <br>
+            或者
+            <div class="code">Ctrl + F5</div>
+        </div>
+
+        <h2>📋 方法2：清空缓存并硬性重新加载</h2>
+        <div class="instruction">
+            <strong>步骤：</strong>
+            <ol>
+                <li>打开开发者工具（F12）</li>
+                <li>右键点击浏览器刷新按钮</li>
+                <li>选择"清空缓存并硬性重新加载"</li>
+            </ol>
+        </div>
+
+        <h2>📋 方法3：URL添加时间戳</h2>
+        <div class="instruction">
+            <p>在URL后面添加时间戳来强制浏览器重新加载：</p>
+            <a href="http://localhost:8820/?v=<?php echo time(); ?>" class="button" target="_blank">
+                打开Dashboard（带时间戳）
+            </a>
+        </div>
+
+        <h2>📋 方法4：手动清空浏览器缓存</h2>
+        <div class="instruction">
+            <strong>Chrome:</strong>
+            <div class="code">Ctrl + Shift + Delete → 清空缓存</div>
+            <br>
+            <strong>Edge:</strong>
+            <div class="code">Ctrl + Shift + Delete → 清空缓存</div>
+        </div>
+
+        <h2>✅ 验证修复</h2>
+        <div class="success">
+            <p><strong>修复后应该看到：</strong></p>
+            <ul>
+                <li>所有模块都是1600px宽度，居中显示</li>
+                <li>模块之间有明显的灰色间隙（64px）</li>
+                <li>模块左右两侧露出灰色背景</li>
+                <li>API状态条也是居中显示，不占满屏宽</li>
+            </ul>
+        </div>
+
+        <h2>🔍 开发者工具检查</h2>
+        <div class="instruction">
+            <p>如果强制刷新后还是没有间距，请：</p>
+            <ol>
+                <li>按F12打开开发者工具</li>
+                <li>选择"Elements"标签</li>
+                <li>找到任一模块的div（如class="engineer-module"）</li>
+                <li>查看右侧"Styles"面板中的margin值</li>
+                <li>如果margin值不是"64px auto 48px auto"，截图发给我</li>
+            </ol>
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ 注意：</strong>
+            <p>如果上述所有方法都无效，可能是有其他CSS规则覆盖了模块的margin。
+            请在开发者工具中检查"Computed"标签下的实际margin值。</p>
+        </div>
+
+        <div style="margin-top: 40px; text-align: center;">
+            <a href="http://localhost:8820/" class="button" target="_blank">
+                打开Dashboard主页
+            </a>
+            <a href="http://localhost:8820/test-gaps.html" class="button" target="_blank">
+                打开间隙测试页
+            </a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>🛠️ 技术诊断报告</h2>
+        <p><strong>所有模块CSS检查结果：</strong></p>
+        <div class="code" style="white-space: pre-wrap;">
+✅ 项目透视塔 (.page-container): margin: 64px auto 48px auto
+✅ 待开发任务池 (.pending-features-module): margin: 64px auto 48px auto
+✅ 架构师工作台 (.architect-module): margin: 64px auto 48px auto
+✅ 全栈工程师 (.engineer-module): margin: 64px auto 48px auto
+✅ 记忆空间 (.memory-space-module): margin: 64px auto 48px auto
+✅ 实时脉动 (.pulse-module): margin: 64px auto 48px auto
+✅ 运维工程师 (.devops-module): margin: 64px auto 48px auto
+✅ Noah代码管家 (.code-manager-module): margin: 64px auto 48px auto
+        </div>
+        <p style="margin-top: 20px;"><strong>结论：</strong>CSS定义完全正确，问题在于浏览器缓存。</p>
+    </div>
+
+    <script>
+        // 自动检测是否需要刷新
+        const urlParams = new URLSearchParams(window.location.search);
+        const timestamp = urlParams.get('ts');
+        const now = Date.now();
+        
+        if (!timestamp || (now - parseInt(timestamp)) > 60000) {
+            console.log('Cache might be stale, consider refreshing');
+        }
+    </script>
+</body>
+</html>

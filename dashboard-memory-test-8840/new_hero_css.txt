@@ -1,0 +1,263 @@
+        /* ==================== 项目切换演示器 ==================== */
+        .project-switcher {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            border: 1px solid #E8ECEF;
+            padding: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            max-width: 280px;
+        }
+
+        .switcher-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--noir-graphite);
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #E8ECEF;
+        }
+
+        .project-option {
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            border: 1px solid #E8ECEF;
+            background: white;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-option:hover {
+            background: #F6F8FA;
+            border-color: var(--noir-ink);
+        }
+
+        .project-option.active {
+            background: var(--noir-ink);
+            color: white;
+            border-color: var(--noir-ink);
+        }
+
+        .option-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--noir-ink);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .project-option.active .option-icon {
+            background: white;
+            color: var(--noir-ink);
+        }
+
+        /* ==================== 顶部导航（全局品牌，固定）==================== */
+        .top-navbar {
+            background: var(--noir-ink);
+            border-bottom: 1px solid var(--noir-charcoal);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 40px;
+            height: 56px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--noir-ink);
+        }
+
+        .brand-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: white;
+        }
+
+        .brand-subtitle {
+            font-size: 11px;
+            color: var(--noir-silver);
+            margin-left: 12px;
+            padding-left: 12px;
+            border-left: 1px solid var(--noir-charcoal);
+        }
+
+        .actions-section {
+            display: flex;
+            gap: 12px;
+        }
+
+        .action-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border: 1px solid var(--noir-charcoal);
+            background: rgba(255, 255, 255, 0.05);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--blanc-cloud);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--status-success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* ==================== Hero区（项目标识，可配置）==================== */
+        .page-hero {
+            background: var(--noir-ink);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--noir-charcoal);
+            transition: all 0.5s ease;
+        }
+
+        .bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            background-image: 
+                linear-gradient(white 1px, transparent 1px),
+                linear-gradient(90deg, white 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .hero-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-logo {
+            width: 64px;
+            height: 64px;
+            background: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--noir-ink);
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .project-title {
+            font-family: var(--font-secondary);
+            font-size: 48px;
+            font-weight: 300;
+            color: white;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .version-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            font-size: 11px;
+            font-family: var(--font-mono);
+            color: var(--blanc-cloud);
+            border: 1px solid var(--noir-charcoal);
+            margin-left: 16px;
+            vertical-align: middle;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .project-description {
+            font-size: 18px;
+            color: var(--blanc-cloud);
+            line-height: 1.75;
+            max-width: 800px;
+        }
+
+        .project-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 48px;
+        }
+
+        .meta-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .meta-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .meta-label {
+            font-size: 12px;
+            color: var(--noir-silver);
+            margin-bottom: 8px;
+        }
+
+        .meta-value {
+            font-size: 14px;
+            color: var(--blanc-cloud);
+            line-height: 1.6;
+        }
+

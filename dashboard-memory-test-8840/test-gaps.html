@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>模块间隙测试</title>
+    <style>
+        body { margin: 0; padding: 20px; font-family: Arial; }
+        .test-result { 
+            padding: 15px; 
+            margin: 10px 0; 
+            border-radius: 5px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        pre { background: #f5f5f5; padding: 10px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Dashboard模块间隙测试报告</h1>
+    <div id="results"></div>
+
+    <script>
+        const results = document.getElementById('results');
+        
+        function addResult(type, title, content) {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = `<h3>${title}</h3><div>${content}</div>`;
+            results.appendChild(div);
+        }
+
+        // 在iframe中加载主页面
+        const iframe = document.createElement('iframe');
+        iframe.src = 'index.html';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+
+        iframe.onload = function() {
+            const doc = iframe.contentDocument;
+            
+            // 测试模块存在性
+            const modules = [
+                { name: '全栈工程师', selector: '.engineer-module' },
+                { name: 'API状态条', selector: '.api-status-bar' },
+                { name: '记忆空间', selector: '.memory-space-module' },
+                { name: '实时脉动', selector: '.pulse-module' },
+                { name: '运维工程师', selector: '.devops-module' },
+                { name: 'Noah代码管家', selector: '.code-manager-module' }
+            ];
+
+            let allFound = true;
+            modules.forEach(module => {
+                const el = doc.querySelector(module.selector);
+                if (!el) {
+                    addResult('error', '❌ 模块缺失', `找不到 ${module.name} 模块`);
+                    allFound = false;
+                }
+            });
+            
+            if (allFound) {
+                addResult('success', '✅ 所有模块存在', '6个核心模块都已找到');
+            }
+
+            // 测试API状态条样式
+            const apiBar = doc.querySelector('.api-status-bar');
+            if (apiBar) {
+                const styles = window.getComputedStyle(apiBar);
+                const maxWidth = styles.maxWidth;
+                const marginLeft = styles.marginLeft;
+                const marginRight = styles.marginRight;
+                
+                addResult('info', '🎨 API状态条样式', 
+                    `max-width: ${maxWidth}<br>margin: ${styles.marginTop} ${marginRight} ${styles.marginBottom} ${marginLeft}`);
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>事件流 - 时间之河 - 任务所·Flow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            /* 颜色系统 */
+            --black: #000000;
+            --gray-900: #212121;
+            --gray-700: #616161;
+            --gray-600: #757575;
+            --gray-500: #9E9E9E;
+            --gray-300: #E0E0E0;
+            --gray-100: #F5F5F5;
+            --gray-50: #FAFAFA;
+            --white: #FFFFFF;
+            --red: #985239;
+            --blue: #537696;
+            
+            --info: #2E7D32;
+            --warning: #F57C00;
+            --error: #D32F2F;
+            --critical: #C62828;
+            
+            /* 空间 */
+            --space-2: 8px;
+            --space-4: 16px;
+            --space-6: 24px;
+            --space-8: 32px;
+            
+            /* 阴影 */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--white);
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+        
+        /* 头部导航 */
+        .header {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-300);
+            padding: var(--space-4) var(--space-8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .back-button {
+            text-decoration: none;
+            color: var(--gray-700);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .back-button:hover {
+            color: var(--black);
+        }
+        
+        .page-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--black);
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: var(--space-4);
+        }
+        
+        .action-btn {
+            padding: var(--space-2) var(--space-4);
+            font-size: 13px;
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .action-btn:hover {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+        
+        /* 主布局 */
+        .main-layout {
+            display: flex;
+            min-height: calc(100vh - 60px);
+        }
+        
+        /* 左侧边栏 */
+        .sidebar {
+            width: 280px;
+            background: var(--gray-50);
+            border-right: 1px solid var(--gray-300);
+            padding: var(--space-6);
+            position: sticky;
+            top: 60px;
+            height: calc(100vh - 60px);
+            overflow-y: auto;
+        }
+        
+        .sidebar-section {
+            margin-bottom: var(--space-8);
+        }
+        
+        .sidebar-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .stat-box {
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            padding: var(--space-4);
+            margin-bottom: var(--space-2);
+        }
+        
+        .stat-box-value {
+            font-size: 32px;
+            font-weight: 300;
+            color: var(--black);
+            line-height: 1;
+        }
+        
+        .stat-box-label {
+            font-size: 11px;
+            color: var(--gray-600);
+            margin-top: 4px;
+        }
+        
+        .filter-group {
+            margin-bottom: var(--space-4);
+        }
+        
+        .filter-label {
+            font-size: 11px;
+            color: var(--gray-600);
+            margin-bottom: var(--space-2);
+            display: block;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 13px;
+            cursor: pointer;
+        }
+        
+        .checkbox-item input {
+            cursor: pointer;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: var(--space-2);
+            margin-top: var(--space-4);
+        }
+        
+        .filter-btn {
+            flex: 1;
+            padding: var(--space-2);
+            font-size: 12px;
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            cursor: pointer;
+        }
+        
+        .filter-btn:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+        
+        /* 主内容区 */
+        .main-content {
+            flex: 1;
+            padding: var(--space-8);
+        }
+        
+        /* 今日概览 */
+        .today-overview {
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            border: 1px solid var(--gray-300);
+            border-top: 2px solid var(--red);
+            padding: var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+        
+        .overview-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
+        }
+        
+        .mini-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+        
+        .mini-stat {
+            text-align: center;
+        }
+        
+        .mini-stat-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--black);
+        }
+        
+        .mini-stat-label {
+            font-size: 10px;
+            color: var(--gray-600);
+        }
+        
+        /* 事件时间流 */
+        .events-stream {
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            border-top: 2px solid var(--black);
+            padding: var(--space-8);
+        }
+        
+        .stream-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-6);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .event-card {
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            border-left: 4px solid var(--info);
+            padding: var(--space-6);
+            margin-bottom: var(--space-4);
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            cursor: pointer;
+        }
+        
+        .event-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+        
+        .event-card.warning {
+            border-left-color: var(--warning);
+        }
+        
+        .event-card.error {
+            border-left-color: var(--error);
+        }
+        
+        .event-card.critical {
+            border-left-color: var(--critical);
+        }
+        
+        .event-card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-2);
+        }
+        
+        .severity-badge {
+            padding: 2px 8px;
+            font-size: 10px;
+            font-weight: 600;
+            border-radius: 2px;
+            text-transform: uppercase;
+        }
+        
+        .severity-badge.info {
+            background: var(--info);
+            color: var(--white);
+        }
+        
+        .severity-badge.warning {
+            background: var(--warning);
+            color: var(--white);
+        }
+        
+        .severity-badge.error {
+            background: var(--error);
+            color: var(--white);
+        }
+        
+        .severity-badge.critical {
+            background: var(--critical);
+            color: var(--white);
+        }
+        
+        .event-type-label {
+            font-size: 11px;
+            color: var(--gray-600);
+        }
+        
+        .event-time-label {
+            font-size: 11px;
+            color: var(--gray-500);
+            margin-left: auto;
+        }
+        
+        .event-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: var(--space-2);
+        }
+        
+        .event-description {
+            font-size: 13px;
+            color: var(--gray-700);
+            margin-bottom: var(--space-4);
+        }
+        
+        .event-footer {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            font-size: 11px;
+            color: var(--gray-600);
+        }
+        
+        .event-tag {
+            padding: 2px 8px;
+            background: var(--gray-100);
+            border-radius: 2px;
+            font-size: 10px;
+        }
+        
+        .event-actions {
+            margin-top: var(--space-4);
+            display: flex;
+            gap: var(--space-2);
+        }
+        
+        .event-action-btn {
+            padding: 4px 12px;
+            font-size: 11px;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-300);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .event-action-btn:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+        
+        /* 分页 */
+        .pagination {
+            margin-top: var(--space-6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        .page-btn {
+            padding: var(--space-2) var(--space-4);
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            cursor: pointer;
+        }
+        
+        .page-btn:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+        
+        .page-info {
+            font-size: 13px;
+            color: var(--gray-600);
+        }
+        
+        /* 加载状态 */
+        .loading-container {
+            text-align: center;
+            padding: var(--space-8);
+            color: var(--gray-600);
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--gray-300);
+            border-top-color: var(--red);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <div class="header">
+        <a href="/" class="back-button">← 返回Dashboard</a>
+        <div class="page-title">📊 事件流 - 时间之河</div>
+        <div class="header-actions">
+            <button class="action-btn">导出</button>
+            <button class="action-btn" onclick="loadEvents()">刷新</button>
+        </div>
+    </div>
+    
+    <!-- 主布局 -->
+    <div class="main-layout">
+        <!-- 左侧边栏 -->
+        <div class="sidebar">
+            <!-- 事件脉搏 -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">📈 事件脉搏</div>
+                <div class="stat-box">
+                    <div class="stat-box-value" id="totalEventsCount">156</div>
+                    <div class="stat-box-label">总事件</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box-value" id="taskEventsCount">89</div>
+                    <div class="stat-box-label">任务</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box-value" id="issueEventsCount">34</div>
+                    <div class="stat-box-label">问题</div>
+                </div>
+            </div>
+            
+            <!-- 智能筛选 -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">🔍 智能筛选</div>
+                
+                <div class="filter-group">
+                    <div class="filter-label">分类</div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="category" value="task" checked> 📋 任务
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="category" value="issue" checked> 🐛 问题
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="category" value="decision"> 🏛️ 决策
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="category" value="deployment" checked> 🚀 部署
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="category" value="system"> ⚙️ 系统
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <div class="filter-label">严重性</div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="severity" value="info" checked> 🟢 Info
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="severity" value="warning" checked> 🟡 Warning
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="severity" value="error" checked> 🟠 Error
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="severity" value="critical" checked> 🔴 Critical
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="filter-buttons">
+                    <button class="filter-btn" onclick="applyFilters()">应用筛选</button>
+                    <button class="filter-btn" onclick="resetFilters()">重置</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 今日概览 -->
+            <div class="today-overview">
+                <div class="overview-title">🎯 今日概览</div>
+                <div class="mini-stats">
+                    <div class="mini-stat">
+                        <div class="mini-stat-value" id="todayEventsCount">12</div>
+                        <div class="mini-stat-label">事件</div>
+                    </div>
+                    <div class="mini-stat">
+                        <div class="mini-stat-value" id="todayWarningsCount">3</div>
+                        <div class="mini-stat-label">警告</div>
+                    </div>
+                    <div class="mini-stat">
+                        <div class="mini-stat-value" id="todayErrorsCount">1</div>
+                        <div class="mini-stat-label">错误</div>
+                    </div>
+                    <div class="mini-stat">
+                        <div class="mini-stat-value" id="todayCriticalCount">0</div>
+                        <div class="mini-stat-label">紧急</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 事件时间流 -->
+            <div class="events-stream">
+                <div class="stream-title">
+                    <span>🌊</span>
+                    <span>事件时间流</span>
+                    <span style="margin-left: auto; font-size: 11px; color: var(--gray-500);">最近100条事件</span>
+                </div>
+                
+                <div id="eventsContainer">
+                    <div class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <div style="margin-top: var(--space-4);">加载中...</div>
+                    </div>
+                </div>
+                
+                <!-- 分页 -->
+                <div class="pagination">
+                    <button class="page-btn" onclick="prevPage()">← 上一页</button>
+                    <div class="page-info">第<span id="currentPage">1</span>页/共<span id="totalPages">10</span>页</div>
+                    <button class="page-btn" onclick="nextPage()">下一页 →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 全局变量
+        let currentPage = 1;
+        let pageSize = 50;
+        let allEvents = [];
+        let filters = {
+            categories: ['task', 'issue', 'deployment'],
+            severities: ['info', 'warning', 'error', 'critical']
+        };
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🌊 事件流页面已加载');
+            loadEvents();
+            
+            // 自动刷新
+            setInterval(loadEvents, 30000);
+        });
+        
+        // 加载事件
+        async function loadEvents() {
+            try {
+                const response = await fetch('/api/events/stream?hours=24&limit=100');
+                const data = await response.json();
+                
+                if (data.success && data.events) {
+                    allEvents = data.events;
+                    renderEvents();
+                    updateStats();
+                    console.log('✅ 事件已加载:', data.events.length);
+                }
+            } catch (error) {
+                console.error('❌ 加载事件失败:', error);
+                document.getElementById('eventsContainer').innerHTML = `
+                    <div class="loading-container">
+                        <div style="color: var(--error);">加载失败: ${error.message}</div>
+                        <button class="action-btn" onclick="loadEvents()" style="margin-top: var(--space-4);">重试</button>
+                    </div>
+                `;
+            }
+        }
+        
+        // 渲染事件
+        function renderEvents() {
+            const container = document.getElementById('eventsContainer');
+            
+            // 过滤事件
+            let filteredEvents = allEvents.filter(event => {
+                const category = event.event_category || event.category || 'general';
+                const severity = event.severity || 'info';
+                return filters.categories.includes(category) && filters.severities.includes(severity);
+            });
+            
+            if (filteredEvents.length === 0) {
+                container.innerHTML = `
+                    <div class="loading-container">
+                        <div style="font-size: 48px;">🌊</div>
+                        <div style="margin-top: var(--space-4);">暂无事件</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            // 分页
+            const start = (currentPage - 1) * pageSize;
+            const end = start + pageSize;
+            const pageEvents = filteredEvents.slice(start, end);
+            
+            // 更新分页信息
+            const totalPages = Math.ceil(filteredEvents.length / pageSize);
+            document.getElementById('currentPage').textContent = currentPage;
+            document.getElementById('totalPages').textContent = totalPages;
+            
+            // 渲染
+            container.innerHTML = pageEvents.map(event => {
+                const severity = event.severity || 'info';
+                const category = event.event_category || event.category || 'general';
+                const title = event.title || '无标题';
+                const description = event.description || '';
+                const actor = event.actor || 'System';
+                const time = formatTime(event.occurred_at || event.timestamp);
+                const eventType = event.event_type || event.type || '未知事件';
+                
+                return `
+                    <div class="event-card ${severity}" onclick="viewEventDetail('${event.id}')">
+                        <div class="event-card-header">
+                            <span class="severity-badge ${severity}">${getSeverityIcon(severity)} ${severity.toUpperCase()}</span>
+                            <span class="event-type-label">${eventType}</span>
+                            <span class="event-time-label">${time}</span>
+                        </div>
+                        <div class="event-title">${title}</div>
+                        ${description ? `<div class="event-description">${description}</div>` : ''}
+                        <div class="event-footer">
+                            <span>👤 ${actor}</span>
+                            <span>|</span>
+                            <span>📋 ${category}</span>
+                            ${event.related_entity_id ? `<span>| 🔗 ${event.related_entity_id}</span>` : ''}
+                        </div>
+                        ${event.tags ? `
+                            <div style="margin-top: var(--space-2); display: flex; gap: var(--space-2);">
+                                ${event.tags.map(tag => `<span class="event-tag">${tag}</span>`).join('')}
+                            </div>
+                        ` : ''}
+                        <div class="event-actions">
+                            <button class="event-action-btn" onclick="event.stopPropagation(); viewEventDetail('${event.id}')">详情</button>
+                            ${event.related_entity_id ? `<button class="event-action-btn" onclick="event.stopPropagation(); viewRelated('${event.related_entity_type}', '${event.related_entity_id}')">查看关联</button>` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // 更新统计
+        function updateStats() {
+            // 统计今日事件
+            const today = new Date().toISOString().split('T')[0];
+            const todayEvents = allEvents.filter(e => {
+                const eventDate = (e.occurred_at || e.timestamp || '').split('T')[0];
+                return eventDate === today;
+            });
+            
+            document.getElementById('todayEventsCount').textContent = todayEvents.length;
+            document.getElementById('todayWarningsCount').textContent = 
+                todayEvents.filter(e => e.severity === 'warning').length;
+            document.getElementById('todayErrorsCount').textContent = 
+                todayEvents.filter(e => e.severity === 'error').length;
+            document.getElementById('todayCriticalCount').textContent = 
+                todayEvents.filter(e => e.severity === 'critical').length;
+            
+            // 更新总计
+            document.getElementById('totalEventsCount').textContent = allEvents.length;
+            document.getElementById('taskEventsCount').textContent = 
+                allEvents.filter(e => (e.event_category || e.category) === 'task').length;
+            document.getElementById('issueEventsCount').textContent = 
+                allEvents.filter(e => (e.event_category || e.category) === 'issue').length;
+        }
+        
+        // 应用筛选
+        function applyFilters() {
+            // 获取选中的分类
+            filters.categories = Array.from(document.querySelectorAll('input[name="category"]:checked'))
+                .map(cb => cb.value);
+            
+            // 获取选中的严重性
+            filters.severities = Array.from(document.querySelectorAll('input[name="severity"]:checked'))
+                .map(cb => cb.value);
+            
+            currentPage = 1;
+            renderEvents();
+            console.log('已应用筛选:', filters);
+        }
+        
+        // 重置筛选
+        function resetFilters() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = true);
+            filters.categories = ['task', 'issue', 'decision', 'deployment', 'system'];
+            filters.severities = ['info', 'warning', 'error', 'critical'];
+            currentPage = 1;
+            renderEvents();
+            console.log('已重置筛选');
+        }
+        
+        // 分页
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                renderEvents();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+        
+        function nextPage() {
+            const totalPages = Math.ceil(allEvents.length / pageSize);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderEvents();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+        
+        // 查看事件详情
+        function viewEventDetail(eventId) {
+            console.log('查看事件详情:', eventId);
+            alert('事件详情功能开发中...');
+        }
+        
+        // 查看关联实体
+        function viewRelated(type, id) {
+            console.log('查看关联:', type, id);
+            alert(`查看${type}: ${id}`);
+        }
+        
+        // 工具函数
+        function formatTime(timestamp) {
+            if (!timestamp) return '刚刚';
+            
+            const now = new Date();
+            const time = new Date(timestamp);
+            const diffMs = now - time;
+            const diffMins = Math.floor(diffMs / 60000);
+            
+            if (diffMins < 1) return '刚刚';
+            if (diffMins < 60) return `${diffMins}分钟前`;
+            if (diffMins < 1440) return `${Math.floor(diffMins/60)}小时前`;
+            return time.toLocaleString('zh-CN');
+        }
+        
+        function getSeverityIcon(severity) {
+            const icons = {
+                'info': '🟢',
+                'warning': '🟡',
+                'error': '🟠',
+                'critical': '🔴'
+            };
+            return icons[severity] || '⚪';
+        }
+    </script>
+</body>
+</html>
+

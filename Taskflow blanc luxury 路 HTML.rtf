@@ -1,0 +1,1105 @@
+{\rtf1\ansi\ansicpg936\cocoartf2820
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww34060\viewh18780\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="zh-CN">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>\uc0\u20219 \u21153 \u25152 \'b7Flow - Blanc Luxury Edition</title>\
+    <style>\
+        /* ========================================\
+           BLANC LUXURY DESIGN SYSTEM V3\
+           \uc0\u20809 \u30340 \u24314 \u31569 \u23398  \'b7 \u21628 \u21560 \u24863 \u35774 \u35745 \
+           ======================================== */\
+        \
+        :root \{\
+            /* ===== \uc0\u30333 \u33394 \u22522 \u35843  - 12\u32423 \u31934 \u23494 \u23618 \u27425  ===== */\
+            --blanc-pure: #FFFFFF;          /* \uc0\u32431 \u30333  - \u20027 \u32972 \u26223  */\
+            --blanc-snow: #FAFBFC;          /* \uc0\u38634 \u30333  - \u21345 \u29255 \u32972 \u26223  */\
+            --blanc-pearl: #F6F8FA;         /* \uc0\u29645 \u29664 \u30333  - \u21306 \u22495 \u32972 \u26223  */\
+            --blanc-silk: #F0F3F5;          /* \uc0\u19997 \u32504 \u30333  - \u27425 \u35201 \u32972 \u26223  */\
+            --blanc-mist: #E8ECEF;          /* \uc0\u34180 \u38654 \u30333  - \u20998 \u21106 \u32447  */\
+            --blanc-cloud: #DFE4E8;         /* \uc0\u20113 \u30333  - \u36793 \u26694  */\
+            \
+            /* ===== \uc0\u28784 \u33394 \u23618 \u27425  - \u25991 \u23383 \u19982 \u30028 \u38754 \u20803 \u32032  ===== */\
+            --noir-ink: #0A0F14;            /* \uc0\u22696 \u40657  - \u20027 \u26631 \u39064  */\
+            --noir-charcoal: #1A2027;       /* \uc0\u28845 \u40657  - \u37325 \u35201 \u25991 \u23383  */\
+            --noir-graphite: #2E3742;       /* \uc0\u30707 \u22696  - \u27491 \u25991  */\
+            --noir-steel: #495057;          /* \uc0\u38050 \u38081 \u28784  - \u27425 \u35201 \u25991 \u23383  */\
+            --noir-silver: #6C757D;         /* \uc0\u38134 \u28784  - \u36741 \u21161 \u25991 \u23383  */\
+            --noir-ash: #8B95A1;            /* \uc0\u28784 \u28908  - \u25552 \u31034 \u25991 \u23383  */\
+            \
+            /* ===== \uc0\u22882 \u21326 \u28857 \u32512 \u33394  - \u26497 \u24230 \u20811 \u21046 \u20351 \u29992  ===== */\
+            --accent-gold: #D4AF37;         /* \uc0\u39321 \u27103 \u37329  */\
+            --accent-rose: #E8B4B8;         /* \uc0\u29611 \u29808 \u37329  */\
+            --accent-platinum: #E5E4E2;     /* \uc0\u38082 \u37329  */\
+            \
+            /* ===== \uc0\u21151 \u33021 \u33394 \u31995 \u32479  - \u26580 \u21644 \u38597 \u33268  ===== */\
+            --status-success: #4A7C59;      /* \uc0\u26862 \u26519 \u32511  */\
+            --status-success-bg: #F0F9F4;   /* \uc0\u25104 \u21151 \u32972 \u26223  */\
+            --status-warning: #D4A574;      /* \uc0\u39548 \u33394  */\
+            --status-warning-bg: #FFF8F0;   /* \uc0\u35686 \u21578 \u32972 \u26223  */\
+            --status-error: #C73E1D;        /* \uc0\u26417 \u30722 \u32418  */\
+            --status-error-bg: #FFF5F5;     /* \uc0\u38169 \u35823 \u32972 \u26223  */\
+            --status-info: #5B7C99;         /* \uc0\u38068 \u34013  */\
+            --status-info-bg: #F0F5FA;      /* \uc0\u20449 \u24687 \u32972 \u26223  */\
+            \
+            /* ===== \uc0\u24494 \u28176 \u21464 \u32972 \u26223  ===== */\
+            --gradient-subtle: linear-gradient(180deg, #FFFFFF 0%, #FAFBFC 100%);\
+            --gradient-header: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 100%);\
+            --gradient-card: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%);\
+            \
+            /* ===== \uc0\u23383 \u20307 \u31995 \u32479  ===== */\
+            --font-primary: 'SF Pro Display', 'Helvetica Neue', -apple-system, system-ui, sans-serif;\
+            --font-secondary: 'Playfair Display', 'Georgia', 'PingFang SC', serif;\
+            --font-mono: 'SF Mono', 'Monaco', monospace;\
+            \
+            /* \uc0\u23383 \u21495 \u31995 \u32479  - \u20248 \u38597 \u27604 \u20363  */\
+            --text-2xs: 10px;\
+            --text-xs: 12px;\
+            --text-sm: 14px;\
+            --text-base: 16px;\
+            --text-lg: 18px;\
+            --text-xl: 21px;\
+            --text-2xl: 28px;\
+            --text-3xl: 36px;\
+            --text-4xl: 48px;\
+            \
+            /* \uc0\u23383 \u37325 \u31995 \u32479  */\
+            --weight-thin: 200;\
+            --weight-light: 300;\
+            --weight-regular: 400;\
+            --weight-medium: 500;\
+            --weight-semibold: 600;\
+            \
+            /* \uc0\u34892 \u39640 \u31995 \u32479  */\
+            --leading-tight: 1.2;\
+            --leading-normal: 1.5;\
+            --leading-relaxed: 1.75;\
+            --leading-loose: 2;\
+            \
+            /* ===== \uc0\u31354 \u38388 \u31995 \u32479  - \u26356 \u22823 \u30340 \u21628 \u21560 \u24863  ===== */\
+            --space-0: 0px;\
+            --space-1: 6px;\
+            --space-2: 12px;\
+            --space-3: 18px;\
+            --space-4: 24px;\
+            --space-5: 32px;\
+            --space-6: 40px;\
+            --space-7: 48px;\
+            --space-8: 64px;\
+            --space-9: 80px;\
+            --space-10: 96px;\
+            --space-11: 120px;\
+            \
+            /* ===== \uc0\u36229 \u32454 \u33147 \u38452 \u24433 \u31995 \u32479  ===== */\
+            --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.04);\
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);\
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);\
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.10);\
+            --shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.12);\
+            \
+            /* \uc0\u20869 \u20985 \u38452 \u24433  */\
+            --shadow-inset-sm: inset 0 1px 2px rgba(0, 0, 0, 0.04);\
+            --shadow-inset-md: inset 0 2px 4px rgba(0, 0, 0, 0.06);\
+            \
+            /* \uc0\u20809 \u26197 \u25928 \u26524  */\
+            --glow-soft: 0 0 20px rgba(255, 255, 255, 0.5);\
+            --glow-gold: 0 0 30px rgba(212, 175, 55, 0.3);\
+            \
+            /* ===== \uc0\u29305 \u27530 \u23610 \u23544  ===== */\
+            --header-height: 72px;\
+            --sidebar-width: 280px;\
+            --container-max: 1400px;\
+            --card-padding: 36px;\
+            \
+            /* ===== \uc0\u21160 \u30011 \u31995 \u32479  ===== */\
+            --duration-instant: 100ms;\
+            --duration-fast: 200ms;\
+            --duration-normal: 300ms;\
+            --duration-slow: 400ms;\
+            --duration-slower: 600ms;\
+            \
+            --ease-in-out-soft: cubic-bezier(0.4, 0, 0.2, 1);\
+            --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);\
+            --ease-luxury: cubic-bezier(0.23, 1, 0.32, 1);\
+        \}\
+        \
+        /* ========================================\
+           BASE STYLES\
+           ======================================== */\
+        \
+        * \{\
+            margin: 0;\
+            padding: 0;\
+            box-sizing: border-box;\
+        \}\
+        \
+        body \{\
+            font-family: var(--font-primary);\
+            font-size: var(--text-base);\
+            font-weight: var(--weight-regular);\
+            line-height: var(--leading-normal);\
+            color: var(--noir-graphite);\
+            background: var(--blanc-pure);\
+            -webkit-font-smoothing: antialiased;\
+            -moz-osx-font-smoothing: grayscale;\
+        \}\
+        \
+        /* ========================================\
+           LUXURY NAVIGATION\
+           ======================================== */\
+        \
+        .luxury-nav \{\
+            background: rgba(255, 255, 255, 0.98);\
+            backdrop-filter: blur(20px);\
+            -webkit-backdrop-filter: blur(20px);\
+            border-bottom: 1px solid var(--blanc-mist);\
+            height: var(--header-height);\
+            position: sticky;\
+            top: 0;\
+            z-index: 1000;\
+            transition: all var(--duration-normal) var(--ease-luxury);\
+        \}\
+        \
+        .luxury-nav.scrolled \{\
+            box-shadow: var(--shadow-sm);\
+            background: rgba(255, 255, 255, 0.95);\
+        \}\
+        \
+        .nav-content \{\
+            max-width: var(--container-max);\
+            margin: 0 auto;\
+            padding: 0 var(--space-8);\
+            height: 100%;\
+            display: flex;\
+            align-items: center;\
+            justify-content: space-between;\
+        \}\
+        \
+        .nav-logo \{\
+            display: flex;\
+            flex-direction: column;\
+            gap: var(--space-1);\
+        \}\
+        \
+        .nav-logo__title \{\
+            font-family: var(--font-secondary);\
+            font-size: var(--text-xl);\
+            font-weight: var(--weight-light);\
+            letter-spacing: 0.08em;\
+            color: var(--noir-ink);\
+        \}\
+        \
+        .nav-logo__subtitle \{\
+            font-size: var(--text-xs);\
+            font-weight: var(--weight-light);\
+            color: var(--noir-silver);\
+            letter-spacing: 0.05em;\
+        \}\
+        \
+        .nav-actions \{\
+            display: flex;\
+            gap: var(--space-3);\
+            align-items: center;\
+        \}\
+        \
+        .icon-btn \{\
+            width: 40px;\
+            height: 40px;\
+            display: flex;\
+            align-items: center;\
+            justify-content: center;\
+            background: var(--blanc-snow);\
+            border: 1px solid var(--blanc-mist);\
+            border-radius: 10px;\
+            cursor: pointer;\
+            transition: all var(--duration-normal) var(--ease-luxury);\
+            font-size: var(--text-lg);\
+            position: relative;\
+            overflow: hidden;\
+        \}\
+        \
+        .icon-btn::before \{\
+            content: '';\
+            position: absolute;\
+            top: 50%;\
+            left: 50%;\
+            width: 0;\
+            height: 0;\
+            border-radius: 50%;\
+            background: rgba(0, 0, 0, 0.05);\
+            transform: translate(-50%, -50%);\
+            transition: width var(--duration-slower), height var(--duration-slower);\
+        \}\
+        \
+        .icon-btn:hover \{\
+            background: var(--blanc-pure);\
+            border-color: var(--blanc-cloud);\
+            transform: translateY(-2px);\
+            box-shadow: var(--shadow-md);\
+        \}\
+        \
+        .icon-btn:hover::before \{\
+            width: 200px;\
+            height: 200px;\
+        \}\
+        \
+        .icon-btn:active \{\
+            transform: translateY(0) scale(0.95);\
+        \}\
+        \
+        /* ========================================\
+           SECONDARY NAVIGATION\
+           ======================================== */\
+        \
+        .secondary-nav \{\
+            background: var(--blanc-pearl);\
+            border-bottom: 1px solid var(--blanc-mist);\
+            padding: var(--space-3) 0;\
+            position: sticky;\
+            top: var(--header-height);\
+            z-index: 999;\
+        \}\
+        \
+        .secondary-nav__content \{\
+            max-width: var(--container-max);\
+            margin: 0 auto;\
+            padding: 0 var(--space-8);\
+            display: flex;\
+            gap: var(--space-7);\
+        \}\
+        \
+        .nav-link \{\
+            color: var(--noir-steel);\
+            font-weight: var(--weight-regular);\
+            font-size: var(--text-sm);\
+            text-decoration: none;\
+            position: relative;\
+            padding: var(--space-2) 0;\
+            transition: color var(--duration-normal);\
+        \}\
+        \
+        .nav-link::after \{\
+            content: '';\
+            position: absolute;\
+            bottom: 0;\
+            left: 0;\
+            width: 0;\
+            height: 1px;\
+            background: var(--noir-ink);\
+            transition: width var(--duration-normal) var(--ease-luxury);\
+        \}\
+        \
+        .nav-link:hover \{\
+            color: var(--noir-charcoal);\
+        \}\
+        \
+        .nav-link:hover::after,\
+        .nav-link.active::after \{\
+            width: 100%;\
+        \}\
+        \
+        .nav-link.active \{\
+            color: var(--noir-ink);\
+            font-weight: var(--weight-medium);\
+        \}\
+        \
+        /* ========================================\
+           MAIN CONTAINER\
+           ======================================== */\
+        \
+        .luxury-container \{\
+            max-width: var(--container-max);\
+            margin: 0 auto;\
+            padding: var(--space-10) var(--space-8);\
+            display: flex;\
+            flex-direction: column;\
+            gap: var(--space-9);\
+        \}\
+        \
+        /* ========================================\
+           SECTION HEADER\
+           ======================================== */\
+        \
+        .section-header \{\
+            display: flex;\
+            flex-direction: column;\
+            gap: var(--space-2);\
+            margin-bottom: var(--space-6);\
+        \}\
+        \
+        .section-title \{\
+            font-family: var(--font-secondary);\
+            font-size: var(--text-2xl);\
+            font-weight: var(--weight-light);\
+            color: var(--noir-ink);\
+            letter-spacing: -0.02em;\
+        \}\
+        \
+        .section-subtitle \{\
+            font-size: var(--text-sm);\
+            font-weight: var(--weight-light);\
+            color: var(--noir-silver);\
+        \}\
+        \
+        /* ========================================\
+           LUXURY CARD\
+           ======================================== */\
+        \
+        .luxury-card \{\
+            background: var(--blanc-pure);\
+            border-radius: 16px;\
+            padding: var(--card-padding);\
+            box-shadow: var(--shadow-sm);\
+            border: 1px solid var(--blanc-mist);\
+            transition: all var(--duration-slow) var(--ease-luxury);\
+            position: relative;\
+            overflow: hidden;\
+        \}\
+        \
+        .luxury-card::before \{\
+            content: '';\
+            position: absolute;\
+            top: 0;\
+            left: 0;\
+            right: 0;\
+            height: 1px;\
+            background: linear-gradient(90deg, transparent, var(--blanc-cloud), transparent);\
+            opacity: 0;\
+            transition: opacity var(--duration-normal);\
+        \}\
+        \
+        .luxury-card:hover \{\
+            transform: translateY(-4px);\
+            box-shadow: var(--shadow-lg);\
+            border-color: var(--blanc-cloud);\
+        \}\
+        \
+        .luxury-card:hover::before \{\
+            opacity: 1;\
+        \}\
+        \
+        /* ========================================\
+           PULSE GRID - \uc0\u31995 \u32479 \u33033 \u25615 \
+           ======================================== */\
+        \
+        .pulse-section \{\
+            background: var(--gradient-subtle);\
+            border-radius: 20px;\
+            padding: var(--space-8);\
+            border: 1px solid var(--blanc-mist);\
+        \}\
+        \
+        .pulse-grid \{\
+            display: grid;\
+            grid-template-columns: repeat(4, 1fr);\
+            gap: var(--space-6);\
+            margin-top: var(--space-6);\
+        \}\
+        \
+        .pulse-card \{\
+            background: var(--blanc-pure);\
+            border: 1px solid var(--blanc-mist);\
+            border-radius: 16px;\
+            padding: var(--space-6);\
+            position: relative;\
+            overflow: hidden;\
+            transition: all var(--duration-slow) var(--ease-luxury);\
+            cursor: pointer;\
+        \}\
+        \
+        /* \uc0\u39030 \u37096 \u35013 \u39280 \u32447  - \u26356 \u32454 \u33147  */\
+        .pulse-card::before \{\
+            content: '';\
+            position: absolute;\
+            top: 0;\
+            left: 0;\
+            right: 0;\
+            height: 2px;\
+            background: var(--card-accent, var(--noir-ink));\
+            opacity: 0.6;\
+        \}\
+        \
+        /* \uc0\u20809 \u27901 \u25928 \u26524  */\
+        .pulse-card::after \{\
+            content: '';\
+            position: absolute;\
+            top: -50%;\
+            left: -50%;\
+            width: 200%;\
+            height: 200%;\
+            background: linear-gradient(\
+                45deg,\
+                transparent 30%,\
+                rgba(255, 255, 255, 0.8) 50%,\
+                transparent 70%\
+            );\
+            transform: rotate(45deg);\
+            opacity: 0;\
+            transition: opacity var(--duration-slower);\
+        \}\
+        \
+        .pulse-card:hover \{\
+            transform: translateY(-6px) scale(1.02);\
+            box-shadow: var(--shadow-lg);\
+            border-color: var(--blanc-cloud);\
+        \}\
+        \
+        .pulse-card:hover::after \{\
+            animation: shine var(--duration-slower) ease-in-out;\
+        \}\
+        \
+        @keyframes shine \{\
+            0% \{ transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; \}\
+            50% \{ opacity: 1; \}\
+            100% \{ transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; \}\
+        \}\
+        \
+        .pulse-card.breathing \{\
+            animation: breathe 6s infinite;\
+        \}\
+        \
+        @keyframes breathe \{\
+            0%, 100% \{ \
+                transform: scale(1); \
+                opacity: 1; \
+            \}\
+            50% \{ \
+                transform: scale(0.98); \
+                opacity: 0.95; \
+            \}\
+        \}\
+        \
+        .pulse-label \{\
+            font-size: var(--text-xs);\
+            font-weight: var(--weight-light);\
+            color: var(--noir-ash);\
+            text-transform: uppercase;\
+            letter-spacing: 0.1em;\
+            margin-bottom: var(--space-3);\
+        \}\
+        \
+        .pulse-value \{\
+            font-family: var(--font-mono);\
+            font-size: 64px;\
+            font-weight: var(--weight-thin);\
+            color: var(--noir-ink);\
+            line-height: 1;\
+            margin-bottom: var(--space-2);\
+            letter-spacing: -0.03em;\
+        \}\
+        \
+        .pulse-desc \{\
+            font-size: var(--text-sm);\
+            font-weight: var(--weight-light);\
+            color: var(--noir-steel);\
+            margin-bottom: var(--space-4);\
+        \}\
+        \
+        .pulse-trend \{\
+            display: flex;\
+            align-items: center;\
+            gap: var(--space-1);\
+            font-size: var(--text-sm);\
+            font-weight: var(--weight-medium);\
+            margin-bottom: var(--space-2);\
+        \}\
+        \
+        .trend-up \{ color: var(--status-success); \}\
+        .trend-down \{ color: var(--status-error); \}\
+        .trend-neutral \{ color: var(--noir-silver); \}\
+        \
+        .pulse-meta \{\
+            font-size: var(--text-xs);\
+            color: var(--noir-ash);\
+            font-weight: var(--weight-light);\
+        \}\
+        \
+        /* ========================================\
+           LIVE FEED - \uc0\u23454 \u26102 \u21160 \u24577 \
+           ======================================== */\
+        \
+        .live-feed \{\
+            display: flex;\
+            flex-direction: column;\
+            gap: var(--space-5);\
+        \}\
+        \
+        .feed-item \{\
+            background: var(--blanc-snow);\
+            border: 1px solid var(--blanc-mist);\
+            border-left: 3px solid var(--event-color, var(--noir-ash));\
+            border-radius: 12px;\
+            padding: var(--space-5);\
+            transition: all var(--duration-normal) var(--ease-luxury);\
+            cursor: pointer;\
+            animation: fadeInUp var(--duration-slower) var(--ease-luxury);\
+        \}\
+        \
+        @keyframes fadeInUp \{\
+            from \{\
+                opacity: 0;\
+                transform: translateY(20px);\
+            \}\
+            to \{\
+                opacity: 1;\
+                transform: translateY(0);\
+            \}\
+        \}\
+        \
+        .feed-item:hover \{\
+            transform: translateY(-2px);\
+            box-shadow: var(--shadow-md);\
+            background: var(--blanc-pure);\
+            border-left-width: 4px;\
+        \}\
+        \
+        .feed-header \{\
+            display: flex;\
+            align-items: center;\
+            gap: var(--space-3);\
+            margin-bottom: var(--space-3);\
+        \}\
+        \
+        .severity-indicator \{\
+            width: 6px;\
+            height: 6px;\
+            border-radius: 50%;\
+            background: var(--event-color, var(--noir-ash));\
+            animation: pulse-dot 3s infinite;\
+        \}\
+        \
+        @keyframes pulse-dot \{\
+            0%, 100% \{\
+                opacity: 1;\
+                transform: scale(1);\
+            \}\
+            50% \{\
+                opacity: 0.5;\
+                transform: scale(1.2);\
+            \}\
+        \}\
+        \
+        .feed-time \{\
+            font-size: var(--text-xs);\
+            font-weight: var(--weight-light);\
+            color: var(--noir-silver);\
+            letter-spacing: 0.05em;\
+        \}\
+        \
+        .feed-title \{\
+            font-size: var(--text-lg);\
+            font-weight: var(--weight-medium);\
+            color: var(--noir-charcoal);\
+            margin-bottom: var(--space-2);\
+            line-height: var(--leading-tight);\
+        \}\
+        \
+        .feed-desc \{\
+            font-size: var(--text-sm);\
+            font-weight: var(--weight-light);\
+            color: var(--noir-steel);\
+            line-height: var(--leading-relaxed);\
+            margin-bottom: var(--space-3);\
+        \}\
+        \
+        .feed-meta \{\
+            display: flex;\
+            gap: var(--space-5);\
+            font-size: var(--text-xs);\
+            color: var(--noir-ash);\
+        \}\
+        \
+        /* ========================================\
+           INFO PANEL - \uc0\u20449 \u24687 \u38754 \u26495 \
+           ======================================== */\
+        \
+        .two-col-grid \{\
+            display: grid;\
+            grid-template-columns: 1fr 1fr;\
+            gap: var(--space-7);\
+        \}\
+        \
+        .info-panel \{\
+            background: var(--blanc-pure);\
+            border: 1px solid var(--blanc-mist);\
+            border-radius: 16px;\
+            padding: var(--space-7);\
+            transition: all var(--duration-normal) var(--ease-luxury);\
+        \}\
+        \
+        .info-panel:hover \{\
+            box-shadow: var(--shadow-md);\
+            border-color: var(--blanc-cloud);\
+        \}\
+        \
+        .panel-title \{\
+            font-family: var(--font-secondary);\
+            font-size: var(--text-xl);\
+            font-weight: var(--weight-light);\
+            color: var(--noir-ink);\
+            margin-bottom: var(--space-6);\
+            letter-spacing: -0.01em;\
+        \}\
+        \
+        .panel-stats \{\
+            display: flex;\
+            flex-direction: column;\
+            gap: var(--space-4);\
+            margin-bottom: var(--space-6);\
+        \}\
+        \
+        .stat-row \{\
+            display: flex;\
+            justify-content: space-between;\
+            align-items: center;\
+            padding-bottom: var(--space-3);\
+            border-bottom: 1px solid var(--blanc-silk);\
+        \}\
+        \
+        .stat-label \{\
+            font-size: var(--text-sm);\
+            font-weight: var(--weight-light);\
+            color: var(--noir-steel);\
+        \}\
+        \
+        .stat-value \{\
+            font-family: var(--font-mono);\
+            font-size: var(--text-lg);\
+            font-weight: var(--weight-medium);\
+            color: var(--noir-ink);\
+        \}\
+        \
+        .panel-list \{\
+            list-style: none;\
+            margin-bottom: var(--space-6);\
+        \}\
+        \
+        .panel-list li \{\
+            padding: var(--space-3) 0;\
+            border-bottom: 1px solid var(--blanc-silk);\
+            font-size: var(--text-sm);\
+            font-weight: var(--weight-light);\
+            color: var(--noir-graphite);\
+        \}\
+        \
+        .panel-list li:last-child \{\
+            border-bottom: none;\
+        \}\
+        \
+        /* ========================================\
+           LUXURY BUTTON\
+           ======================================== */\
+        \
+        .luxury-btn \{\
+            display: inline-flex;\
+            align-items: center;\
+            justify-content: center;\
+            gap: var(--space-2);\
+            padding: var(--space-3) var(--space-5);\
+            font-family: var(--font-primary);\
+            font-size: var(--text-sm);\
+            font-weight: var(--weight-medium);\
+            color: var(--noir-charcoal);\
+            text-decoration: none;\
+            background: transparent;\
+            border: 1.5px solid var(--blanc-cloud);\
+            border-radius: 10px;\
+            cursor: pointer;\
+            transition: all var(--duration-normal) var(--ease-luxury);\
+            position: relative;\
+            overflow: hidden;\
+        \}\
+        \
+        .luxury-btn::before \{\
+            content: '';\
+            position: absolute;\
+            top: 50%;\
+            left: 50%;\
+            width: 0;\
+            height: 0;\
+            border-radius: 50%;\
+            background: rgba(0, 0, 0, 0.03);\
+            transform: translate(-50%, -50%);\
+            transition: width var(--duration-slower), height var(--duration-slower);\
+        \}\
+        \
+        .luxury-btn:hover \{\
+            background: var(--noir-ink);\
+            color: var(--blanc-pure);\
+            border-color: var(--noir-ink);\
+            transform: translateY(-2px);\
+            box-shadow: var(--shadow-md);\
+        \}\
+        \
+        .luxury-btn:hover::before \{\
+            width: 300px;\
+            height: 300px;\
+        \}\
+        \
+        .luxury-btn:active \{\
+            transform: translateY(0) scale(0.98);\
+        \}\
+        \
+        .luxury-btn.primary \{\
+            background: var(--noir-ink);\
+            color: var(--blanc-pure);\
+            border-color: var(--noir-ink);\
+        \}\
+        \
+        .luxury-btn.primary:hover \{\
+            background: var(--noir-charcoal);\
+            border-color: var(--noir-charcoal);\
+        \}\
+        \
+        /* ========================================\
+           STATUS BANNER - \uc0\u29366 \u24577 \u27178 \u24133 \
+           ======================================== */\
+        \
+        .status-banner \{\
+            background: var(--status-success-bg);\
+            border: 1px solid var(--status-success);\
+            border-radius: 12px;\
+            padding: var(--space-5);\
+            display: flex;\
+            align-items: center;\
+            gap: var(--space-5);\
+        \}\
+        \
+        .status-icon \{\
+            width: 48px;\
+            height: 48px;\
+            background: var(--status-success);\
+            border-radius: 50%;\
+            display: flex;\
+            align-items: center;\
+            justify-content: center;\
+            color: var(--blanc-pure);\
+            font-size: var(--text-2xl);\
+            flex-shrink: 0;\
+        \}\
+        \
+        .status-content \{\
+            flex: 1;\
+        \}\
+        \
+        .status-title \{\
+            font-size: var(--text-lg);\
+            font-weight: var(--weight-medium);\
+            color: var(--status-success);\
+            margin-bottom: var(--space-1);\
+        \}\
+        \
+        .status-desc \{\
+            font-size: var(--text-sm);\
+            font-weight: var(--weight-light);\
+            color: var(--noir-steel);\
+        \}\
+        \
+        /* ========================================\
+           RESPONSIVE\
+           ======================================== */\
+        \
+        @media (max-width: 1024px) \{\
+            .pulse-grid \{\
+                grid-template-columns: repeat(2, 1fr);\
+            \}\
+            \
+            .two-col-grid \{\
+                grid-template-columns: 1fr;\
+            \}\
+        \}\
+        \
+        @media (max-width: 768px) \{\
+            .luxury-container \{\
+                padding: var(--space-7) var(--space-4);\
+            \}\
+            \
+            .nav-content,\
+            .secondary-nav__content \{\
+                padding: 0 var(--space-4);\
+            \}\
+            \
+            .pulse-grid \{\
+                grid-template-columns: 1fr;\
+            \}\
+            \
+            .pulse-value \{\
+                font-size: 48px;\
+            \}\
+            \
+            .secondary-nav__content \{\
+                overflow-x: auto;\
+                white-space: nowrap;\
+            \}\
+        \}\
+    </style>\
+</head>\
+<body>\
+    <!-- LUXURY NAVIGATION -->\
+    <nav class="luxury-nav">\
+        <div class="nav-content">\
+            <div class="nav-logo">\
+                <div class="nav-logo__title">\uc0\u20219 \u21153 \u25152 \'b7Flow</div>\
+                <div class="nav-logo__subtitle">\uc0\u29992 \u23545 \u35805 \u24320 \u24037  \'b7 \u29992 \u27969 \u31243 \u25910 \u24037 </div>\
+            </div>\
+            <div class="nav-actions">\
+                <button class="icon-btn" title="\uc0\u35774 \u32622 ">\u9881 </button>\
+                <button class="icon-btn" title="\uc0\u36890 \u30693 ">\u55357 \u56596 </button>\
+                <button class="icon-btn" title="\uc0\u20010 \u20154 ">\u55357 \u56420 </button>\
+            </div>\
+        </div>\
+    </nav>\
+\
+    <!-- SECONDARY NAVIGATION -->\
+    <nav class="secondary-nav">\
+        <div class="secondary-nav__content">\
+            <a href="#" class="nav-link active">\uc0\u24635 \u35272 </a>\
+            <a href="#" class="nav-link">\uc0\u20107 \u20214 \u27969 </a>\
+            <a href="#" class="nav-link">\uc0\u23545 \u35805 \u21382 \u21490 </a>\
+            <a href="#" class="nav-link">\uc0\u35760 \u24518 \u31354 \u38388 </a>\
+            <a href="#" class="nav-link">\uc0\u20219 \u21153 \u30475 \u26495 </a>\
+        </div>\
+    </nav>\
+\
+    <!-- MAIN CONTAINER -->\
+    <main class="luxury-container">\
+        <!-- SYSTEM PULSE -->\
+        <section class="pulse-section">\
+            <div class="section-header">\
+                <h2 class="section-title">\uc0\u31995 \u32479 \u33033 \u25615 </h2>\
+                <p class="section-subtitle">\uc0\u23454 \u26102 \u36816 \u33829 \u25351 \u26631 \u30417 \u25511 </p>\
+            </div>\
+            \
+            <div class="pulse-grid">\
+                <!-- Tasks -->\
+                <div class="pulse-card breathing" style="--card-accent: var(--noir-ink);">\
+                    <div class="pulse-label">\uc0\u20219 \u21153 </div>\
+                    <div class="pulse-value">57</div>\
+                    <div class="pulse-desc">\uc0\u27963 \u36291 \u39033 \u30446 </div>\
+                    <div class="pulse-trend trend-up">\uc0\u8593  \u20170 \u26085 \u26032 \u22686  3</div>\
+                    <div class="pulse-meta">\uc0\u24050 \u23436 \u25104  29 \u39033 </div>\
+                </div>\
+\
+                <!-- Events -->\
+                <div class="pulse-card breathing" style="--card-accent: var(--status-info); animation-delay: 1.5s;">\
+                    <div class="pulse-label">\uc0\u20107 \u20214 \u27969 </div>\
+                    <div class="pulse-value">156</div>\
+                    <div class="pulse-desc">\uc0\u24635 \u20107 \u20214 \u25968 </div>\
+                    <div class="pulse-trend trend-up">\uc0\u8593  \u20170 \u26085 \u26032 \u22686  12</div>\
+                    <div class="pulse-meta">\uc0\u9888  8 \u26465 \u35686 \u21578 </div>\
+                </div>\
+\
+                <!-- Conversations -->\
+                <div class="pulse-card breathing" style="--card-accent: var(--status-success); animation-delay: 3s;">\
+                    <div class="pulse-label">\uc0\u23545 \u35805 \u20250 \u35805 </div>\
+                    <div class="pulse-value">5</div>\
+                    <div class="pulse-desc">\uc0\u27963 \u36291 \u20250 \u35805 </div>\
+                    <div class="pulse-trend trend-neutral">\uc0\u8594  \u20170 \u26085 \u26080 \u21464 \u21270 </div>\
+                    <div class="pulse-meta">2 \uc0\u20010 \u27963 \u36291 </div>\
+                </div>\
+\
+                <!-- Tokens -->\
+                <div class="pulse-card breathing" style="--card-accent: var(--status-warning); animation-delay: 4.5s;">\
+                    <div class="pulse-label">Token \uc0\u20313 \u37327 </div>\
+                    <div class="pulse-value">850K</div>\
+                    <div class="pulse-desc">\uc0\u21097 \u20313 \u37197 \u39069 </div>\
+                    <div class="pulse-trend trend-down">\uc0\u8595  \u28040 \u32791  25K</div>\
+                    <div class="pulse-meta">\uc0\u21097 \u20313  85%</div>\
+                </div>\
+            </div>\
+        </section>\
+\
+        <!-- LIVE FEED -->\
+        <section class="luxury-card">\
+            <div class="section-header">\
+                <h2 class="section-title">\uc0\u23454 \u26102 \u33033 \u21160 </h2>\
+                <p class="section-subtitle">\uc0\u26368 \u36817 \u31995 \u32479 \u27963 \u21160 </p>\
+            </div>\
+\
+            <div class="live-feed">\
+                <!-- Feed Item 1 -->\
+                <div class="feed-item" style="--event-color: var(--status-success);">\
+                    <div class="feed-header">\
+                        <div class="severity-indicator"></div>\
+                        <span class="feed-time">2 \uc0\u20998 \u38047 \u21069 </span>\
+                    </div>\
+                    <h3 class="feed-title">\uc0\u20219 \u21153 \u23436 \u25104 \u65306 REQ-010-E \u20107 \u20214 \u31995 \u32479 \u27979 \u35797 </h3>\
+                    <p class="feed-desc">\uc0\u31471 \u21040 \u31471 \u27979 \u35797 \u25104 \u21151 \u23436 \u25104 \u65292 \u25152 \u26377  API \u31471 \u28857 \u21709 \u24212 \u27491 \u24120 </p>\
+                    <div class="feed-meta">\
+                        <span>\uc0\u55357 \u56420  \u20840 \u26632 \u24037 \u31243 \u24072 </span>\
+                        <span>\uc0\u55357 \u56523  \u20219 \u21153 </span>\
+                        <span>\uc0\u55357 \u56599  REQ-010-E</span>\
+                    </div>\
+                </div>\
+\
+                <!-- Feed Item 2 -->\
+                <div class="feed-item" style="--event-color: var(--status-warning);">\
+                    <div class="feed-header">\
+                        <div class="severity-indicator"></div>\
+                        <span class="feed-time">15 \uc0\u20998 \u38047 \u21069 </span>\
+                    </div>\
+                    <h3 class="feed-title">\uc0\u20219 \u21153 \u38459 \u22622 \u65306 INTEGRATE-003 \u31561 \u24453 \u20381 \u36182 </h3>\
+                    <p class="feed-desc">\uc0\u31561 \u24453  REQ-006 \u23436 \u25104 \u65292 \u39044 \u35745 \u24310 \u36831  2 \u23567 \u26102 </p>\
+                    <div class="feed-meta">\
+                        <span>\uc0\u55357 \u56420  \u31995 \u32479 </span>\
+                        <span>\uc0\u55357 \u56523  \u20219 \u21153 </span>\
+                        <span>\uc0\u55357 \u56599  INTEGRATE-003</span>\
+                    </div>\
+                </div>\
+\
+                <!-- Feed Item 3 -->\
+                <div class="feed-item" style="--event-color: var(--status-info);">\
+                    <div class="feed-header">\
+                        <div class="severity-indicator"></div>\
+                        <span class="feed-time">1 \uc0\u23567 \u26102 \u21069 </span>\
+                    </div>\
+                    <h3 class="feed-title">\uc0\u20915 \u31574 \u35760 \u24405 \u65306 \u37319 \u29992 \u20107 \u20214 \u39537 \u21160 \u26550 \u26500 </h3>\
+                    <p class="feed-desc">\uc0\u25216 \u26415 \u35780 \u23457 \u23436 \u25104 \u65292 \u22242 \u38431 \u20915 \u23450 \u37319 \u29992 \u20107 \u20214 \u39537 \u21160 \u26550 \u26500 \u37325 \u26500 \u31995 \u32479 \u26680 \u24515 </p>\
+                    <div class="feed-meta">\
+                        <span>\uc0\u55357 \u56420  \u26550 \u26500 \u24072 </span>\
+                        <span>\uc0\u55356 \u57307  \u20915 \u31574 </span>\
+                        <span>\uc0\u55357 \u56599  ADR-001</span>\
+                    </div>\
+                </div>\
+            </div>\
+        </section>\
+\
+        <!-- INFO PANELS -->\
+        <div class="two-col-grid">\
+            <!-- Memory Space -->\
+            <div class="info-panel">\
+                <h3 class="panel-title">\uc0\u35760 \u24518 \u31354 \u38388 </h3>\
+                <div class="panel-stats">\
+                    <div class="stat-row">\
+                        <span class="stat-label">\uc0\u24635 \u35760 \u24405 \u25968 </span>\
+                        <span class="stat-value">45</span>\
+                    </div>\
+                    <div class="stat-row">\
+                        <span class="stat-label">\uc0\u20915 \u31574 \u35760 \u24405 </span>\
+                        <span class="stat-value">12</span>\
+                    </div>\
+                    <div class="stat-row">\
+                        <span class="stat-label">\uc0\u35299 \u20915 \u26041 \u26696 </span>\
+                        <span class="stat-value">23</span>\
+                    </div>\
+                </div>\
+                \
+                <ul class="panel-list">\
+                    <li>ADR\uc0\u65306 \u37319 \u29992  Monorepo \u26550 \u26500 </li>\
+                    <li>\uc0\u26041 \u26696 \u65306 Tab \u20999 \u25442 \u22833 \u36133 \u35299 \u20915 \u26041 \u26696 </li>\
+                    <li>\uc0\u30693 \u35782 \u65306 React Hooks \u24615 \u33021 \u20248 \u21270 \u26368 \u20339 \u23454 \u36341 </li>\
+                </ul>\
+                \
+                <a href="#" class="luxury-btn">\uc0\u26597 \u30475 \u35760 \u24518 \u31354 \u38388  \u8594 </a>\
+            </div>\
+\
+            <!-- Conversations -->\
+            <div class="info-panel">\
+                <h3 class="panel-title">\uc0\u26368 \u36817 \u23545 \u35805 </h3>\
+                <div class="panel-stats">\
+                    <div class="stat-row">\
+                        <span class="stat-label">\uc0\u27963 \u36291 \u20250 \u35805 </span>\
+                        <span class="stat-value">2</span>\
+                    </div>\
+                    <div class="stat-row">\
+                        <span class="stat-label">\uc0\u24635 \u28040 \u24687 \u25968 </span>\
+                        <span class="stat-value">156</span>\
+                    </div>\
+                    <div class="stat-row">\
+                        <span class="stat-label">Token \uc0\u29992 \u37327 </span>\
+                        <span class="stat-value">125K</span>\
+                    </div>\
+                </div>\
+                \
+                <ul class="panel-list">\
+                    <li>Dashboard \uc0\u37325 \u26500 \u35752 \u35770 \u65288 6 \u26465 \u28040 \u24687 \u65289 </li>\
+                    <li>API \uc0\u38598 \u25104 \u35752 \u35770 \u65288 12 \u26465 \u28040 \u24687 \u65289 </li>\
+                </ul>\
+                \
+                <a href="#" class="luxury-btn">\uc0\u26597 \u30475 \u25152 \u26377 \u23545 \u35805  \u8594 </a>\
+            </div>\
+        </div>\
+\
+        <!-- STATUS BANNER -->\
+        <div class="status-banner">\
+            <div class="status-icon">\uc0\u10003 </div>\
+            <div class="status-content">\
+                <h3 class="status-title">\uc0\u31995 \u32479 \u36816 \u34892 \u27491 \u24120 </h3>\
+                <p class="status-desc">API \uc0\u26381 \u21153 \u65306 8800 \u31471 \u21475  | 8 \u20010 \u31471 \u28857 \u21487 \u29992  | \u21709 \u24212 \u26102 \u38388  &lt; 100ms</p>\
+            </div>\
+            <a href="#" class="luxury-btn primary">\uc0\u26597 \u30475 \u35814 \u24773  \u8594 </a>\
+        </div>\
+    </main>\
+\
+    <script>\
+        // \uc0\u23548 \u33322 \u26639 \u28378 \u21160 \u25928 \u26524 \
+        const nav = document.querySelector('.luxury-nav');\
+        let lastScroll = 0;\
+\
+        window.addEventListener('scroll', () => \{\
+            const currentScroll = window.pageYOffset;\
+            \
+            if (currentScroll > 10) \{\
+                nav.classList.add('scrolled');\
+            \} else \{\
+                nav.classList.remove('scrolled');\
+            \}\
+            \
+            lastScroll = currentScroll;\
+        \});\
+\
+        // \uc0\u24179 \u28369 \u28378 \u21160 \
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => \{\
+            anchor.addEventListener('click', function (e) \{\
+                e.preventDefault();\
+                const target = document.querySelector(this.getAttribute('href'));\
+                if (target) \{\
+                    target.scrollIntoView(\{ behavior: 'smooth', block: 'start' \});\
+                \}\
+            \});\
+        \});\
+\
+        // \uc0\u25968 \u23383 \u21160 \u30011 \
+        const animateValue = (element, start, end, duration) => \{\
+            let startTimestamp = null;\
+            const step = (timestamp) => \{\
+                if (!startTimestamp) startTimestamp = timestamp;\
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);\
+                const easeProgress = 1 - Math.pow(1 - progress, 3); // ease-out\
+                element.textContent = Math.floor(easeProgress * (end - start) + start);\
+                if (progress < 1) \{\
+                    window.requestAnimationFrame(step);\
+                \}\
+            \};\
+            window.requestAnimationFrame(step);\
+        \};\
+\
+        // \uc0\u39029 \u38754 \u21152 \u36733 \u26102 \u21160 \u30011 \u25968 \u23383 \
+        setTimeout(() => \{\
+            document.querySelectorAll('.pulse-value').forEach(el => \{\
+                const endValue = parseInt(el.textContent);\
+                animateValue(el, 0, endValue, 1500);\
+            \});\
+        \}, 400);\
+\
+        // \uc0\u25353 \u38062 \u27874 \u32441 \u25928 \u26524 \
+        document.querySelectorAll('.icon-btn').forEach(button => \{\
+            button.addEventListener('click', function(e) \{\
+                const rect = this.getBoundingClientRect();\
+                const x = e.clientX - rect.left;\
+                const y = e.clientY - rect.top;\
+                \
+                this.style.setProperty('--ripple-x', x + 'px');\
+                this.style.setProperty('--ripple-y', y + 'px');\
+            \});\
+        \});\
+    </script>\
+</body>\
+</html>}

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>对话历史档案馆 - 任务所·Flow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --black: #000000;
+            --gray-900: #212121;
+            --gray-700: #616161;
+            --gray-600: #757575;
+            --gray-500: #9E9E9E;
+            --gray-300: #E0E0E0;
+            --gray-100: #F5F5F5;
+            --gray-50: #FAFAFA;
+            --white: #FFFFFF;
+            --red: #985239;
+            --blue: #537696;
+            
+            --status-active: #4CAF50;
+            --status-completed: #9E9E9E;
+            --status-archived: #1976D2;
+            
+            --space-2: 8px;
+            --space-4: 16px;
+            --space-6: 24px;
+            --space-8: 32px;
+            
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--white);
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+        
+        /* 头部 */
+        .header {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-300);
+            padding: var(--space-4) var(--space-8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .back-button {
+            text-decoration: none;
+            color: var(--gray-700);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .back-button:hover {
+            color: var(--black);
+        }
+        
+        .page-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--black);
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: var(--space-4);
+        }
+        
+        .btn-primary {
+            padding: var(--space-2) var(--space-4);
+            font-size: 13px;
+            background: var(--red);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary:hover {
+            background: var(--black);
+        }
+        
+        .btn-secondary {
+            padding: var(--space-2) var(--space-4);
+            font-size: 13px;
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            cursor: pointer;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+        
+        /* 主容器 */
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: var(--space-8);
+        }
+        
+        /* 统计带 */
+        .stats-banner {
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            border: 1px solid var(--gray-300);
+            border-top: 2px solid var(--blue);
+            padding: var(--space-6);
+            margin-bottom: var(--space-6);
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .stat-icon {
+            font-size: 18px;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--black);
+        }
+        
+        .stat-label {
+            font-size: 11px;
+            color: var(--gray-600);
+        }
+        
+        /* 筛选栏 */
+        .filter-bar {
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            padding: var(--space-4) var(--space-6);
+            margin-bottom: var(--space-6);
+            display: flex;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+        }
+        
+        .filter-tag {
+            padding: var(--space-2) var(--space-4);
+            background: var(--gray-100);
+            border: 1px solid var(--gray-300);
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        
+        .filter-tag.active {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+        
+        .filter-tag:hover {
+            border-color: var(--black);
+        }
+        
+        /* 会话Grid */
+        .sessions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-6);
+        }
+        
+        .session-card {
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            border-top: 2px solid var(--status-active);
+            padding: var(--space-6);
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            cursor: pointer;
+        }
+        
+        .session-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        
+        .session-card.completed {
+            border-top-color: var(--status-completed);
+        }
+        
+        .session-card.archived {
+            border-top-color: var(--status-archived);
+        }
+        
+        .session-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-4);
+        }
+        
+        .session-id {
+            font-size: 12px;
+            color: var(--gray-600);
+            font-family: monospace;
+        }
+        
+        .status-badge {
+            padding: 2px 8px;
+            font-size: 10px;
+            font-weight: 600;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .status-badge.active {
+            background: var(--status-active);
+            color: var(--white);
+        }
+        
+        .status-badge.completed {
+            background: var(--status-completed);
+            color: var(--white);
+        }
+        
+        .status-badge.archived {
+            background: var(--status-archived);
+            color: var(--white);
+        }
+        
+        .session-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: var(--space-2);
+        }
+        
+        .session-time {
+            font-size: 12px;
+            color: var(--gray-600);
+            margin-bottom: var(--space-4);
+        }
+        
+        .session-stats {
+            display: flex;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+            font-size: 12px;
+            color: var(--gray-700);
+        }
+        
+        .token-progress {
+            height: 6px;
+            background: var(--gray-100);
+            border-radius: 3px;
+            margin-bottom: var(--space-4);
+            overflow: hidden;
+        }
+        
+        .token-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--status-active) 0%, var(--red) 100%);
+            transition: width 0.6s ease-out;
+        }
+        
+        .session-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-bottom: var(--space-4);
+        }
+        
+        .tag {
+            padding: 2px 8px;
+            background: var(--gray-100);
+            border-radius: 2px;
+            font-size: 10px;
+            color: var(--gray-700);
+        }
+        
+        .session-summary {
+            font-size: 13px;
+            color: var(--gray-600);
+            margin-bottom: var(--space-4);
+            line-height: 1.6;
+        }
+        
+        .session-actions {
+            display: flex;
+            gap: var(--space-2);
+            padding-top: var(--space-4);
+            border-top: 1px solid var(--gray-300);
+        }
+        
+        .session-action-btn {
+            flex: 1;
+            padding: var(--space-2);
+            font-size: 12px;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-300);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .session-action-btn:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+        
+        /* 响应式 */
+        @media (max-width: 1200px) {
+            .sessions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 加载状态 */
+        .loading {
+            text-align: center;
+            padding: var(--space-8);
+            color: var(--gray-600);
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--gray-300);
+            border-top-color: var(--red);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <div class="header">
+        <a href="/" class="back-button">← 返回Dashboard</a>
+        <div class="page-title">💬 对话历史档案馆</div>
+        <div class="header-actions">
+            <button class="btn-primary" onclick="createNewSession()">+ 新对话</button>
+            <button class="btn-secondary" onclick="searchSessions()">🔍 搜索</button>
+        </div>
+    </div>
+    
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 统计带 -->
+        <div class="stats-banner">
+            <div class="stat-item">
+                <span class="stat-icon">📊</span>
+                <div>
+                    <div class="stat-value" id="totalSessionsCount">5</div>
+                    <div class="stat-label">个会话</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">💬</span>
+                <div>
+                    <div class="stat-value" id="totalMessagesCount">156</div>
+                    <div class="stat-label">条消息</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">🔢</span>
+                <div>
+                    <div class="stat-value" id="totalTokensCount">125,000</div>
+                    <div class="stat-label">tokens</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">📅</span>
+                <div>
+                    <div class="stat-value" style="font-size: 16px;" id="lastSessionTime">2小时前</div>
+                    <div class="stat-label">最后对话</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 筛选栏 -->
+        <div class="filter-bar">
+            <div class="filter-tag active" data-filter="all">全部</div>
+            <div class="filter-tag" data-filter="active">活跃中</div>
+            <div class="filter-tag" data-filter="completed">已完成</div>
+            <div class="filter-tag" data-filter="archived">已归档</div>
+        </div>
+        
+        <!-- 会话列表 -->
+        <div id="sessionsContainer">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <div style="margin-top: var(--space-4);">加载中...</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let allSessions = [];
+        let currentFilter = 'all';
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('💬 对话历史页面已加载');
+            loadSessions();
+            setupFilters();
+        });
+        
+        // 加载会话
+        async function loadSessions() {
+            try {
+                const response = await fetch('/api/conversations');
+                const data = await response.json();
+                
+                if (data.sessions) {
+                    allSessions = data.sessions;
+                    renderSessions();
+                    updateStats();
+                    console.log('✅ 会话已加载:', allSessions.length);
+                } else {
+                    // 创建示例数据
+                    allSessions = [
+                        {
+                            session_id: 'session-001',
+                            title: 'Dashboard重构讨论',
+                            status: 'completed',
+                            created_at: '2025-11-18 22:30:00',
+                            messages_count: 6,
+                            total_tokens: 25000,
+                            tags: ['Dashboard', '重构', 'UI'],
+                            summary: '讨论了Dashboard的重构方案，决定采用模块化设计'
+                        },
+                        {
+                            session_id: 'session-002',
+                            title: 'API集成讨论',
+                            status: 'active',
+                            created_at: '2025-11-19 10:00:00',
+                            messages_count: 12,
+                            total_tokens: 45000,
+                            tags: ['API', '集成', '测试'],
+                            summary: '正在讨论如何集成各个API模块，解决了Token同步问题'
+                        },
+                        {
+                            session_id: 'session-003',
+                            title: '性能优化分析',
+                            status: 'completed',
+                            created_at: '2025-11-17 15:20:00',
+                            messages_count: 8,
+                            total_tokens: 32000,
+                            tags: ['性能', '优化', 'SQLite'],
+                            summary: '分析了系统性能瓶颈，提出了SQLite优化方案'
+                        }
+                    ];
+                    renderSessions();
+                    updateStats();
+                }
+            } catch (error) {
+                console.error('❌ 加载会话失败:', error);
+                document.getElementById('sessionsContainer').innerHTML = `
+                    <div class="loading">
+                        <div style="color: var(--error);">加载失败: ${error.message}</div>
+                        <button class="btn-secondary" onclick="loadSessions()" style="margin-top: var(--space-4);">重试</button>
+                    </div>
+                `;
+            }
+        }
+        
+        // 渲染会话
+        function renderSessions() {
+            const container = document.getElementById('sessionsContainer');
+            
+            // 过滤会话
+            let filtered = allSessions;
+            if (currentFilter !== 'all') {
+                filtered = allSessions.filter(s => s.status === currentFilter);
+            }
+            
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="loading">
+                        <div style="font-size: 48px;">💬</div>
+                        <div style="margin-top: var(--space-4);">暂无会话</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            const grid = document.createElement('div');
+            grid.className = 'sessions-grid';
+            
+            filtered.forEach(session => {
+                const statusClass = session.status || 'active';
+                const tokenPercent = Math.min((session.total_tokens / 60000) * 100, 100);
+                
+                const card = document.createElement('div');
+                card.className = `session-card ${statusClass}`;
+                card.innerHTML = `
+                    <div class="session-header">
+                        <div class="session-id">${session.session_id}</div>
+                        <div class="status-badge ${statusClass}">
+                            ${getStatusIcon(statusClass)} ${getStatusText(statusClass)}
+                        </div>
+                    </div>
+                    <div class="session-title">${session.title}</div>
+                    <div class="session-time">📅 ${session.created_at}</div>
+                    <div class="session-stats">
+                        <span>💬 ${session.messages_count}条消息</span>
+                        <span>|</span>
+                        <span>🔢 ${formatNumber(session.total_tokens)} tokens</span>
+                    </div>
+                    <div class="token-progress">
+                        <div class="token-progress-bar" style="width: ${tokenPercent}%"></div>
+                    </div>
+                    ${session.tags ? `
+                        <div class="session-tags">
+                            🏷️ ${session.tags.map(tag => `<span class="tag">${tag}</span>`).join(' ')}
+                        </div>
+                    ` : ''}
+                    ${session.summary ? `
+                        <div class="session-summary">
+                            📝 ${session.summary}
+                        </div>
+                    ` : ''}
+                    <div class="session-actions">
+                        <button class="session-action-btn" onclick="event.stopPropagation(); viewSession('${session.session_id}')">查看</button>
+                        <button class="session-action-btn" onclick="event.stopPropagation(); continueSession('${session.session_id}')">继续</button>
+                        <button class="session-action-btn" onclick="event.stopPropagation(); exportSession('${session.session_id}')">导出</button>
+                    </div>
+                `;
+                
+                card.addEventListener('click', function() {
+                    viewSession(session.session_id);
+                });
+                
+                grid.appendChild(card);
+            });
+            
+            container.innerHTML = '';
+            container.appendChild(grid);
+        }
+        
+        // 更新统计
+        function updateStats() {
+            document.getElementById('totalSessionsCount').textContent = allSessions.length;
+            
+            const totalMessages = allSessions.reduce((sum, s) => sum + (s.messages_count || 0), 0);
+            document.getElementById('totalMessagesCount').textContent = totalMessages;
+            
+            const totalTokens = allSessions.reduce((sum, s) => sum + (s.total_tokens || 0), 0);
+            document.getElementById('totalTokensCount').textContent = formatNumber(totalTokens);
+            
+            if (allSessions.length > 0) {
+                const lastSession = allSessions[0];
+                const time = formatTime(lastSession.updated_at || lastSession.created_at);
+                document.getElementById('lastSessionTime').textContent = time;
+            }
+        }
+        
+        // 设置筛选器
+        function setupFilters() {
+            const filterTags = document.querySelectorAll('.filter-tag');
+            filterTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    filterTags.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.filter;
+                    renderSessions();
+                });
+            });
+        }
+        
+        // 查看会话
+        function viewSession(sessionId) {
+            console.log('查看会话:', sessionId);
+            window.location.href = `/session-theatre?id=${sessionId}`;
+        }
+        
+        // 继续会话
+        function continueSession(sessionId) {
+            console.log('继续会话:', sessionId);
+            alert('继续对话功能开发中...');
+        }
+        
+        // 导出会话
+        function exportSession(sessionId) {
+            console.log('导出会话:', sessionId);
+            alert('导出功能开发中...');
+        }
+        
+        // 创建新会话
+        function createNewSession() {
+            alert('创建新会话功能开发中...');
+        }
+        
+        // 搜索会话
+        function searchSessions() {
+            alert('搜索功能开发中...');
+        }
+        
+        // 工具函数
+        function getStatusIcon(status) {
+            const icons = {
+                'active': '🟢',
+                'completed': '🟡',
+                'archived': '🔵'
+            };
+            return icons[status] || '⚪';
+        }
+        
+        function getStatusText(status) {
+            const texts = {
+                'active': '活跃',
+                'completed': '已完成',
+                'archived': '已归档'
+            };
+            return texts[status] || status;
+        }
+        
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        
+        function formatTime(timestamp) {
+            if (!timestamp) return '未知';
+            
+            const now = new Date();
+            const time = new Date(timestamp);
+            const diffMs = now - time;
+            const diffHours = Math.floor(diffMs / 3600000);
+            
+            if (diffHours < 1) return '刚刚';
+            if (diffHours < 24) return `${diffHours}小时前`;
+            if (diffHours < 168) return `${Math.floor(diffHours/24)}天前`;
+            return time.toLocaleDateString('zh-CN');
+        }
+    </script>
+</body>
+</html>
+

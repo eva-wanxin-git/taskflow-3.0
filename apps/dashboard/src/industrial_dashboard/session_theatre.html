@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会话详情 - 对话剧场 - 任务所·Flow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --black: #000000;
+            --gray-900: #212121;
+            --gray-700: #616161;
+            --gray-600: #757575;
+            --gray-500: #9E9E9E;
+            --gray-300: #E0E0E0;
+            --gray-100: #F5F5F5;
+            --white: #FFFFFF;
+            --red: #985239;
+            --blue: #537696;
+            
+            --status-active: #4CAF50;
+            --status-completed: #9E9E9E;
+            
+            --space-2: 8px;
+            --space-4: 16px;
+            --space-6: 24px;
+            --space-8: 32px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--gray-100);
+            color: var(--gray-900);
+            line-height: 1.6;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        /* 全屏容器 */
+        .theatre-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        /* 关闭按钮 */
+        .close-bar {
+            background: var(--black);
+            padding: var(--space-4) var(--space-8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .close-btn {
+            color: var(--white);
+            background: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .session-badge {
+            color: var(--white);
+            font-size: 12px;
+            padding: 4px 12px;
+            background: var(--status-completed);
+            border-radius: 2px;
+        }
+        
+        /* 顶部信息栏 */
+        .info-bar {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-300);
+            padding: var(--space-6) var(--space-8);
+        }
+        
+        .session-title-large {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        .session-meta {
+            display: flex;
+            gap: var(--space-6);
+            font-size: 12px;
+            color: var(--gray-600);
+            margin-bottom: var(--space-4);
+        }
+        
+        .session-tags-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-bottom: var(--space-4);
+        }
+        
+        .tag {
+            padding: 2px 8px;
+            background: var(--gray-100);
+            border-radius: 2px;
+            font-size: 10px;
+        }
+        
+        .session-actions {
+            display: flex;
+            gap: var(--space-4);
+        }
+        
+        .action-btn {
+            padding: var(--space-2) var(--space-4);
+            font-size: 12px;
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            cursor: pointer;
+        }
+        
+        .action-btn:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+        
+        .action-btn-primary {
+            background: var(--red);
+            color: var(--white);
+            border-color: var(--red);
+        }
+        
+        .action-btn-primary:hover {
+            background: var(--black);
+        }
+        
+        /* 消息流 */
+        .messages-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--space-8);
+            background: var(--gray-100);
+        }
+        
+        .message-bubble {
+            max-width: 70%;
+            margin-bottom: var(--space-6);
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .message-bubble.user {
+            margin-left: auto;
+        }
+        
+        .message-bubble.ai {
+            margin-right: auto;
+        }
+        
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-2);
+            font-size: 11px;
+            color: var(--gray-600);
+        }
+        
+        .message-sender {
+            font-weight: 600;
+        }
+        
+        .message-content {
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            padding: var(--space-4);
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .message-bubble.user .message-content {
+            background: var(--blue);
+            color: var(--white);
+            border-color: var(--blue);
+        }
+        
+        .message-bubble.ai .message-content {
+            background: var(--white);
+        }
+        
+        .code-block {
+            background: var(--gray-900);
+            color: var(--white);
+            padding: var(--space-4);
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            overflow-x: auto;
+            margin: var(--space-4) 0;
+        }
+        
+        /* 滚动条样式 */
+        .messages-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .messages-container::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+        
+        .messages-container::-webkit-scrollbar-thumb {
+            background: var(--gray-300);
+            border-radius: 4px;
+        }
+        
+        .messages-container::-webkit-scrollbar-thumb:hover {
+            background: var(--gray-500);
+        }
+    </style>
+</head>
+<body>
+    <div class="theatre-container">
+        <!-- 关闭栏 -->
+        <div class="close-bar">
+            <button class="close-btn" onclick="closeTheatre()">✕ 关闭</button>
+            <div class="session-badge" id="sessionStatusBadge">已完成</div>
+        </div>
+        
+        <!-- 顶部信息栏 -->
+        <div class="info-bar">
+            <div class="session-title-large">
+                <span>💬</span>
+                <span id="sessionTitle">Dashboard重构讨论</span>
+            </div>
+            <div class="session-meta">
+                <span id="sessionTime">📅 2025-11-18 22:30 - 23:45</span>
+                <span>|</span>
+                <span id="sessionParticipants">👥 用户 + 架构师AI</span>
+                <span>|</span>
+                <span id="sessionDuration">⏱️ 1h 15min</span>
+            </div>
+            <div class="session-meta">
+                <span id="sessionMessages">💬 6条消息</span>
+                <span>|</span>
+                <span id="sessionTokens">🔢 25,000 tokens</span>
+                <span>|</span>
+                <span id="sessionAvgTokens">📊 平均4,167 tokens/消息</span>
+            </div>
+            <div class="session-tags-row" id="sessionTags">
+                <span>🏷️</span>
+                <span class="tag">Dashboard</span>
+                <span class="tag">重构</span>
+                <span class="tag">UI</span>
+            </div>
+            <div class="session-actions">
+                <button class="action-btn action-btn-primary" onclick="continueConversation()">继续对话</button>
+                <button class="action-btn" onclick="exportConversation()">导出会话</button>
+                <button class="action-btn" onclick="editInfo()">编辑信息</button>
+                <button class="action-btn" onclick="deleteConversation()">删除</button>
+            </div>
+        </div>
+        
+        <!-- 消息流 -->
+        <div class="messages-container" id="messagesContainer">
+            <div style="text-align: center; padding: var(--space-8); color: var(--gray-500);">
+                加载中...
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 获取URL参数中的session_id
+        const urlParams = new URLSearchParams(window.location.search);
+        const sessionId = urlParams.get('id') || 'session-001';
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎭 对话剧场已加载, Session:', sessionId);
+            loadSessionDetail();
+        });
+        
+        // 加载会话详情
+        async function loadSessionDetail() {
+            try {
+                const response = await fetch(`/api/conversations/${sessionId}`);
+                const session = await response.json();
+                
+                if (session && !session.error) {
+                    renderSessionDetail(session);
+                    console.log('✅ 会话详情已加载');
+                } else {
+                    // 使用示例数据
+                    const demoSession = {
+                        session_id: sessionId,
+                        title: 'Dashboard重构讨论',
+                        status: 'completed',
+                        created_at: '2025-11-18 22:30:00',
+                        updated_at: '2025-11-18 23:45:00',
+                        messages_count: 6,
+                        total_tokens: 25000,
+                        participants: ['用户', '架构师AI'],
+                        tags: ['Dashboard', '重构', 'UI'],
+                        messages: [
+                            {
+                                id: 'msg-001',
+                                timestamp: '2025-11-18 22:30:15',
+                                from: '用户',
+                                content: '请分析当前Dashboard的架构问题',
+                                type: 'request',
+                                tokens: 50
+                            },
+                            {
+                                id: 'msg-002',
+                                timestamp: '2025-11-18 22:32:40',
+                                from: '架构师AI',
+                                content: '我分析了Dashboard的代码（1622行），发现以下问题：\\n\\n**架构层面**：\\n1. 模块耦合度高 - 所有功能在一个文件\\n2. 缺少统一状态管理\\n3. Tab切换逻辑分散在多处\\n\\n**性能层面**：\\n1. 无缓存策略，每次刷新重新加载\\n2. 数据接口未优化',
+                                type: 'response',
+                                tokens: 8500
+                            },
+                            {
+                                id: 'msg-003',
+                                timestamp: '2025-11-18 22:35:20',
+                                from: '用户',
+                                content: '请给出具体的重构建议',
+                                type: 'request',
+                                tokens: 30
+                            }
+                        ]
+                    };
+                    renderSessionDetail(demoSession);
+                }
+            } catch (error) {
+                console.error('❌ 加载会话失败:', error);
+                document.getElementById('messagesContainer').innerHTML = `
+                    <div style="text-align: center; padding: var(--space-8); color: var(--error);">
+                        加载失败: ${error.message}
+                    </div>
+                `;
+            }
+        }
+        
+        // 渲染会话详情
+        function renderSessionDetail(session) {
+            // 更新标题栏
+            document.getElementById('sessionTitle').textContent = session.title;
+            document.getElementById('sessionStatusBadge').textContent = getStatusText(session.status);
+            document.getElementById('sessionStatusBadge').style.background = 
+                session.status === 'active' ? 'var(--status-active)' : 'var(--status-completed)';
+            
+            // 更新元信息
+            const duration = calculateDuration(session.created_at, session.updated_at);
+            document.getElementById('sessionTime').textContent = 
+                `📅 ${session.created_at} - ${session.updated_at.split(' ')[1]}`;
+            document.getElementById('sessionParticipants').textContent = 
+                `👥 ${session.participants.join(' + ')}`;
+            document.getElementById('sessionDuration').textContent = 
+                `⏱️ ${duration}`;
+            document.getElementById('sessionMessages').textContent = 
+                `💬 ${session.messages_count}条消息`;
+            document.getElementById('sessionTokens').textContent = 
+                `🔢 ${formatNumber(session.total_tokens)} tokens`;
+            
+            const avgTokens = Math.round(session.total_tokens / session.messages_count);
+            document.getElementById('sessionAvgTokens').textContent = 
+                `📊 平均${formatNumber(avgTokens)} tokens/消息`;
+            
+            // 更新标签
+            const tagsContainer = document.getElementById('sessionTags');
+            tagsContainer.innerHTML = `
+                <span>🏷️</span>
+                ${session.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            `;
+            
+            // 渲染消息
+            const messagesContainer = document.getElementById('messagesContainer');
+            messagesContainer.innerHTML = session.messages.map(msg => {
+                const isUser = msg.from === '用户';
+                const className = isUser ? 'user' : 'ai';
+                const icon = isUser ? '👤' : '🤖';
+                
+                return `
+                    <div class="message-bubble ${className}">
+                        <div class="message-header">
+                            <span>${icon}</span>
+                            <span class="message-sender">${msg.from}</span>
+                            <span>|</span>
+                            <span>${msg.timestamp.split(' ')[1]}</span>
+                            <span>|</span>
+                            <span>🔢 ${formatNumber(msg.tokens)} tokens</span>
+                        </div>
+                        <div class="message-content">
+                            ${formatMessageContent(msg.content)}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            // 滚动到底部
+            setTimeout(() => {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 100);
+        }
+        
+        // 格式化消息内容
+        function formatMessageContent(content) {
+            // 简单的Markdown渲染
+            return content
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/`([^`]+)`/g, '<code style="background: var(--gray-100); padding: 2px 4px; border-radius: 2px;">$1</code>')
+                .replace(/```([\\s\\S]*?)```/g, '<div class="code-block">$1</div>')
+                .replace(/\\n/g, '<br>');
+        }
+        
+        // 计算时长
+        function calculateDuration(start, end) {
+            const startTime = new Date(start);
+            const endTime = new Date(end);
+            const diffMs = endTime - startTime;
+            const hours = Math.floor(diffMs / 3600000);
+            const minutes = Math.floor((diffMs % 3600000) / 60000);
+            
+            if (hours > 0) {
+                return `${hours}h ${minutes}min`;
+            }
+            return `${minutes}min`;
+        }
+        
+        // 关闭剧场
+        function closeTheatre() {
+            window.history.back();
+        }
+        
+        // 继续对话
+        function continueConversation() {
+            alert('继续对话功能开发中...');
+        }
+        
+        // 导出会话
+        function exportConversation() {
+            alert('导出功能开发中...');
+        }
+        
+        // 编辑信息
+        function editInfo() {
+            alert('编辑功能开发中...');
+        }
+        
+        // 删除会话
+        function deleteConversation() {
+            if (confirm('确定要删除此会话吗？')) {
+                alert('删除功能开发中...');
+            }
+        }
+        
+        // 工具函数
+        function getStatusText(status) {
+            const texts = {
+                'active': '🟢 活跃',
+                'completed': '🟡 已完成',
+                'archived': '🔵 已归档'
+            };
+            return texts[status] || status;
+        }
+        
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    </script>
+</body>
+</html>
+

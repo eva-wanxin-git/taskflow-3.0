@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目知识库 - 任务所·Flow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Consolas', 'Monaco', 'SF Mono', monospace;
+            background: #FFFDF7;
+            color: #212121;
+            overflow: hidden;
+        }
+        
+        /* 顶部导航栏 - 在iframe内隐藏 */
+        .top-nav {
+            height: 60px;
+            background: white;
+            border-bottom: 2px solid #000;
+            display: none;  /* 隐藏顶部导航 */
+            align-items: center;
+            padding: 0 24px;
+            gap: 16px;
+        }
+        
+        .nav-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000;
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            margin-left: auto;
+        }
+        
+        .nav-link {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #000;
+            color: #000;
+            text-decoration: none;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+        
+        .nav-link:hover {
+            background: #000;
+            color: white;
+        }
+        
+        /* 主容器：左右分栏 */
+        .main-container {
+            display: flex;
+            height: calc(100vh - 60px);
+        }
+        
+        /* 左侧：文件树 */
+        .sidebar {
+            width: 320px;
+            background: white;
+            border-right: 1px solid #E0E0E0;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar-header {
+            padding: 16px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #E0E0E0;
+            background: white;
+            font-family: 'Consolas', monospace;
+            font-size: 12px;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: #757575;
+            background: white;
+        }
+        
+        .file-tree {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px 0;
+        }
+        
+        /* 文件树节点 */
+        .tree-node {
+            user-select: none;
+        }
+        
+        .tree-node-header {
+            display: flex;
+            align-items: center;
+            padding: 8px 20px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        
+        .tree-node-header:hover {
+            background: #f5f5f5;
+        }
+        
+        .tree-node-header.active {
+            background: #000;
+            color: white;
+        }
+        
+        .tree-node-header.active .tree-icon,
+        .tree-node-header.active .tree-label {
+            color: white;
+        }
+        
+        .tree-toggle {
+            width: 16px;
+            height: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #616161;
+            margin-right: 6px;
+        }
+        
+        .tree-toggle.empty {
+            opacity: 0;
+        }
+        
+        .tree-icon {
+            font-size: 14px;
+            margin-right: 8px;
+            color: #616161;
+        }
+        
+        .tree-label {
+            font-size: 12px;
+            color: #212121;
+            flex: 1;
+        }
+        
+        .tree-count {
+            font-size: 9px;
+            color: #9e9e9e;
+            margin-left: 8px;
+        }
+        
+        .tree-children {
+            display: none;
+            padding-left: 20px;
+        }
+        
+        .tree-node.expanded > .tree-children {
+            display: block;
+        }
+        
+        .tree-node.expanded > .tree-node-header > .tree-toggle::before {
+            content: '▼';
+        }
+        
+        .tree-toggle::before {
+            content: '▶';
+        }
+        
+        /* 文件类型图标 */
+        .icon-folder { color: #d4a373; }
+        .icon-doc { color: #537696; }
+        .icon-ux { color: #9c27b0; }
+        .icon-ui { color: #e91e63; }
+        .icon-md { color: #616161; }
+        .icon-yaml { color: #985239; }
+        
+        /* 右侧：内容区 */
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #fafafa;
+        }
+        
+        /* 面包屑导航 */
+        .breadcrumb {
+            padding: 12px 20px;
+            background: white;
+            border-bottom: 1px solid #E0E0E0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+        }
+        
+        .breadcrumb-item {
+            color: #616161;
+        }
+        
+        .breadcrumb-item.active {
+            color: #000;
+            font-weight: 600;
+        }
+        
+        .breadcrumb-separator {
+            color: #bdbdbd;
+        }
+        
+        /* 内容显示区 */
+        .content-display {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px;
+        }
+        
+        .doc-header {
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        
+        .doc-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 8px;
+        }
+        
+        .doc-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 10px;
+            color: #757575;
+        }
+        
+        .doc-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .doc-content {
+            background: white;
+            padding: 24px;
+            border: 1px solid #E0E0E0;
+            min-height: 400px;
+        }
+        
+        .doc-content h1 {
+            font-size: 18px;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            color: #000;
+            border-bottom: 1px solid #E0E0E0;
+            padding-bottom: 8px;
+        }
+        
+        .doc-content h2 {
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            color: #212121;
+            border-left: 3px solid #000;
+            padding-left: 12px;
+        }
+        
+        .doc-content h3 {
+            font-size: 14px;
+            margin-top: 16px;
+            margin-bottom: 10px;
+            color: #424242;
+        }
+        
+        .doc-content p {
+            line-height: 1.7;
+            margin-bottom: 14px;
+            color: #424242;
+            font-size: 13px;
+        }
+        
+        .doc-content ul, .doc-content ol {
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+        
+        .doc-content li {
+            line-height: 1.7;
+            margin-bottom: 6px;
+            color: #424242;
+            font-size: 13px;
+        }
+        
+        .doc-content code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border: 1px solid #E0E0E0;
+            font-size: 12px;
+            color: #d32f2f;
+        }
+        
+        .doc-content pre {
+            background: #f5f5f5;
+            border-left: 3px solid #000;
+            padding: 14px;
+            overflow-x: auto;
+            margin-bottom: 14px;
+        }
+        
+        .doc-content pre code {
+            background: none;
+            border: none;
+            color: #212121;
+            padding: 0;
+            font-size: 12px;
+        }
+        
+        /* 空状态 */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #9e9e9e;
+        }
+        
+        .empty-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+        
+        .empty-text {
+            font-size: 14px;
+        }
+        
+        /* 文档操作按钮 */
+        .doc-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        
+        .action-btn {
+            padding: 10px 20px;
+            background: white;
+            color: #000;
+            border: 1px solid #000;
+            cursor: pointer;
+            font-family: 'Consolas', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+        
+        .action-btn:hover {
+            background: #f5f5f5;
+        }
+        
+        .action-btn.secondary {
+            background: white;
+            color: #000;
+            border: 1px solid #000;
+        }
+        
+        .action-btn.secondary:hover {
+            background: #f5f5f5;
+        }
+        
+        /* 加载状态 */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-size: 14px;
+            color: #9e9e9e;
+        }
+        
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f5f5f5;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #bdbdbd;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9e9e9e;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 260px;
+            }
+            
+            .content-display {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="top-nav">
+        <div class="nav-title">◉ 项目知识库 · Knowledge Base</div>
+        <div class="nav-links">
+            <a href="/" class="nav-link">← Dashboard</a>
+            <a href="/events" class="nav-link">事件流</a>
+            <a href="/memories" class="nav-link">记忆空间</a>
+        </div>
+    </div>
+    
+    <!-- 主容器 -->
+    <div class="main-container">
+        <!-- 左侧：文件树 -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <input 
+                    type="text" 
+                    class="search-box" 
+                    id="searchBox"
+                    placeholder="🔍 搜索文档..."
+                    onkeyup="searchDocs()"
+                />
+            </div>
+            
+            <div class="file-tree" id="fileTree">
+                <div class="loading">加载文件树...</div>
+            </div>
+        </div>
+        
+        <!-- 右侧：内容区 -->
+        <div class="content-area">
+            <!-- 面包屑 -->
+            <div class="breadcrumb" id="breadcrumb">
+                <span class="breadcrumb-item">知识库</span>
+            </div>
+            
+            <!-- 内容显示 -->
+            <div class="content-display" id="contentDisplay">
+                <div class="empty-state">
+                    <div class="empty-icon">📁</div>
+                    <div class="empty-text">请从左侧选择文档查看</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 知识库数据结构（参考Dify设计）
+        const knowledgeBase = {
+            name: 'TASKFLOW知识库',
+            children: [
+                {
+                    type: 'folder',
+                    name: 'docs',
+                    label: '📋 项目文档',
+                    children: [
+                        {
+                            type: 'folder',
+                            name: 'ai',
+                            label: 'AI提示词',
+                            children: [
+                                { type: 'file', name: 'architect-system-prompt-expert.md', label: '架构师提示词', category: 'ai' },
+                                { type: 'file', name: 'fullstack-engineer-system-prompt.md', label: '全栈工程师提示词', category: 'ai' },
+                                { type: 'file', name: 'AI-TEAM-GUIDE.md', label: 'AI团队协作指南', category: 'ai' }
+                            ]
+                        },
+                        {
+                            type: 'folder',
+                            name: 'arch',
+                            label: '架构文档',
+                            children: [
+                                { type: 'file', name: 'architecture-review.md', label: '架构审查报告', category: 'arch' },
+                                { type: 'file', name: 'architecture-inventory.md', label: '架构盘点', category: 'arch' },
+                                { type: 'file', name: 'refactor-plan.md', label: '重构计划', category: 'arch' }
+                            ]
+                        },
+                        {
+                            type: 'folder',
+                            name: 'features',
+                            label: '功能文档',
+                            children: [
+                                { type: 'file', name: 'PROJECT_MEMORY_SPACE.md', label: '项目记忆空间', category: 'features' },
+                                { type: 'file', name: 'event-system-quick-guide.md', label: '事件系统快速指南', category: 'features' }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    type: 'folder',
+                    name: 'knowledge',
+                    label: '🔧 知识库',
+                    children: [
+                        {
+                            type: 'folder',
+                            name: 'ux',
+                            label: 'UX设计文档',
+                            icon: '🎨',
+                            children: [
+                                { type: 'file', name: 'ux-principles.md', label: 'UX设计原则', category: 'ux' },
+                                { type: 'file', name: 'user-research.md', label: '用户研究', category: 'ux' },
+                                { type: 'file', name: 'interaction-design.md', label: '交互设计', category: 'ux' },
+                                { type: 'file', name: 'wireframes.md', label: '线框图', category: 'ux' }
+                            ]
+                        },
+                        {
+                            type: 'folder',
+                            name: 'ui',
+                            label: 'UI设计文档',
+                            icon: '🎭',
+                            children: [
+                                { type: 'file', name: 'ui-standards.md', label: 'UI设计规范', category: 'ui' },
+                                { type: 'file', name: 'color-system.md', label: '色彩系统', category: 'ui' },
+                                { type: 'file', name: 'typography.md', label: '字体系统', category: 'ui' },
+                                { type: 'file', name: 'components.md', label: '组件库', category: 'ui' }
+                            ]
+                        },
+                        {
+                            type: 'folder',
+                            name: 'issues',
+                            label: '问题记录',
+                            children: [
+                                { type: 'file', name: 'template.yaml', label: '问题模板', category: 'issues' }
+                            ]
+                        },
+                        {
+                            type: 'folder',
+                            name: 'solutions',
+                            label: '解决方案',
+                            children: [
+                                { type: 'file', name: 'template.md', label: '方案模板', category: 'solutions' }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    type: 'folder',
+                    name: 'database',
+                    label: '🗄️ 数据库',
+                    children: [
+                        {
+                            type: 'folder',
+                            name: 'schemas',
+                            label: 'Schema文档',
+                            children: [
+                                { type: 'file', name: 'v1_tasks_schema.sql', label: '任务表结构', category: 'database' },
+                                { type: 'file', name: 'v2_knowledge_schema.sql', label: '知识库表结构', category: 'database' },
+                                { type: 'file', name: 'v3_events_schema.sql', label: '事件表结构', category: 'database' }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        };
+        
+        let currentPath = [];
+        let currentDoc = null;
+        
+        // 初始化
+        function init() {
+            console.log('[知识库] 初始化中...');
+            renderFileTree(knowledgeBase, document.getElementById('fileTree'));
+            console.log('[知识库] 初始化完成');
+        }
+        
+        // 渲染文件树（递归）
+        function renderFileTree(node, container, level = 0) {
+            if (!node.children) return;
+            
+            container.innerHTML = '';
+            
+            node.children.forEach(item => {
+                const nodeDiv = document.createElement('div');
+                nodeDiv.className = 'tree-node';
+                
+                if (item.type === 'folder') {
+                    // 文件夹
+                    const header = document.createElement('div');
+                    header.className = 'tree-node-header';
+                    header.onclick = (e) => {
+                        e.stopPropagation();
+                        toggleFolder(nodeDiv);
+                    };
+                    
+                    const icon = item.icon || '📁';
+                    const count = countFiles(item);
+                    
+                    header.innerHTML = `
+                        <span class="tree-toggle"></span>
+                        <span class="tree-icon">${icon}</span>
+                        <span class="tree-label">${item.label || item.name}</span>
+                        <span class="tree-count">${count}</span>
+                    `;
+                    
+                    nodeDiv.appendChild(header);
+                    
+                    // 子节点容器
+                    const childrenDiv = document.createElement('div');
+                    childrenDiv.className = 'tree-children';
+                    renderFileTree(item, childrenDiv, level + 1);
+                    nodeDiv.appendChild(childrenDiv);
+                    
+                } else {
+                    // 文件
+                    const header = document.createElement('div');
+                    header.className = 'tree-node-header';
+                    header.onclick = () => loadDocument(item);
+                    
+                    const icon = getFileIcon(item);
+                    
+                    header.innerHTML = `
+                        <span class="tree-toggle empty"></span>
+                        <span class="tree-icon ${icon.class}">${icon.icon}</span>
+                        <span class="tree-label">${item.label || item.name}</span>
+                    `;
+                    
+                    nodeDiv.appendChild(header);
+                }
+                
+                container.appendChild(nodeDiv);
+            });
+        }
+        
+        // 切换文件夹展开/收起
+        function toggleFolder(nodeDiv) {
+            nodeDiv.classList.toggle('expanded');
+        }
+        
+        // 获取文件图标
+        function getFileIcon(file) {
+            const category = file.category || '';
+            const name = file.name || '';
+            
+            if (category === 'ux' || name.includes('ux')) {
+                return { icon: '🎨', class: 'icon-ux' };
+            }
+            if (category === 'ui' || name.includes('ui')) {
+                return { icon: '🎭', class: 'icon-ui' };
+            }
+            if (name.endsWith('.md')) {
+                return { icon: '📄', class: 'icon-md' };
+            }
+            if (name.endsWith('.yaml') || name.endsWith('.yml')) {
+                return { icon: '⚙️', class: 'icon-yaml' };
+            }
+            if (name.endsWith('.sql')) {
+                return { icon: '🗄️', class: 'icon-doc' };
+            }
+            return { icon: '📄', class: 'icon-doc' };
+        }
+        
+        // 统计文件数
+        function countFiles(node) {
+            if (!node.children) return 0;
+            
+            let count = 0;
+            node.children.forEach(child => {
+                if (child.type === 'file') {
+                    count++;
+                } else if (child.type === 'folder') {
+                    count += countFiles(child);
+                }
+            });
+            return count;
+        }
+        
+        // 加载文档内容
+        async function loadDocument(file) {
+            console.log('[知识库] 加载文档:', file.name);
+            
+            // 高亮当前选中
+            document.querySelectorAll('.tree-node-header').forEach(h => {
+                h.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // 更新面包屑
+            updateBreadcrumb(file);
+            
+            // 加载内容
+            try {
+                const response = await fetch(`/api/knowledge/docs/${file.category}/${file.name}`);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    renderDocument(data);
+                } else {
+                    renderEmptyDoc(file);
+                }
+            } catch (error) {
+                console.error('[知识库] 加载失败:', error);
+                renderEmptyDoc(file);
+            }
+        }
+        
+        // 渲染文档
+        function renderDocument(data) {
+            const display = document.getElementById('contentDisplay');
+            
+            const html = `
+                <div class="doc-header">
+                    <div class="doc-title">${escapeHtml(data.title)}</div>
+                    <div class="doc-meta">
+                        <div class="doc-meta-item">
+                            <span>📁</span>
+                            <span>${escapeHtml(data.category || '-')}</span>
+                        </div>
+                        <div class="doc-meta-item">
+                            <span>📝</span>
+                            <span>${data.size || '-'}</span>
+                        </div>
+                        <div class="doc-meta-item">
+                            <span>🕐</span>
+                            <span>${formatTime(data.updated_at)}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="doc-content">
+                    ${formatMarkdown(data.content || '')}
+                </div>
+                
+                <div class="doc-actions">
+                    <button class="action-btn" onclick="copyDocContent()">
+                        复制内容
+                    </button>
+                    <button class="action-btn secondary" onclick="downloadDoc()">
+                        下载文档
+                    </button>
+                </div>
+            `;
+            
+            display.innerHTML = html;
+            currentDoc = data;
+        }
+        
+        // 渲染空文档（待创建）
+        function renderEmptyDoc(file) {
+            const display = document.getElementById('contentDisplay');
+            
+            const html = `
+                <div class="doc-header">
+                    <div class="doc-title">${escapeHtml(file.label || file.name)}</div>
+                    <div class="doc-meta">
+                        <div class="doc-meta-item">
+                            <span>📁</span>
+                            <span>${escapeHtml(file.category || '-')}</span>
+                        </div>
+                        <div class="doc-meta-item">
+                            <span>📝</span>
+                            <span>待创建</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="doc-content">
+                    <div class="empty-state">
+                        <div class="empty-icon">📝</div>
+                        <div class="empty-text">此文档尚未创建</div>
+                        <div style="margin-top: 16px; font-size: 12px; color: #9e9e9e;">
+                            您可以通过架构师AI或手动创建此文档
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="doc-actions">
+                    <button class="action-btn" onclick="createNewDoc('${file.name}', '${file.category}')">
+                        创建文档
+                    </button>
+                </div>
+            `;
+            
+            display.innerHTML = html;
+            currentDoc = null;
+        }
+        
+        // 更新面包屑
+        function updateBreadcrumb(file) {
+            const breadcrumb = document.getElementById('breadcrumb');
+            
+            const parts = [
+                '<span class="breadcrumb-item">知识库</span>',
+                '<span class="breadcrumb-separator">/</span>',
+                `<span class="breadcrumb-item">${file.category || 'docs'}</span>`,
+                '<span class="breadcrumb-separator">/</span>',
+                `<span class="breadcrumb-item active">${escapeHtml(file.label || file.name)}</span>`
+            ];
+            
+            breadcrumb.innerHTML = parts.join('');
+        }
+        
+        // 简单的Markdown渲染（基本功能）
+        function formatMarkdown(text) {
+            if (!text) return '';
+            
+            // 转义HTML
+            let html = escapeHtml(text);
+            
+            // 代码块
+            html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+            
+            // 行内代码
+            html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+            
+            // 标题
+            html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+            html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+            html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+            
+            // 列表
+            html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+            
+            // 段落
+            html = html.replace(/([^\n]+)\n\n/g, '<p>$1</p>');
+            
+            return html;
+        }
+        
+        // 搜索文档
+        function searchDocs() {
+            const keyword = document.getElementById('searchBox').value.toLowerCase();
+            
+            if (!keyword) {
+                // 清空搜索，恢复完整树
+                renderFileTree(knowledgeBase, document.getElementById('fileTree'));
+                return;
+            }
+            
+            // 搜索并高亮匹配项
+            const results = searchInTree(knowledgeBase, keyword);
+            renderSearchResults(results);
+        }
+        
+        // 在树中搜索
+        function searchInTree(node, keyword, results = []) {
+            if (!node.children) return results;
+            
+            node.children.forEach(child => {
+                if (child.type === 'file') {
+                    const label = (child.label || child.name).toLowerCase();
+                    if (label.includes(keyword)) {
+                        results.push(child);
+                    }
+                } else if (child.type === 'folder') {
+                    searchInTree(child, keyword, results);
+                }
+            });
+            
+            return results;
+        }
+        
+        // 渲染搜索结果
+        function renderSearchResults(results) {
+            const container = document.getElementById('fileTree');
+            container.innerHTML = '';
+            
+            if (results.length === 0) {
+                container.innerHTML = '<div class="empty-state"><div class="empty-text">未找到匹配文档</div></div>';
+                return;
+            }
+            
+            results.forEach(file => {
+                const nodeDiv = document.createElement('div');
+                nodeDiv.className = 'tree-node';
+                
+                const header = document.createElement('div');
+                header.className = 'tree-node-header';
+                header.onclick = () => loadDocument(file);
+                
+                const icon = getFileIcon(file);
+                
+                header.innerHTML = `
+                    <span class="tree-toggle empty"></span>
+                    <span class="tree-icon ${icon.class}">${icon.icon}</span>
+                    <span class="tree-label">${file.label || file.name}</span>
+                `;
+                
+                nodeDiv.appendChild(header);
+                container.appendChild(nodeDiv);
+            });
+        }
+        
+        // 工具函数
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text || '';
+            return div.innerHTML;
+        }
+        
+        function formatTime(timestamp) {
+            if (!timestamp) return '-';
+            const date = new Date(timestamp);
+            return date.toLocaleString('zh-CN');
+        }
+        
+        function copyDocContent() {
+            if (!currentDoc) return;
+            
+            navigator.clipboard.writeText(currentDoc.content).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✅ 已复制';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('复制失败:', err);
+                alert('复制失败');
+            });
+        }
+        
+        function downloadDoc() {
+            if (!currentDoc) return;
+            
+            const blob = new Blob([currentDoc.content], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = currentDoc.filename || 'document.md';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        function createNewDoc(filename, category) {
+            alert(`创建文档功能开发中...\n文件名: ${filename}\n分类: ${category}`);
+            // TODO: 实现创建文档API调用
+        }
+        
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
+

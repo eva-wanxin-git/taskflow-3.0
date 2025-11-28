@@ -1,0 +1,135 @@
+{
+  "reviews": [
+    {
+      "review_id": "REV-001",
+      "task_id": "TEST-2025-001",
+      "task_title": "测试任务：验证任务看板功能",
+      "status": "pending_review",
+      "submitted_at": "2025-11-22 15:30:00",
+      "submitted_by": "fullstack-engineer",
+      "reviewer": "architect",
+      "files_changed": [
+        {
+          "file": "dashboard-test-8831/index.html",
+          "changes": "+150/-50",
+          "type": "modified",
+          "language": "html"
+        }
+      ],
+      "review_notes": "",
+      "reviewed_at": null,
+      "created_at": "2025-11-22 15:30:00",
+      "priority": "P0"
+    },
+    {
+      "review_id": "REV-002",
+      "task_id": "TASK-UI-025",
+      "task_title": "优化Dashboard响应式布局",
+      "status": "approved",
+      "submitted_at": "2025-11-21 14:20:00",
+      "submitted_by": "fullstack-engineer",
+      "reviewer": "architect",
+      "files_changed": [
+        {
+          "file": "dashboard-test-8831/styles.css",
+          "changes": "+85/-23",
+          "type": "modified",
+          "language": "css"
+        },
+        {
+          "file": "dashboard-test-8831/responsive.css",
+          "changes": "+120/-0",
+          "type": "created",
+          "language": "css"
+        }
+      ],
+      "review_notes": "代码质量优秀，CSS结构清晰，响应式断点设置合理。已通过审查。",
+      "reviewed_at": "2025-11-21 16:45:00",
+      "created_at": "2025-11-21 14:20:00",
+      "priority": "P1"
+    },
+    {
+      "review_id": "REV-003",
+      "task_id": "TASK-API-018",
+      "task_title": "实现任务批量操作API",
+      "status": "rejected",
+      "submitted_at": "2025-11-20 10:15:00",
+      "submitted_by": "fullstack-engineer",
+      "reviewer": "architect",
+      "files_changed": [
+        {
+          "file": "start_insight_api.py",
+          "changes": "+245/-12",
+          "type": "modified",
+          "language": "python"
+        }
+      ],
+      "review_notes": "发现以下问题需要修改：\n1. 缺少事务处理，批量操作失败时需要回滚\n2. 没有添加权限验证\n3. 错误处理不够完善\n4. 需要添加操作日志记录",
+      "reviewed_at": "2025-11-20 14:30:00",
+      "created_at": "2025-11-20 10:15:00",
+      "priority": "P0"
+    },
+    {
+      "review_id": "REV-004",
+      "task_id": "TASK-DB-012",
+      "task_title": "优化数据库查询性能",
+      "status": "reviewing",
+      "submitted_at": "2025-11-22 09:00:00",
+      "submitted_by": "fullstack-engineer",
+      "reviewer": "architect",
+      "files_changed": [
+        {
+          "file": "database/models/task.py",
+          "changes": "+68/-45",
+          "type": "modified",
+          "language": "python"
+        },
+        {
+          "file": "database/migrations/20251122_add_indexes.sql",
+          "changes": "+25/-0",
+          "type": "created",
+          "language": "sql"
+        }
+      ],
+      "review_notes": "正在审查索引优化方案...",
+      "reviewed_at": null,
+      "created_at": "2025-11-22 09:00:00",
+      "priority": "P1"
+    },
+    {
+      "review_id": "REV-005",
+      "task_id": "TASK-UI-030",
+      "task_title": "实现暗色主题切换",
+      "status": "pending_review",
+      "submitted_at": "2025-11-22 11:30:00",
+      "submitted_by": "fullstack-engineer",
+      "reviewer": "architect",
+      "files_changed": [
+        {
+          "file": "dashboard-test-8831/index.html",
+          "changes": "+95/-15",
+          "type": "modified",
+          "language": "html"
+        },
+        {
+          "file": "dashboard-test-8831/theme.css",
+          "changes": "+180/-0",
+          "type": "created",
+          "language": "css"
+        }
+      ],
+      "review_notes": "",
+      "reviewed_at": null,
+      "created_at": "2025-11-22 11:30:00",
+      "priority": "P2"
+    }
+  ],
+  "stats": {
+    "total": 5,
+    "pending_review": 2,
+    "reviewing": 1,
+    "approved": 1,
+    "rejected": 1
+  }
+}
+

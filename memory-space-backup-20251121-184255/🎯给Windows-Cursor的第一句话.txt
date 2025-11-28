@@ -1,0 +1,70 @@
+【紧急任务】恢复记忆空间模块到Windows环境
+
+Windows环境的记忆空间模块丢失了，需要从这个完整备份中恢复。
+
+【备份包信息】
+- 备份时间: 2025-11-21 18:42
+- 包含文件: 9个核心文件
+- 压缩包: memory-space-backup-20251121-184255.tar.gz (115KB)
+- 完整目录: memory-space-backup-20251121-184255/
+
+【文件清单】
+1. 数据库 (2个)
+   - v5_project_memory_schema.sql (4张表定义)
+   - 005_add_project_memory_tables.sql (迁移脚本)
+
+2. 后端服务 (3个)
+   - project_memory_service.py (1200+行，核心服务)
+   - project_memory.py (760行，记忆API)
+   - conversation_hook.py (280行，自动记录Hook)
+
+3. 脚本 (2个)
+   - init_project_memory_mcp.py (MCP初始化)
+   - test_auto_memory.py (功能测试)
+
+4. 前端 (1个)
+   - index.html (16000+行，Dashboard完整版)
+
+5. 文档 (2个)
+   - README.md (备份说明)
+   - 📋Windows部署指南.md (详细步骤)
+
+【快速恢复命令】(PowerShell)
+```powershell
+# 1. 解压备份（如果是压缩包）
+# tar -xzf memory-space-backup-20251121-184255.tar.gz
+
+# 2. 设置项目路径
+$PROJECT = "你的Windows项目根目录"
+$BACKUP = ".\memory-space-backup-20251121-184255"
+
+# 3. 一键复制所有文件
+Copy-Item "$BACKUP\database\schemas\*" "$PROJECT\database\schemas\" -Force
+Copy-Item "$BACKUP\database\migrations\*" "$PROJECT\database\migrations\" -Force
+Copy-Item "$BACKUP\packages\core-domain\src\services\project_memory_service.py" "$PROJECT\packages\core-domain\src\services\" -Force
+Copy-Item "$BACKUP\apps\api\src\routes\project_memory.py" "$PROJECT\apps\api\src\routes\" -Force
+Copy-Item "$BACKUP\apps\api\src\routes\conversation_hook.py" "$PROJECT\apps\api\src\routes\" -Force
+Copy-Item "$BACKUP\scripts\*.py" "$PROJECT\scripts\" -Force
+Copy-Item "$BACKUP\dashboard\index.html" "$PROJECT\dashboard-v1.9-20251121\index.html" -Force
+
+# 4. 执行数据库迁移
+Get-Content "$PROJECT\database\schemas\v5_project_memory_schema.sql" | sqlite3 "$PROJECT\database\data\tasks.db"
+
+# 5. 验证
+sqlite3 "$PROJECT\database\data\tasks.db" "SELECT COUNT(*) FROM project_memories"
+```
+
+【必须手动修改的2个文件】
+1. apps\api\src\main.py - 添加conversation_hook导入和注册
+2. apps\api\src\routes\__init__.py - 添加conversation_hook到导出
+
+【验证标准】
+✅ 数据库中有4张memory表
+✅ API文档中有conversation_hook端点
+✅ Dashboard中有"🤖 自动笔记"按钮
+✅ test_auto_memory.py测试通过
+
+【详细步骤】请阅读: 📋Windows部署指南.md
+
+立即开始恢复吧！
+

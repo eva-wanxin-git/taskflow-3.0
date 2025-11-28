@@ -1,0 +1,871 @@
+        <!-- ========== 全栈工程师工作台 ========== -->
+        <div class="engineer-module version-content" data-version="1">
+            <!-- 模块头部 -->
+            <div class="module-header">
+                <div class="header-row">
+                    <h1 class="module-title">全栈工程师工作台</h1>
+                    <span class="status-badge">
+                        <span class="status-dot"></span>
+                        在线 · 3人并行
+                    </span>
+                </div>
+
+                <div class="engineer-info">
+                    <div class="info-section">
+                        <div class="engineer-avatar">FS</div>
+                        <div class="engineer-details">
+                            <div class="engineer-name">Fullstack Engineer AI</div>
+                            <div class="engineer-meta">Expert Level · 接手: 2025-11-18 14:00 · 工作时长: 2天6小时</div>
+                        </div>
+                    </div>
+                    <div class="quick-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">156K</div>
+                            <div class="stat-label">Token已用</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">v3.1</div>
+                            <div class="stat-label">提示词</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">67</div>
+                            <div class="stat-label">事件</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab导航（精简到5个） -->
+            <div class="tab-navigation">
+                <button class="tab-item active" onclick="switchEngineerTab('events')">
+                    事件流
+                    <span class="tab-badge">67</span>
+                </button>
+                <button class="tab-item" onclick="switchEngineerTab('taskboard')">
+                    任务看板
+                    <span class="tab-badge">43</span>
+                </button>
+                <button class="tab-item" onclick="switchEngineerTab('reviews')">
+                    代码审查
+                    <span class="tab-badge">15</span>
+                </button>
+                <button class="tab-item" onclick="switchEngineerTab('docs')">
+                    技术文档
+                    <span class="tab-badge">68</span>
+                </button>
+                <button class="tab-item" onclick="switchEngineerTab('conversations')">
+                    对话历史
+                    <span class="tab-badge">12</span>
+                </button>
+            </div>
+
+            <!-- Tab内容 -->
+            <div class="tab-content-wrapper">
+                <!-- Tab 1: 事件流 -->
+                <div id="events" class="tab-pane active">
+                    <div class="event-timeline">
+                        <div class="timeline-filters">
+                            <button class="filter-chip active">全部</button>
+                            <button class="filter-chip">今天</button>
+                            <button class="filter-chip">本周</button>
+                            <button class="filter-chip">任务</button>
+                            <button class="filter-chip">代码</button>
+                            <button class="filter-chip">部署</button>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="event-card">
+                                <div class="event-header">
+                                    <div>
+                                        <div class="event-title">任务完成: Dashboard响应式优化</div>
+                                        <div class="event-meta">Fullstack Engineer AI · TASK-FE-045</div>
+                                    </div>
+                                    <div class="event-time">2025-11-19 16:30</div>
+                                </div>
+                                <div class="event-description">
+                                    完成了Dashboard的完整响应式优化，支持1920/1440/1280/768/375五个断点。
+                                    实现了Flexbox+Grid混合布局，移动端优先策略，触摸手势优化。
+                                </div>
+                                <div class="event-tags">
+                                    <span class="event-tag">前端开发</span>
+                                    <span class="event-tag">响应式</span>
+                                    <span class="event-tag">已完成</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="event-card">
+                                <div class="event-header">
+                                    <div>
+                                        <div class="event-title">代码审查通过: API集成模块</div>
+                                        <div class="event-meta">架构师审查 · REVIEW-014</div>
+                                    </div>
+                                    <div class="event-time">2025-11-19 14:20</div>
+                                </div>
+                                <div class="event-description">
+                                    架构师审查通过，代码质量优秀。成功集成了Claude API和Notion API，
+                                    包含完整的错误处理、重试机制和日志记录。已合并到主分支。
+                                </div>
+                                <div class="event-tags">
+                                    <span class="event-tag">代码审查</span>
+                                    <span class="event-tag">API集成</span>
+                                    <span class="event-tag">已通过</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="event-card">
+                                <div class="event-header">
+                                    <div>
+                                        <div class="event-title">接收任务: 实现记忆管理Tab</div>
+                                        <div class="event-meta">架构师分配 → Fullstack Engineer AI</div>
+                                    </div>
+                                    <div class="event-time">2025-11-19 10:00</div>
+                                </div>
+                                <div class="event-description">
+                                    架构师分配了新任务：实现Dashboard项目记忆Tab。包括记忆增删改查、
+                                    分类管理、搜索功能。预估3小时，可并行开发。
+                                </div>
+                                <div class="event-tags">
+                                    <span class="event-tag">任务分配</span>
+                                    <span class="event-tag">可并行</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="event-card">
+                                <div class="event-header">
+                                    <div>
+                                        <div class="event-title">部署成功: Dashboard v2.1.0</div>
+                                        <div class="event-meta">CI/CD Pipeline · DEPLOY-028</div>
+                                    </div>
+                                    <div class="event-time">2025-11-18 18:45</div>
+                                </div>
+                                <div class="event-description">
+                                    成功部署到生产环境。通过了所有自动化测试（单元测试92%覆盖率，
+                                    E2E测试18个场景全通过）。Lighthouse性能评分: 98/100。
+                                </div>
+                                <div class="event-tags">
+                                    <span class="event-tag">部署</span>
+                                    <span class="event-tag">生产环境</span>
+                                    <span class="event-tag">成功</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="event-card">
+                                <div class="event-header">
+                                    <div>
+                                        <div class="event-title">Bug修复: 知识图谱渲染问题</div>
+                                        <div class="event-meta">Fullstack Engineer AI · BUG-012</div>
+                                    </div>
+                                    <div class="event-time">2025-11-18 14:30</div>
+                                </div>
+                                <div class="event-description">
+                                    修复了知识图谱在大数据量下的渲染卡顿问题。采用虚拟滚动+WebWorker
+                                    方案，渲染性能提升80%，支持10000+节点流畅显示。
+                                </div>
+                                <div class="event-tags">
+                                    <span class="event-tag">Bug修复</span>
+                                    <span class="event-tag">性能优化</span>
+                                    <span class="event-tag">已完成</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="event-card">
+                                <div class="event-header">
+                                    <div>
+                                        <div class="event-title">数据库优化: Neo4j查询性能提升</div>
+                                        <div class="event-meta">Fullstack Engineer AI · OPT-008</div>
+                                    </div>
+                                    <div class="event-time">2025-11-17 16:20</div>
+                                </div>
+                                <div class="event-description">
+                                    优化了Neo4j的Cypher查询语句，添加了合适的索引。复杂关系查询
+                                    从2.5s优化到0.3s，提升8倍性能。同时优化了连接池配置。
+                                </div>
+                                <div class="event-tags">
+                                    <span class="event-tag">数据库</span>
+                                    <span class="event-tag">性能优化</span>
+                                    <span class="event-tag">Neo4j</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: 任务看板 -->
+                <div id="taskboard" class="tab-pane">
+                    <div class="task-board-container">
+                        <div class="task-board-header">
+                            <div class="filter-bar">
+                                <div class="filter-chips">
+                                    <button class="filter-chip active">全部</button>
+                                    <button class="filter-chip">P0</button>
+                                    <button class="filter-chip">P1</button>
+                                    <button class="filter-chip">可并行</button>
+                                    <button class="filter-chip">前端</button>
+                                    <button class="filter-chip">后端</button>
+                                </div>
+                                <select class="sort-select">
+                                    <option>按优先级排序</option>
+                                    <option>按时间排序</option>
+                                    <option>按复杂度排序</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="kanban-board">
+                            <!-- 待处理列 -->
+                            <div class="kanban-column">
+                                <div class="column-header">
+                                    <div class="column-title">
+                                        <span>待处理</span>
+                                        <span class="column-count">18</span>
+                                    </div>
+                                </div>
+                                <div class="column-cards">
+                                    <div class="task-card">
+                                        <div class="task-card-header">
+                                            <span class="task-id">TASK-UI-028</span>
+                                            <h3 class="task-title">实现记忆管理Tab</h3>
+                                            <span class="task-status-badge parallel">可并行</span>
+                                        </div>
+                                        <div class="task-description">
+                                            实现Dashboard项目记忆Tab，包括记忆增删改查、分类管理、搜索功能。
+                                            需要前后端联调，使用Neo4j存储。
+                                        </div>
+                                        <div class="task-meta">
+                                            <span>预估: <span class="task-estimate">3小时</span></span>
+                                            <span class="priority-badge p1">P1</span>
+                                        </div>
+                                        <div class="task-assignee">
+                                            <div class="assignee-avatar">FS</div>
+                                            <span>待领取</span>
+                                        </div>
+                                        <div class="task-actions">
+                                            <button class="task-action-button primary" onclick="copyEngineerPrompt(event)">复制提示词</button>
+                                            <button class="task-action-button">查看详情</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="task-card">
+                                        <div class="task-card-header">
+                                            <span class="task-id">TASK-BE-015</span>
+                                            <h3 class="task-title">实现API限流中间件</h3>
+                                        </div>
+                                        <div class="task-description">
+                                            基于Redis实现API限流中间件，支持IP级别和用户级别限流。
+                                            采用令牌桶算法，配置化限流规则。
+                                        </div>
+                                        <div class="task-meta">
+                                            <span>预估: <span class="task-estimate">4小时</span></span>
+                                            <span class="priority-badge p2">P2</span>
+                                        </div>
+                                        <div class="task-assignee">
+                                            <div class="assignee-avatar">FS</div>
+                                            <span>待领取</span>
+                                        </div>
+                                        <div class="task-actions">
+                                            <button class="task-action-button primary" onclick="copyEngineerPrompt(event)">复制提示词</button>
+                                            <button class="task-action-button">查看详情</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="task-card">
+                                        <div class="task-card-header">
+                                            <span class="task-id">TASK-UI-029</span>
+                                            <h3 class="task-title">优化首屏加载性能</h3>
+                                            <span class="task-status-badge parallel">可并行</span>
+                                        </div>
+                                        <div class="task-description">
+                                            优化首屏加载性能，目标LCP&lt;2.5s。实现代码分割、懒加载、
+                                            预加载关键资源、图片优化。
+                                        </div>
+                                        <div class="task-meta">
+                                            <span>预估: <span class="task-estimate">5小时</span></span>
+                                            <span class="priority-badge p1">P1</span>
+                                        </div>
+                                        <div class="task-assignee">
+                                            <div class="assignee-avatar">FS</div>
+                                            <span>待领取</span>
+                                        </div>
+                                        <div class="task-actions">
+                                            <button class="task-action-button primary" onclick="copyEngineerPrompt(event)">复制提示词</button>
+                                            <button class="task-action-button">查看详情</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 进行中列 -->
+                            <div class="kanban-column">
+                                <div class="column-header">
+                                    <div class="column-title">
+                                        <span>进行中</span>
+                                        <span class="column-count">5</span>
+                                    </div>
+                                </div>
+                                <div class="column-cards">
+                                    <div class="task-card">
+                                        <div class="task-card-header">
+                                            <span class="task-id">TASK-BE-012</span>
+                                            <h3 class="task-title">Claude API集成</h3>
+                                        </div>
+                                        <div class="task-description">
+                                            集成Claude API实现对话功能。包括流式响应、错误处理、
+                                            Token统计、会话管理。已完成60%。
+                                        </div>
+                                        <div class="task-meta">
+                                            <span>已用: <span class="task-estimate">1.5天</span></span>
+                                            <span class="priority-badge p0">P0</span>
+                                        </div>
+                                        <div class="task-assignee">
+                                            <div class="assignee-avatar">FS</div>
+                                            <span>进行中</span>
+                                        </div>
+                                        <div class="task-actions">
+                                            <button class="task-action-button primary">提交审查</button>
+                                            <button class="task-action-button">查看详情</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="task-card">
+                                        <div class="task-card-header">
+                                            <span class="task-id">TASK-UI-025</span>
+                                            <h3 class="task-title">知识图谱可视化组件</h3>
+                                        </div>
+                                        <div class="task-description">
+                                            基于D3.js实现知识图谱可视化。支持力导向布局、缩放平移、
+                                            节点搜索、关系筛选。已完成布局算法。
+                                        </div>
+                                        <div class="task-meta">
+                                            <span>已用: <span class="task-estimate">8小时</span></span>
+                                            <span class="priority-badge p1">P1</span>
+                                        </div>
+                                        <div class="task-assignee">
+                                            <div class="assignee-avatar">FS</div>
+                                            <span>进行中</span>
+                                        </div>
+                                        <div class="task-actions">
+                                            <button class="task-action-button primary">继续开发</button>
+                                            <button class="task-action-button">查看详情</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 已完成列 -->
+                            <div class="kanban-column">
+                                <div class="column-header">
+                                    <div class="column-title">
+                                        <span>已完成</span>
+                                        <span class="column-count">20</span>
+                                    </div>
+                                </div>
+                                <div class="column-cards">
+                                    <div class="task-card">
+                                        <div class="task-card-header">
+                                            <span class="task-id">TASK-UI-024</span>
+                                            <h3 class="task-title">Dashboard响应式优化</h3>
+                                            <span class="task-status-badge">✓ 已完成</span>
+                                        </div>
+                                        <div class="task-description">
+                                            完成了Dashboard的完整响应式优化，支持5个断点。
+                                            已通过所有浏览器兼容性测试。
+                                        </div>
+                                        <div class="task-meta">
+                                            <span>用时: <span class="task-estimate">6小时</span></span>
+                                            <span class="priority-badge p1">P1</span>
+                                        </div>
+                                        <div class="task-assignee">
+                                            <div class="assignee-avatar">FS</div>
+                                            <span>2025-11-19</span>
+                                        </div>
+                                        <div class="task-actions">
+                                            <button class="task-action-button primary">查看完成报告</button>
+                                            <button class="task-action-button">查看详情</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="task-card">
+                                        <div class="task-card-header">
+                                            <span class="task-id">TASK-BE-011</span>
+                                            <h3 class="task-title">用户认证模块</h3>
+                                            <span class="task-status-badge">✓ 已完成</span>
+                                        </div>
+                                        <div class="task-description">
+                                            实现JWT认证、权限管理、会话管理。支持多端登录、
+                                            自动续期、安全退出。代码审查已通过。
+                                        </div>
+                                        <div class="task-meta">
+                                            <span>用时: <span class="task-estimate">2天</span></span>
+                                            <span class="priority-badge p0">P0</span>
+                                        </div>
+                                        <div class="task-assignee">
+                                            <div class="assignee-avatar">FS</div>
+                                            <span>2025-11-18</span>
+                                        </div>
+                                        <div class="task-actions">
+                                            <button class="task-action-button primary">查看完成报告</button>
+                                            <button class="task-action-button">查看详情</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="task-card">
+                                        <div class="task-card-header">
+                                            <span class="task-id">TASK-DB-008</span>
+                                            <h3 class="task-title">Neo4j数据库设计</h3>
+                                            <span class="task-status-badge">✓ 已完成</span>
+                                        </div>
+                                        <div class="task-description">
+                                            完成知识图谱数据库设计。定义了节点类型、关系类型、
+                                            索引策略。性能测试通过。
+                                        </div>
+                                        <div class="task-meta">
+                                            <span>用时: <span class="task-estimate">1.5天</span></span>
+                                            <span class="priority-badge p1">P1</span>
+                                        </div>
+                                        <div class="task-assignee">
+                                            <div class="assignee-avatar">FS</div>
+                                            <span>2025-11-17</span>
+                                        </div>
+                                        <div class="task-actions">
+                                            <button class="task-action-button primary">查看完成报告</button>
+                                            <button class="task-action-button">查看详情</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: 代码审查 -->
+                <div id="reviews" class="tab-pane">
+                    <div class="code-review-container">
+                        <div class="code-review-timeline">
+                            <div class="review-filters">
+                                <button class="filter-chip active">全部</button>
+                                <button class="filter-chip">待审查</button>
+                                <button class="filter-chip">已通过</button>
+                                <button class="filter-chip">需修改</button>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="review-marker pending"></div>
+                                <div class="review-card">
+                                    <div class="review-card-header">
+                                        <h3 class="review-title">REVIEW-015 | Dashboard响应式代码审查</h3>
+                                        <div class="review-meta">
+                                            <span>2025-11-19 17:00</span>
+                                            <span class="review-status pending">审查中</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-content">
+                                        <div class="content-label">审查内容:</div>
+                                        <div class="content-list">
+                                            <div class="content-item">12个React组件响应式改造</div>
+                                            <div class="content-item">CSS Grid + Flexbox混合布局</div>
+                                            <div class="content-item">5个断点断点适配</div>
+                                            <div class="content-item">触摸手势优化</div>
+                                            <div class="content-item">测试覆盖率: 88%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-comment">
+                                        <div class="content-label">审查意见:</div>
+                                        代码结构清晰，响应式实现优秀。建议优化媒体查询的组织方式，
+                                        可以考虑使用CSS变量统一管理断点值。性能测试结果良好。
+                                    </div>
+
+                                    <div class="review-actions">
+                                        <button class="review-action-button" disabled style="cursor: not-allowed; opacity: 0.6;">等待架构师审查...</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="review-marker" style="background: var(--noir-graphite);"></div>
+                                <div class="review-card">
+                                    <div class="review-card-header">
+                                        <h3 class="review-title">REVIEW-014-FIX | API错误处理优化</h3>
+                                        <div class="review-meta">
+                                            <span>2025-11-19 15:30</span>
+                                            <span class="review-status" style="background: var(--noir-graphite); color: var(--blanc-pure); border-color: var(--noir-graphite);">需修改</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-content">
+                                        <div class="content-label">审查内容:</div>
+                                        <div class="content-list">
+                                            <div class="content-item">API错误处理逻辑</div>
+                                            <div class="content-item">重试机制实现</div>
+                                            <div class="content-item">错误日志记录</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-comment">
+                                        <div class="content-label">审查意见:</div>
+                                        发现2个问题需要修改：<br>
+                                        1. 重试机制缺少指数退避策略，建议使用exponential backoff<br>
+                                        2. 错误日志缺少关键上下文信息（用户ID、请求ID）<br>
+                                        已自动生成修改任务 TASK-FIX-089，请查看任务看板。
+                                    </div>
+
+                                    <div class="review-actions">
+                                        <button class="review-action-button" style="background: var(--noir-graphite); color: var(--blanc-pure); border-color: var(--noir-graphite); cursor: default;" disabled>✗ 需修改 · 已生成修改任务</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="review-marker approved"></div>
+                                <div class="review-card">
+                                    <div class="review-card-header">
+                                        <h3 class="review-title">REVIEW-014 | API集成模块审查</h3>
+                                        <div class="review-meta">
+                                            <span>2025-11-19 14:20</span>
+                                            <span class="review-status approved">已通过</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-content">
+                                        <div class="content-label">审查内容:</div>
+                                        <div class="content-list">
+                                            <div class="content-item">Claude API集成（流式响应）</div>
+                                            <div class="content-item">Notion API集成（CRUD操作）</div>
+                                            <div class="content-item">错误处理与重试机制</div>
+                                            <div class="content-item">API限流与缓存策略</div>
+                                            <div class="content-item">完整的单元测试</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-comment">
+                                        <div class="content-label">审查意见:</div>
+                                        代码质量优秀。错误处理完善，包含了重试机制和降级策略。
+                                        日志记录规范。单元测试覆盖率92%。已合并到主分支。
+                                    </div>
+
+                                    <div class="review-actions">
+                                        <button class="review-action-button approve" disabled style="cursor: default;">✓ 审查通过</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="review-marker approved"></div>
+                                <div class="review-card">
+                                    <div class="review-card-header">
+                                        <h3 class="review-title">REVIEW-013 | 用户认证模块审查</h3>
+                                        <div class="review-meta">
+                                            <span>2025-11-18 16:45</span>
+                                            <span class="review-status approved">已通过</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-content">
+                                        <div class="content-label">审查内容:</div>
+                                        <div class="content-list">
+                                            <div class="content-item">JWT认证实现</div>
+                                            <div class="content-item">权限管理（RBAC）</div>
+                                            <div class="content-item">会话管理与自动续期</div>
+                                            <div class="content-item">密码加密与安全策略</div>
+                                            <div class="content-item">安全测试完成</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-comment">
+                                        <div class="content-label">审查意见:</div>
+                                        安全实现规范，符合OWASP最佳实践。Token刷新机制设计合理。
+                                        建议补充API文档说明认证流程。整体质量优秀，通过审查。
+                                    </div>
+
+                                    <div class="review-actions">
+                                        <button class="review-action-button approve" disabled style="cursor: default;">✓ 审查通过</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="review-marker approved"></div>
+                                <div class="review-card">
+                                    <div class="review-card-header">
+                                        <h3 class="review-title">REVIEW-012 | Neo4j数据库设计审查</h3>
+                                        <div class="review-meta">
+                                            <span>2025-11-17 18:30</span>
+                                            <span class="review-status approved">已通过</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-content">
+                                        <div class="content-label">审查内容:</div>
+                                        <div class="content-list">
+                                            <div class="content-item">节点类型定义（8种）</div>
+                                            <div class="content-item">关系类型定义（15种）</div>
+                                            <div class="content-item">索引策略设计</div>
+                                            <div class="content-item">Cypher查询优化</div>
+                                            <div class="content-item">性能测试报告</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-comment">
+                                        <div class="content-label">审查意见:</div>
+                                        图数据库设计合理，充分利用了Neo4j的图特性。索引设计得当，
+                                        查询性能优秀。关系建模符合业务需求。可以进入实现阶段。
+                                    </div>
+
+                                    <div class="review-actions">
+                                        <button class="review-action-button approve" disabled style="cursor: default;">✓ 审查通过</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 4: 技术文档 -->
+                <div id="docs" class="tab-pane">
+                    <div class="docs-container">
+                        <div class="docs-sidebar">
+                            <div class="docs-search">
+                                <input type="text" class="search-input" placeholder="搜索文档...">
+                            </div>
+                            <div class="docs-categories">
+                                <div class="category-group">
+                                    <div class="category-header" onclick="toggleEngineerCategory(event)">前端开发</div>
+                                    <div class="category-items active">
+                                        <div class="doc-item active" onclick="selectEngineerDoc(event)">React组件开发规范</div>
+                                        <div class="doc-item" onclick="selectEngineerDoc(event)">CSS架构与命名约定</div>
+                                        <div class="doc-item" onclick="selectEngineerDoc(event)">状态管理最佳实践</div>
+                                        <div class="doc-item" onclick="selectEngineerDoc(event)">性能优化指南</div>
+                                        <div class="doc-item" onclick="selectEngineerDoc(event)">响应式设计规范</div>
+                                    </div>
+                                </div>
+                                <div class="category-group">
+                                    <div class="category-header" onclick="toggleEngineerCategory(event)">后端开发</div>
+                                    <div class="category-items">
+                                        <div class="doc-item" onclick="selectEngineerDoc(event)">FastAPI项目结构</div>
+                                        <div class="doc-item" onclick="selectEngineerDoc(event)">RESTful API设计</div>
+                                        <div class="doc-item" onclick="selectEngineerDoc(event)">异步编程实践</div>
+                                        <div class="doc-item" onclick="selectEngineerDoc(event)">错误处理策略</div>
+                                        <div class="doc-item" onclick="selectEngineerDoc(event)">日志规范</div>
+                                    </div>
+                                </div>
+                                <div class="category-group">
+                                    <div class="category-header" onclick="toggleEngineerCategory(event)">数据库</div>
+                                    <div class="category-items">
+                                        <div class="doc-item" onclick="selectEngineerDoc(event)">PostgreSQL设计规范</div>
+                                        <div class="doc-item" onclick="selectEngineerDoc(event)">Neo4j图数据库实践</div>
+                                        <div class="doc-item" onclick="selectEngineerDoc(event)">Redis缓存策略</div>
+                                        <div class="doc-item" onclick="selectEngineerDoc(event)">数据库迁移管理</div>
+                                    </div>
+                                </div>
+                                <div class="category-group">
+                                    <div class="category-header" onclick="toggleEngineerCategory(event)">DevOps</div>
+                                    <div class="category-items">
+                                        <div class="doc-item" onclick="selectEngineerDoc(event)">Docker容器化部署</div>
+                                        <div class="doc-item" onclick="selectEngineerDoc(event)">CI/CD流程配置</div>
+                                        <div class="doc-item" onclick="selectEngineerDoc(event)">监控与日志系统</div>
+                                        <div class="doc-item" onclick="selectEngineerDoc(event)">生产环境运维</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="docs-content">
+                            <div class="doc-header">
+                                <h1 class="doc-title">React组件开发规范</h1>
+                                <div class="doc-meta">
+                                    <span>分类: 前端开发</span>
+                                    <span>作者: Fullstack Engineer AI</span>
+                                    <span>更新: 2025-11-19</span>
+                                    <span>字数: 3,247</span>
+                                </div>
+                            </div>
+
+                            <div class="doc-body">
+                                <div class="doc-section">
+                                    <h2 class="doc-section-title">1. 组件设计原则</h2>
+                                    <div class="doc-section-content">
+                                        <p><strong>单一职责原则</strong>：每个组件应该只做一件事。如果组件功能过于复杂，应该拆分成更小的子组件。</p>
+                                        
+                                        <p><strong>组合优于继承</strong>：React推荐使用组合而非继承来实现代码复用。通过Props和Children实现组件组合。</p>
+                                        
+                                        <p><strong>Props类型定义</strong>：使用TypeScript为所有Props定义明确的类型，提高代码可维护性和IDE智能提示。</p>
+                                    </div>
+                                </div>
+
+                                <div class="doc-section">
+                                    <h2 class="doc-section-title">2. 组件文件结构</h2>
+                                    <div class="doc-section-content">
+                                        <p>推荐的组件目录结构：</p>
+                                    </div>
+                                    <pre class="doc-code-block">src/
+├── components/
+│   ├── Button/
+│   │   ├── Button.tsx          # 组件主文件
+│   │   ├── Button.test.tsx     # 单元测试
+│   │   ├── Button.stories.tsx  # Storybook故事
+│   │   ├── Button.module.css   # 样式文件
+│   │   └── index.ts            # 导出文件
+│   └── ...
+└── ...</pre>
+                                </div>
+
+                                <div class="doc-section">
+                                    <h2 class="doc-section-title">3. 组件命名规范</h2>
+                                    <div class="doc-section-content">
+                                        <p><strong>文件命名</strong>：使用PascalCase命名，如 <code>UserProfile.tsx</code></p>
+                                        
+                                        <p><strong>组件命名</strong>：与文件名保持一致，使用PascalCase</p>
+                                        
+                                        <p><strong>Props接口命名</strong>：组件名 + Props，如 <code>UserProfileProps</code></p>
+                                        
+                                        <p><strong>事件处理函数</strong>：使用handle前缀，如 <code>handleClick</code></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 5: 对话历史 -->
+                <div id="conversations" class="tab-pane">
+                    <div class="conversation-layout">
+                        <div class="conversation-list">
+                            <div class="conversation-search">
+                                <input type="text" class="search-input" placeholder="搜索对话...">
+                            </div>
+                            <div class="conversation-items">
+                                <div class="conversation-item active" onclick="selectEngineerConversation(1)">
+                                    <div class="conversation-item-header">
+                                        <div class="conversation-item-title">Claude API集成讨论</div>
+                                        <div class="conversation-item-time">2025-11-19 14:30</div>
+                                    </div>
+                                    <div class="conversation-item-preview">
+                                        讨论了Claude API的流式响应实现方案...
+                                    </div>
+                                    <div class="conversation-item-meta">
+                                        <span>10条消息</span>
+                                        <span>2h 15min</span>
+                                    </div>
+                                </div>
+
+                                <div class="conversation-item" onclick="selectEngineerConversation(2)">
+                                    <div class="conversation-item-header">
+                                        <div class="conversation-item-title">响应式布局优化</div>
+                                        <div class="conversation-item-time">2025-11-19 10:00</div>
+                                    </div>
+                                    <div class="conversation-item-preview">
+                                        分析了当前Dashboard的响应式问题，制定了优化方案...
+                                    </div>
+                                    <div class="conversation-item-meta">
+                                        <span>8条消息</span>
+                                        <span>1h 30min</span>
+                                    </div>
+                                </div>
+
+                                <div class="conversation-item" onclick="selectEngineerConversation(3)">
+                                    <div class="conversation-item-header">
+                                        <div class="conversation-item-title">Neo4j性能优化</div>
+                                        <div class="conversation-item-time">2025-11-18 16:20</div>
+                                    </div>
+                                    <div class="conversation-item-preview">
+                                        优化了Cypher查询语句，添加了合适的索引...
+                                    </div>
+                                    <div class="conversation-item-meta">
+                                        <span>12条消息</span>
+                                        <span>1h 45min</span>
+                                    </div>
+                                </div>
+
+                                <div class="conversation-item" onclick="selectEngineerConversation(4)">
+                                    <div class="conversation-item-header">
+                                        <div class="conversation-item-title">用户认证实现</div>
+                                        <div class="conversation-item-time">2025-11-17 14:00</div>
+                                    </div>
+                                    <div class="conversation-item-preview">
+                                        讨论了JWT认证方案，包括Token刷新机制...
+                                    </div>
+                                    <div class="conversation-item-meta">
+                                        <span>15条消息</span>
+                                        <span>3h 20min</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="conversation-detail">
+                            <div class="detail-header">
+                                <h2 class="detail-title">Claude API集成讨论</h2>
+                                <div class="detail-meta">
+                                    <span>2025-11-19 14:30</span>
+                                    <span>10条消息</span>
+                                    <span>2h 15min</span>
+                                    <span>32,500 tokens</span>
+                                </div>
+                            </div>
+
+                            <div class="messages-container">
+                                <div class="message">
+                                    <div class="message-avatar user">U</div>
+                                    <div class="message-content">
+                                        <div class="message-header">
+                                            <span class="message-sender">用户</span>
+                                            <span class="message-time">14:30</span>
+                                        </div>
+                                        <div class="message-text">
+                                            需要集成Claude API实现对话功能，要支持流式响应。能帮我分析一下实现方案吗？
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="message">
+                                    <div class="message-avatar">AI</div>
+                                    <div class="message-content">
+                                        <div class="message-header">
+                                            <span class="message-sender">Fullstack AI</span>
+                                            <span class="message-time">14:32</span>
+                                        </div>
+                                        <div class="message-text">
+                                            好的，让我帮你分析Claude API的流式响应实现方案。<br><br>
+                                            
+                                            <strong>方案概述：</strong><br><br>
+                                            
+                                            Claude API支持Server-Sent Events (SSE)来实现流式响应。我们需要：<br><br>
+                                            
+                                            1. <strong>后端实现</strong>：<br>
+                                            - 使用FastAPI的StreamingResponse<br>
+                                            - 处理Claude API的SSE流<br>
+                                            - 实现错误处理和重连机制<br><br>
+                                            
+                                            2. <strong>前端实现</strong>：<br>
+                                            - 使用EventSource或fetch with ReadableStream<br>
+                                            - 实时更新UI显示流式内容<br>
+                                            - 处理连接状态和错误<br><br>
+                                            
+                                            我先给你看后端的实现代码...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+

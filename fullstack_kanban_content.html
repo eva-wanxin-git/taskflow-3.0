@@ -1,0 +1,312 @@
+
+                        <div class="kanban-board">
+                            <!-- 待处理列 -->
+                            <div class="kanban-column">
+                                <div class="kanban-column-header">
+                                    <h3 class="kanban-column-title">待处理</h3>
+                                    <span class="kanban-count">18</span>
+                                </div>
+                                <div class="kanban-tasks">
+
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-011</div>
+                                        <span class="priority-badge p0">P0</span>
+                                    </div>
+                                    <div class="task-card-title">系统监控增强API</div>
+                                    <div class="task-card-desc">扩展系统健康检查端点
+
+扩展端点: GET /api/system/health
+- 当前仅简单检查，需要增强为完整监控
+- 返回6个服务状态：
+  * API...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 3.0h</span>
+                                    </div>
+                                </div>
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-004</div>
+                                        <span class="priority-badge p0">P0</span>
+                                    </div>
+                                    <div class="task-card-title">任务看板格式化API</div>
+                                    <div class="task-card-desc">扩展任务查询API，支持看板格式输出
+
+端点: GET /api/tasks/kanban
+- 参数：project_id, assigned_to
+- 返回格...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 2.0h</span>
+                                    </div>
+                                </div>
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-003</div>
+                                        <span class="priority-badge p0">P0</span>
+                                    </div>
+                                    <div class="task-card-title">创建问题和建议管理API</div>
+                                    <div class="task-card-desc">创建问题和建议管理端点
+
+端点1: GET /api/issues
+- 返回问题清单（~15个）
+- 包含：标题、描述、优先级、影响、建议方案
+
+端点2: PO...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 2.0h</span>
+                                    </div>
+                                </div>
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-002</div>
+                                        <span class="priority-badge p0">P0</span>
+                                    </div>
+                                    <div class="task-card-title">创建功能清单API</div>
+                                    <div class="task-card-desc">创建功能清单查询端点
+
+端点1: GET /api/features/implemented
+- 返回已实现功能列表（~132个）
+- 数据源：automati...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 2.0h</span>
+                                    </div>
+                                </div>
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-001</div>
+                                        <span class="priority-badge p0">P0</span>
+                                    </div>
+                                    <div class="task-card-title">创建统一统计API</div>
+                                    <div class="task-card-desc">创建 GET /api/stats/overview 端点
+        
+功能：提供Dashboard顶部9个统计卡片的数据
+- 总任务数
+- 进行中/待处...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 2.0h</span>
+                                    </div>
+                                </div>
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-EXT-003</div>
+                                        <span class="priority-badge p1">P1</span>
+                                    </div>
+                                    <div class="task-card-title">知识库API完善</div>
+                                    <div class="task-card-desc">完善知识库查询API
+
+验证端点: GET /api/knowledge-base
+- 表结构已存在（knowledge_articles）
+- 验证API端点...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 1.0h</span>
+                                    </div>
+                                </div>
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-EXT-002</div>
+                                        <span class="priority-badge p1">P1</span>
+                                    </div>
+                                    <div class="task-card-title">任务API增加分配者筛选</div>
+                                    <div class="task-card-desc">扩展任务查询API
+
+扩展端点: GET /api/tasks
+- 新增参数：assigned_to（筛选指定执行者的任务）
+
+位置：apps/api/src/...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 0.5h</span>
+                                    </div>
+                                </div>
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-EXT-001</div>
+                                        <span class="priority-badge p1">P1</span>
+                                    </div>
+                                    <div class="task-card-title">对话API增加角色筛选</div>
+                                    <div class="task-card-desc">扩展对话查询API
+
+扩展端点: GET /api/conversations
+- 新增参数：role（architect/fullstack-engineer...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 0.5h</span>
+                                    </div>
+                                </div>
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-012</div>
+                                        <span class="priority-badge p1">P1</span>
+                                    </div>
+                                    <div class="task-card-title">代码清单统计API</div>
+                                    <div class="task-card-desc">创建代码清单端点
+
+端点: GET /api/code/inventory
+- 扫描项目代码目录
+- 返回文件列表（~45个文件）
+- 包含：路径、代码行数、复...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 2.0h</span>
+                                    </div>
+                                </div>
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-010</div>
+                                        <span class="priority-badge p1">P1</span>
+                                    </div>
+                                    <div class="task-card-title">运维日志查询API</div>
+                                    <div class="task-card-desc">创建运维日志查询端点
+
+端点: GET /api/logs/operations
+- 参数：project_id, level（INFO/WARN/ERROR）...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 1.0h</span>
+                                    </div>
+                                </div>
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-009</div>
+                                        <span class="priority-badge p1">P1</span>
+                                    </div>
+                                    <div class="task-card-title">Bug管理API</div>
+                                    <div class="task-card-desc">创建Bug管理端点
+
+端点1: GET /api/bugs
+- 返回看板格式（待修复/修复中/已验证）
+- 基于issues表，type='bug'
+
+端点2:...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 2.0h</span>
+                                    </div>
+                                </div>
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-008</div>
+                                        <span class="priority-badge p1">P1</span>
+                                    </div>
+                                    <div class="task-card-title">技术文档索引API</div>
+                                    <div class="task-card-desc">创建文档索引端点
+
+端点1: GET /api/documents
+- 参数：project_id, category（technical/api/archit...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 2.0h</span>
+                                    </div>
+                                </div>
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-007</div>
+                                        <span class="priority-badge p1">P1</span>
+                                    </div>
+                                    <div class="task-card-title">代码审查结果API</div>
+                                    <div class="task-card-desc">创建代码审查管理端点
+
+端点1: GET /api/code-reviews
+- 返回审查清单（~15个审查项）
+- 包含：文件路径、审查结果、问题数、建议
+
+...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 2.0h</span>
+                                    </div>
+                                </div>
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-006</div>
+                                        <span class="priority-badge p1">P1</span>
+                                    </div>
+                                    <div class="task-card-title">需求管理API</div>
+                                    <div class="task-card-desc">创建需求管理端点
+
+端点1: GET /api/requirements
+- 参数：project_id, source（user/architect）
+- 返...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 2.0h</span>
+                                    </div>
+                                </div>
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-005</div>
+                                        <span class="priority-badge p1">P1</span>
+                                    </div>
+                                    <div class="task-card-title">事件流参数扩展</div>
+                                    <div class="task-card-desc">为现有事件流API添加筛选参数
+
+扩展端点: GET /api/events
+- 新增参数：category（architecture/development/...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 1.0h</span>
+                                    </div>
+                                </div>
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-015</div>
+                                        <span class="priority-badge p2">P2</span>
+                                    </div>
+                                    <div class="task-card-title">WebSocket实时推送</div>
+                                    <div class="task-card-desc">创建WebSocket连接端点
+
+端点: WS /ws/events
+- 实时推送新事件到前端
+- 避免轮询，降低服务器负载
+
+位置：apps/api/src/...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 2.0h</span>
+                                    </div>
+                                </div>
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-014</div>
+                                        <span class="priority-badge p2">P2</span>
+                                    </div>
+                                    <div class="task-card-title">AI协作链可视化API</div>
+                                    <div class="task-card-desc">创建协作链数据端点
+
+端点: GET /api/collaboration/chain
+- 返回节点：各角色（架构师/工程师/SRE）的任务数和活跃数
+- 返回...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 2.0h</span>
+                                    </div>
+                                </div>
+                                <div class="task-card">
+                                    <div class="task-card-header">
+                                        <div class="task-id">TASK-API-013</div>
+                                        <span class="priority-badge p2">P2</span>
+                                    </div>
+                                    <div class="task-card-title">实时脉搏统计API</div>
+                                    <div class="task-card-desc">创建实时脉搏数据端点
+
+端点: GET /api/pulse/realtime
+- 更新间隔：30秒
+- 返回：活跃任务数、最近事件数、平均响应时间、最后活动时...</div>
+                                    <div class="task-card-meta">
+                                        <span>⏱️ 2.0h</span>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+                            <!-- 进行中列 -->
+                            <div class="kanban-column">
+                                <div class="kanban-column-header">
+                                    <h3 class="kanban-column-title">进行中</h3>
+                                    <span class="kanban-count">0</span>
+                                </div>
+                                <div class="kanban-tasks">
+
+                                </div>
+                            </div>
+
+                            <!-- 已完成列 -->
+                            <div class="kanban-column">
+                                <div class="kanban-column-header">
+                                    <h3 class="kanban-column-title">已完成</h3>
+                                    <span class="kanban-count">0</span>
+                                </div>
+                                <div class="kanban-tasks">
+
+                                </div>
+                            </div>
+                        </div>

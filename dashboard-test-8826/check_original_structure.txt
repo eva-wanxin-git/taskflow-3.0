@@ -1,0 +1,48 @@
+检查用户提供的原始HTML结构：
+
+<!-- 模块头部 -->
+<div class="module-header">
+    <div class="header-row">
+        <h1 class="module-title">全栈工程师工作台</h1>
+        <span class="status-badge">
+            <span class="status-dot"></span>
+            在线 · 3人并行
+        </span>
+    </div>
+
+    <div class="engineer-info">
+        <div class="info-section">
+            <div class="engineer-avatar">FS</div>
+            <div class="engineer-details">
+                <div class="engineer-name">Fullstack Engineer AI</div>
+                <div class="engineer-meta">Expert Level · 接手: 2025-11-18 14:00 · 工作时长: 2天6小时</div>
+            </div>
+        </div>
+        <div class="quick-stats">
+            <div class="stat-item">
+                <div class="stat-value">156K</div>
+                <div class="stat-label">Token已用</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">v3.1</div>
+                <div class="stat-label">提示词</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">67</div>
+                <div class="stat-label">事件</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+分析：
+- header-row：第一行（标题 + 状态徽章）
+- engineer-info：第二行（头像信息 + 统计数据横向排列）
+
+当前HTML结构是一样的！
+
+可能的问题：
+1. 浏览器缓存没清除？
+2. CSS有其他地方覆盖了？
+3. 用户看到的是压缩版本的显示？
+

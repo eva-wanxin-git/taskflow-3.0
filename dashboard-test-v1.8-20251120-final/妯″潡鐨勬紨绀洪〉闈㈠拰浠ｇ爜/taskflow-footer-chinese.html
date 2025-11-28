@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>任务所·Flow Footer - 中文版</title>
+    <style>
+        /* ==================== 白色奢华美学系统 ==================== */
+        :root {
+            /* 白色光谱 */
+            --blanc-pure: #FFFFFF;
+            --blanc-snow: #FAFBFC;
+            --blanc-pearl: #F6F8FA;
+            --blanc-silk: #F0F3F5;
+            --blanc-mist: #E8ECEF;
+            --blanc-cloud: #DFE4E8;
+
+            /* 黑色层次 */
+            --noir-ink: #0A0F14;
+            --noir-charcoal: #1A2027;
+            --noir-graphite: #2E3742;
+            --noir-steel: #495057;
+            --noir-silver: #6C757D;
+            --noir-ash: #8B95A1;
+
+            /* 阴影 */
+            --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+
+            /* 字体系统 */
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            --font-secondary: 'Georgia', serif;
+
+            /* 字号 */
+            --text-xs: 12px;
+            --text-sm: 14px;
+            --text-base: 16px;
+            --text-lg: 18px;
+            --text-xl: 21px;
+
+            /* 字重 */
+            --weight-light: 300;
+            --weight-regular: 400;
+            --weight-medium: 500;
+            --weight-semibold: 600;
+
+            /* 行高 */
+            --leading-tight: 1.2;
+            --leading-normal: 1.5;
+            --leading-relaxed: 1.75;
+
+            /* 空间 */
+            --space-2: 12px;
+            --space-3: 18px;
+            --space-4: 24px;
+            --space-5: 32px;
+            --space-6: 40px;
+            --space-8: 64px;
+
+            /* 动画 */
+            --duration-normal: 300ms;
+            --ease-luxury: cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--blanc-pearl);
+            color: var(--noir-graphite);
+            line-height: var(--leading-normal);
+            padding: 40px;
+        }
+
+        /* ==================== Footer 主容器 ==================== */
+        .taskflow-footer {
+            background: var(--blanc-pure);
+            border-top: 1px solid var(--blanc-mist);
+            margin-top: var(--space-8);
+        }
+
+        /* ==================== Footer 内容区 ==================== */
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-8) var(--space-6);
+        }
+
+        /* ==================== 上部分：品牌与链接 ==================== */
+        .footer-main {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+            gap: var(--space-8);
+            padding-bottom: var(--space-8);
+            border-bottom: 1px solid var(--blanc-mist);
+            margin-bottom: var(--space-6);
+        }
+
+        /* 品牌区 */
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .footer-logo {
+            font-size: var(--text-xl);
+            font-weight: var(--weight-semibold);
+            color: var(--noir-ink);
+            letter-spacing: -0.01em;
+            margin-bottom: var(--space-2);
+        }
+
+        .footer-tagline {
+            font-size: var(--text-sm);
+            color: var(--noir-steel);
+            line-height: var(--leading-relaxed);
+            max-width: 300px;
+        }
+
+        .footer-tagline-en {
+            color: var(--noir-silver);
+            font-size: var(--text-xs);
+            margin-top: var(--space-2);
+            font-style: italic;
+        }
+
+        /* 链接列 */
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .footer-column-title {
+            font-size: var(--text-sm);
+            font-weight: var(--weight-semibold);
+            color: var(--noir-charcoal);
+            margin-bottom: var(--space-2);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-link {
+            font-size: var(--text-sm);
+            color: var(--noir-steel);
+            text-decoration: none;
+            transition: all var(--duration-normal) var(--ease-luxury);
+            display: inline-block;
+        }
+
+        .footer-link:hover {
+            color: var(--noir-ink);
+            transform: translateX(4px);
+        }
+
+        .footer-link-badge {
+            display: inline-block;
+            margin-left: var(--space-2);
+            padding: 2px 8px;
+            background: var(--noir-ink);
+            color: var(--blanc-pure);
+            font-size: 10px;
+            font-weight: var(--weight-medium);
+            letter-spacing: 0.05em;
+        }
+
+        /* 订阅区 */
+        .footer-subscribe {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .footer-subscribe-title {
+            font-size: var(--text-sm);
+            font-weight: var(--weight-semibold);
+            color: var(--noir-charcoal);
+            margin-bottom: var(--space-2);
+        }
+
+        .footer-subscribe-desc {
+            font-size: var(--text-xs);
+            color: var(--noir-silver);
+            line-height: var(--leading-relaxed);
+        }
+
+        .subscribe-form {
+            display: flex;
+            gap: 0;
+            margin-top: var(--space-2);
+        }
+
+        .subscribe-input {
+            flex: 1;
+            padding: 10px 16px;
+            border: 1px solid var(--blanc-cloud);
+            border-right: none;
+            background: var(--blanc-snow);
+            font-size: var(--text-sm);
+            color: var(--noir-graphite);
+            font-family: var(--font-primary);
+            transition: all var(--duration-normal) var(--ease-luxury);
+        }
+
+        .subscribe-input:focus {
+            outline: none;
+            background: var(--blanc-pure);
+            border-color: var(--noir-steel);
+        }
+
+        .subscribe-input::placeholder {
+            color: var(--noir-ash);
+        }
+
+        .subscribe-button {
+            padding: 10px 20px;
+            background: var(--noir-ink);
+            border: 1px solid var(--noir-ink);
+            color: var(--blanc-pure);
+            font-size: var(--text-sm);
+            font-weight: var(--weight-medium);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-luxury);
+        }
+
+        .subscribe-button:hover {
+            background: var(--noir-charcoal);
+            border-color: var(--noir-charcoal);
+        }
+
+        /* ==================== 中部分：统计数据 ==================== */
+        .footer-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-6);
+            padding: var(--space-6) 0;
+            border-bottom: 1px solid var(--blanc-mist);
+            margin-bottom: var(--space-6);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: var(--space-4);
+            background: var(--blanc-snow);
+            border: 1px solid var(--blanc-mist);
+            transition: all var(--duration-normal) var(--ease-luxury);
+        }
+
+        .stat-item:hover {
+            background: var(--blanc-pure);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: var(--weight-semibold);
+            color: var(--noir-ink);
+            margin-bottom: var(--space-2);
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-size: var(--text-xs);
+            color: var(--noir-silver);
+            letter-spacing: 0.05em;
+        }
+
+        /* ==================== 下部分：版权与备案 ==================== */
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--space-5);
+        }
+
+        .footer-copyright {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .copyright-text {
+            font-size: var(--text-xs);
+            color: var(--noir-silver);
+        }
+
+        .copyright-links {
+            display: flex;
+            gap: var(--space-4);
+        }
+
+        .copyright-link {
+            font-size: var(--text-xs);
+            color: var(--noir-steel);
+            text-decoration: none;
+            transition: all var(--duration-normal) var(--ease-luxury);
+        }
+
+        .copyright-link:hover {
+            color: var(--noir-ink);
+        }
+
+        .footer-meta {
+            display: flex;
+            align-items: center;
+            gap: var(--space-5);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-xs);
+            color: var(--noir-silver);
+        }
+
+        .meta-badge {
+            padding: 4px 10px;
+            background: var(--blanc-pearl);
+            border: 1px solid var(--blanc-cloud);
+            font-size: 10px;
+            font-weight: var(--weight-medium);
+            color: var(--noir-steel);
+            letter-spacing: 0.05em;
+        }
+
+        /* ==================== 响应式 ==================== */
+        @media (max-width: 1200px) {
+            .footer-main {
+                grid-template-columns: 2fr 1fr 1fr;
+                gap: var(--space-6);
+            }
+
+            .footer-subscribe {
+                grid-column: 1 / -1;
+            }
+
+            .footer-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: var(--space-6);
+            }
+
+            .footer-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-4);
+            }
+        }
+
+        /* ==================== 演示容器 ==================== */
+        .demo-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: var(--blanc-pure);
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--blanc-mist);
+            margin-bottom: 0;
+        }
+
+        .demo-content {
+            text-align: center;
+            padding: var(--space-8);
+        }
+
+        .demo-title {
+            font-size: var(--text-2xl);
+            font-weight: var(--weight-semibold);
+            color: var(--noir-ink);
+            margin-bottom: var(--space-3);
+        }
+
+        .demo-desc {
+            font-size: var(--text-base);
+            color: var(--noir-steel);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: var(--leading-relaxed);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 演示：页面主内容 -->
+    <div class="demo-container">
+        <div class="demo-content">
+            <div class="demo-title">任务所·Flow 系统内容</div>
+            <div class="demo-desc">
+                上方是各个AI工作台模块（架构师、全栈工程师、DevOps、Noah代码管家等）<br>
+                下方是Footer底部模块 ↓
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 任务所·FLOW FOOTER ==================== -->
+    <footer class="taskflow-footer">
+        <div class="footer-content">
+            
+            <!-- 上部分：品牌与链接 -->
+            <div class="footer-main">
+                
+                <!-- 品牌区 -->
+                <div class="footer-brand">
+                    <div class="footer-logo">任务所·Flow</div>
+                    <div class="footer-tagline">
+                        始于对话，成于流程
+                        <div class="footer-tagline-en">Start with dialogue, finish with process</div>
+                    </div>
+                    <div class="footer-tagline">
+                        AI驱动的智能协作编排系统，让开发流程更加高效流畅
+                    </div>
+                </div>
+
+                <!-- 产品列 -->
+                <div class="footer-column">
+                    <div class="footer-column-title">产品矩阵</div>
+                    <a href="#" class="footer-link">架构师AI</a>
+                    <a href="#" class="footer-link">全栈工程师AI</a>
+                    <a href="#" class="footer-link">DevOps工程师</a>
+                    <a href="#" class="footer-link">Noah代码管家</a>
+                    <a href="#" class="footer-link">
+                        实时脉搏
+                        <span class="footer-link-badge">NEW</span>
+                    </a>
+                </div>
+
+                <!-- 资源列 -->
+                <div class="footer-column">
+                    <div class="footer-column-title">开发资源</div>
+                    <a href="#" class="footer-link">使用文档</a>
+                    <a href="#" class="footer-link">API参考</a>
+                    <a href="#" class="footer-link">架构指南</a>
+                    <a href="#" class="footer-link">最佳实践</a>
+                    <a href="#" class="footer-link">案例研究</a>
+                </div>
+
+                <!-- 关于列 -->
+                <div class="footer-column">
+                    <div class="footer-column-title">关于我们</div>
+                    <a href="#" class="footer-link">产品介绍</a>
+                    <a href="#" class="footer-link">团队成员</a>
+                    <a href="#" class="footer-link">技术博客</a>
+                    <a href="#" class="footer-link">媒体资源</a>
+                    <a href="#" class="footer-link">联系方式</a>
+                </div>
+
+                <!-- 订阅区 -->
+                <div class="footer-subscribe">
+                    <div class="footer-subscribe-title">订阅更新</div>
+                    <div class="footer-subscribe-desc">
+                        订阅邮件通知，第一时间了解新功能和产品动态
+                    </div>
+                    <form class="subscribe-form" onsubmit="handleSubscribe(event)">
+                        <input 
+                            type="email" 
+                            class="subscribe-input" 
+                            placeholder="输入您的邮箱"
+                            required
+                        >
+                        <button type="submit" class="subscribe-button">订阅</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- 中部分：统计数据 -->
+            <div class="footer-stats">
+                <div class="stat-item">
+                    <div class="stat-value">10,000+</div>
+                    <div class="stat-label">活跃项目</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">50,000+</div>
+                    <div class="stat-label">完成任务</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">99.8%</div>
+                    <div class="stat-label">系统在线率</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">7×24</div>
+                    <div class="stat-label">AI在线支持</div>
+                </div>
+            </div>
+
+            <!-- 下部分：版权与备案 -->
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <div class="copyright-text">
+                        © 2025 任务所·Flow 版权所有
+                    </div>
+                    <div class="copyright-links">
+                        <a href="#" class="copyright-link">隐私政策</a>
+                        <a href="#" class="copyright-link">服务条款</a>
+                        <a href="#" class="copyright-link">Cookie设置</a>
+                        <a href="#" class="copyright-link">安全中心</a>
+                    </div>
+                </div>
+
+                <div class="footer-meta">
+                    <div class="meta-item">
+                        <span class="meta-badge">v2.1.0</span>
+                    </div>
+                    <div class="meta-item">
+                        精密构建
+                    </div>
+                    <div class="meta-item">
+                        Claude 驱动
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        // 订阅表单处理
+        function handleSubscribe(event) {
+            event.preventDefault();
+            const form = event.target;
+            const email = form.querySelector('.subscribe-input').value;
+            
+            // 这里可以添加实际的订阅逻辑
+            console.log('订阅邮箱:', email);
+            
+            // 显示成功提示
+            alert('感谢订阅！我们会及时向您推送最新功能和产品动态。');
+            
+            // 重置表单
+            form.reset();
+        }
+    </script>
+
+</body>
+</html>

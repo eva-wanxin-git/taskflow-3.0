@@ -1,0 +1,206 @@
+{
+  "user_requirements": [
+    {
+      "id": "REQ-USER-001",
+      "title": "实现实时协作编辑功能",
+      "user_description": "用户希望能够像Google Docs一样，多人同时编辑任务描述和文档，实时看到其他人的修改。",
+      "architect_requirements": [
+        "支持多人同时编辑，实时同步内容（WebSocket）",
+        "显示其他用户的光标位置和选区",
+        "自动解决内容冲突（CRDT算法）",
+        "完整的版本历史和回滚功能",
+        "离线编辑支持，上线后自动同步"
+      ],
+      "tags": ["实时协作", "WebSocket", "CRDT"],
+      "priority": "P0",
+      "priority_label": "紧急",
+      "estimated_hours": "20-24小时",
+      "submitted_at": "2025-11-18 10:30",
+      "status": "已转交开发",
+      "status_description": "架构师已优化并分配给全栈工程师",
+      "status_class": "completed"
+    },
+    {
+      "id": "REQ-USER-002",
+      "title": "移动端App开发",
+      "user_description": "用户希望能在手机上随时随地管理任务，查看进度，接收通知。",
+      "architect_requirements": [
+        "采用React Native实现跨平台（降低成本）",
+        "完整的任务管理功能（CRUD）",
+        "推送通知集成（Firebase Cloud Messaging）",
+        "离线模式支持（本地SQLite缓存）",
+        "与Web端数据同步（增量同步策略）"
+      ],
+      "tags": ["移动端", "React Native"],
+      "priority": "P1",
+      "priority_label": "重要",
+      "estimated_hours": "80-100小时",
+      "submitted_at": "2025-11-17 14:20",
+      "status": "正在评估",
+      "status_description": "架构师正在制定技术方案",
+      "status_class": "processing"
+    },
+    {
+      "id": "REQ-USER-003",
+      "title": "集成第三方日历（Google Calendar）",
+      "user_description": "用户希望将任务截止日期自动同步到Google Calendar，并支持双向同步。",
+      "architect_requirements": [],
+      "tags": ["第三方集成", "Google API"],
+      "priority": "P1",
+      "priority_label": "重要",
+      "estimated_hours": "12-16小时",
+      "submitted_at": "2025-11-16 09:15",
+      "status": "待审查",
+      "status_description": "待架构师审查",
+      "status_class": "pending"
+    },
+    {
+      "id": "REQ-USER-004",
+      "title": "支持自定义任务模板",
+      "user_description": "用户希望能够创建任务模板，快速生成重复性任务。例如：每周例会模板、项目启动模板等。",
+      "architect_requirements": [],
+      "tags": ["模板系统", "效率工具"],
+      "priority": "P2",
+      "priority_label": "正常",
+      "estimated_hours": "8-10小时",
+      "submitted_at": "2025-11-15 16:50",
+      "status": "待审查",
+      "status_description": "待架构师审查",
+      "status_class": "pending"
+    },
+    {
+      "id": "REQ-USER-005",
+      "title": "AWS云端部署，支持多租户多项目",
+      "user_description": "用户要求将系统部署到AWS云端，且必须支持多租户逻辑，即多项目分离。不同项目的数据、配置、权限完全隔离。",
+      "architect_requirements": [
+        "AWS架构设计：采用ECS/EKS容器化部署，支持弹性扩展",
+        "多租户数据隔离：每个项目独立数据库Schema或数据库实例",
+        "权限体系：基于项目的RBAC权限控制，支持项目级管理员",
+        "配置隔离：每个项目独立配置（API密钥、存储桶等）",
+        "计费系统：按项目统计资源使用量（Token、存储、API调用）",
+        "域名管理：支持自定义域名或子域名（project.taskflow.com）"
+      ],
+      "tags": ["AWS", "云部署", "多租户", "SaaS"],
+      "priority": "P0",
+      "priority_label": "紧急",
+      "estimated_hours": "120-160小时",
+      "submitted_at": "2025-11-21 19:00",
+      "status": "待审查",
+      "status_description": "待架构师制定详细技术方案",
+      "status_class": "pending"
+    },
+    {
+      "id": "REQ-USER-006",
+      "title": "记忆空间全自动升级：自动记忆+知识图谱构建",
+      "user_description": "用户希望记忆空间能够全自动化：1）自动记忆所有对话和决策，无需手动保存；2）自动构建知识图谱，发现概念关系和依赖；3）智能推荐相关记忆。",
+      "architect_requirements": [
+        "自动记忆机制：对话结束时自动保存，无需手动触发",
+        "实时知识图谱：Neo4j自动构建概念节点和关系边",
+        "语义分析：使用Claude识别关键概念、决策、问题",
+        "关系推理：自动发现概念间的依赖、继承、关联关系",
+        "智能推荐：基于当前上下文推荐相关历史记忆",
+        "可视化展示：知识图谱的交互式可视化界面"
+      ],
+      "tags": ["记忆系统", "知识图谱", "自动化", "Neo4j"],
+      "priority": "P1",
+      "priority_label": "重要",
+      "estimated_hours": "40-50小时",
+      "submitted_at": "2025-11-21 19:05",
+      "status": "待审查",
+      "status_description": "待架构师评估技术可行性",
+      "status_class": "pending"
+    },
+    {
+      "id": "REQ-USER-007",
+      "title": "代码管家AI完整AWS实现（24小时在线）",
+      "user_description": "用户要求实现完整的代码管家AI服务，调用Claude Haiku作为底层模型，部署到AWS实现24小时在线。能够实时监控代码变化、自动审查、生成建议。",
+      "architect_requirements": [
+        "AWS Lambda部署：无服务器架构，按需调用降低成本",
+        "Claude Haiku集成：API调用优化，控制成本（$0.25/1M tokens）",
+        "实时代码监控：GitHub Webhook触发Lambda函数",
+        "自动代码审查：检查代码质量、安全漏洞、性能问题",
+        "建议生成：基于最佳实践自动生成改进建议",
+        "通知系统：Slack/邮件通知关键问题和建议",
+        "成本控制：设置每日Token使用上限，避免超支"
+      ],
+      "tags": ["AI服务", "AWS Lambda", "Claude Haiku", "代码审查"],
+      "priority": "P1",
+      "priority_label": "重要",
+      "estimated_hours": "60-80小时",
+      "submitted_at": "2025-11-21 19:10",
+      "status": "待审查",
+      "status_description": "待架构师评估成本和可行性",
+      "status_class": "pending"
+    }
+  ],
+  "architect_suggestions": [
+    {
+      "id": "ARCH-SUGG-001",
+      "title": "优化Dashboard加载性能",
+      "source": "代码审查",
+      "finding": "通过代码审查发现Dashboard首屏加载时间过长（3.2秒），主要原因是一次性加载所有模块数据。",
+      "suggestion": "建议采用懒加载策略，只加载可见模块的数据。其他模块在Tab切换时再加载。预计可将首屏时间降至1秒以内。",
+      "tags": ["性能优化", "懒加载"],
+      "priority": "P1",
+      "priority_label": "重要",
+      "estimated_hours": "6-8小时",
+      "submitted_at": "2025-11-17 14:20",
+      "status": "待决策",
+      "status_description": "待架构师确认方案",
+      "status_class": "pending"
+    },
+    {
+      "id": "ARCH-SUGG-002",
+      "title": "重构状态管理架构",
+      "source": "架构扫描",
+      "finding": "扫描发现StateManager与新的数据库Schema不兼容，缺少6个必需字段（depends_on、blocked_by、revision_count等），导致任务列表无法显示。",
+      "suggestion": "建议立即修复StateManager的_task_dict_to_model方法，使用.get()方法兼容旧Schema，同时升级数据库Schema添加缺失字段。",
+      "tags": ["架构重构", "数据库"],
+      "priority": "P0",
+      "priority_label": "紧急",
+      "estimated_hours": "2-3小时",
+      "submitted_at": "2025-11-18 23:00",
+      "status": "已修复",
+      "status_description": "架构师已修复并验证",
+      "status_class": "completed"
+    },
+    {
+      "id": "ARCH-SUGG-003",
+      "title": "实现API端点统一错误处理",
+      "source": "代码审查",
+      "finding": "审查发现多个API端点缺少统一的错误处理机制，当数据文件不存在或格式错误时，会导致整个API服务崩溃。",
+      "suggestion": "建议实现全局异常处理中间件，捕获所有未处理的异常，返回统一的错误响应格式。同时添加数据文件的验证逻辑。",
+      "tags": ["错误处理", "稳定性"],
+      "priority": "P1",
+      "priority_label": "重要",
+      "estimated_hours": "4-5小时",
+      "submitted_at": "2025-11-19 10:00",
+      "status": "待决策",
+      "status_description": "待架构师确认实施时间",
+      "status_class": "pending"
+    },
+    {
+      "id": "ARCH-SUGG-004",
+      "title": "添加滚动条统一处理方案",
+      "source": "UI审查",
+      "finding": "通过血泪经验总结，Dashboard各个Tab模块的滚动条问题反复出现，每次都需要手动添加min-height:0等CSS。",
+      "suggestion": "建议建立统一的滚动容器组件规范，制定标准的4层结构模板，避免每个模块都重复踩坑。已完成文档记录。",
+      "tags": ["UI规范", "开发效率"],
+      "priority": "P2",
+      "priority_label": "正常",
+      "estimated_hours": "3-4小时",
+      "submitted_at": "2025-11-19 18:30",
+      "status": "已完成",
+      "status_description": "规范文档已完成",
+      "status_class": "completed"
+    }
+  ],
+  "stats": {
+    "total_user_requirements": 7,
+    "total_architect_suggestions": 4,
+    "pending_review": 6,
+    "in_progress": 1,
+    "completed": 2
+  }
+}
+

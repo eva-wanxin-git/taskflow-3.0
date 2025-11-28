@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记忆空间 - 数字图书馆 - 任务所·Flow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --black: #000000;
+            --gray-900: #212121;
+            --gray-700: #616161;
+            --gray-600: #757575;
+            --gray-500: #9E9E9E;
+            --gray-300: #E0E0E0;
+            --gray-100: #F5F5F5;
+            --white: #FFFFFF;
+            --red: #985239;
+            --blue: #537696;
+            
+            --space-2: 8px;
+            --space-4: 16px;
+            --space-6: 24px;
+            --space-8: 32px;
+            
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--white);
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+        
+        /* 头部 */
+        .header {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-300);
+            padding: var(--space-4) var(--space-8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .back-button {
+            text-decoration: none;
+            color: var(--gray-700);
+            font-size: 14px;
+        }
+        
+        .back-button:hover {
+            color: var(--black);
+        }
+        
+        .page-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--black);
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: var(--space-4);
+        }
+        
+        .btn {
+            padding: var(--space-2) var(--space-4);
+            font-size: 13px;
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+        
+        .btn-primary {
+            background: var(--red);
+            color: var(--white);
+            border-color: var(--red);
+        }
+        
+        .btn-primary:hover {
+            background: var(--black);
+        }
+        
+        /* 主容器 */
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: var(--space-8);
+        }
+        
+        /* 快速操作栏 */
+        .quick-actions {
+            background: linear-gradient(135deg, var(--gray-100) 0%, var(--white) 100%);
+            border: 1px solid var(--gray-300);
+            padding: var(--space-6);
+            margin-bottom: var(--space-6);
+            display: flex;
+            gap: var(--space-4);
+        }
+        
+        .quick-action-btn {
+            flex: 1;
+            padding: var(--space-4);
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            cursor: pointer;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .quick-action-btn:hover {
+            background: var(--black);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        /* 统计脉搏 */
+        .stats-pulse {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+        
+        .mini-card {
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            border-top: 2px solid var(--blue);
+            padding: var(--space-4);
+            text-align: center;
+        }
+        
+        .mini-card-value {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: var(--space-2);
+        }
+        
+        .mini-card-label {
+            font-size: 11px;
+            color: var(--gray-600);
+        }
+        
+        /* 筛选导航 */
+        .filter-tabs {
+            display: flex;
+            gap: var(--space-2);
+            margin-bottom: var(--space-6);
+            border-bottom: 1px solid var(--gray-300);
+        }
+        
+        .filter-tab {
+            padding: var(--space-4) var(--space-6);
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-700);
+            transition: all 0.2s;
+        }
+        
+        .filter-tab:hover {
+            color: var(--black);
+        }
+        
+        .filter-tab.active {
+            color: var(--red);
+            border-bottom-color: var(--red);
+        }
+        
+        /* 记忆瀑布流 */
+        .memories-masonry {
+            column-count: 3;
+            column-gap: var(--space-6);
+        }
+        
+        .memory-card {
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            border-top: 3px solid var(--blue);
+            padding: var(--space-6);
+            margin-bottom: var(--space-6);
+            break-inside: avoid;
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            cursor: pointer;
+        }
+        
+        .memory-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+        
+        .memory-card.decision {
+            border-top-color: var(--red);
+        }
+        
+        .memory-card.solution {
+            border-top-color: #2E7D32;
+        }
+        
+        .memory-card.knowledge {
+            border-top-color: var(--blue);
+        }
+        
+        .memory-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-4);
+        }
+        
+        .memory-icon {
+            font-size: 20px;
+        }
+        
+        .memory-type {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--gray-600);
+            text-transform: uppercase;
+        }
+        
+        .memory-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: var(--space-4);
+            line-height: 1.3;
+        }
+        
+        .memory-content {
+            font-size: 13px;
+            color: var(--gray-700);
+            line-height: 1.6;
+            margin-bottom: var(--space-4);
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .memory-importance {
+            margin-bottom: var(--space-4);
+        }
+        
+        .star-rating {
+            display: flex;
+            gap: 2px;
+            font-size: 14px;
+        }
+        
+        .importance-label {
+            font-size: 10px;
+            color: var(--gray-600);
+            margin-top: 4px;
+        }
+        
+        .memory-footer {
+            padding-top: var(--space-4);
+            border-top: 1px solid var(--gray-300);
+        }
+        
+        .memory-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-bottom: var(--space-2);
+        }
+        
+        .tag {
+            padding: 2px 6px;
+            background: var(--gray-100);
+            border-radius: 2px;
+            font-size: 10px;
+            color: var(--gray-700);
+        }
+        
+        .memory-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: var(--gray-600);
+        }
+        
+        .memory-actions {
+            margin-top: var(--space-4);
+            display: flex;
+            gap: var(--space-2);
+        }
+        
+        .memory-action-btn {
+            flex: 1;
+            padding: var(--space-2);
+            font-size: 11px;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-300);
+            cursor: pointer;
+        }
+        
+        .memory-action-btn:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+        
+        /* 响应式 */
+        @media (max-width: 1200px) {
+            .memories-masonry {
+                column-count: 2;
+            }
+            
+            .stats-pulse {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .memories-masonry {
+                column-count: 1;
+            }
+            
+            .quick-actions {
+                flex-direction: column;
+            }
+        }
+        
+        /* 加载状态 */
+        .loading {
+            text-align: center;
+            padding: var(--space-8);
+            color: var(--gray-600);
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--gray-300);
+            border-top-color: var(--red);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <div class="header">
+        <a href="/" class="back-button">← 返回Dashboard</a>
+        <div class="page-title">💡 项目记忆空间 - TASKFLOW</div>
+        <div class="header-actions">
+            <button class="btn-primary" onclick="recordADR()">+ 记录</button>
+            <button class="btn" onclick="searchMemories()">🔍 搜索</button>
+        </div>
+    </div>
+    
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 快速操作栏 -->
+        <div class="quick-actions">
+            <button class="quick-action-btn" onclick="recordADR()">📋 记录ADR</button>
+            <button class="quick-action-btn" onclick="recordSolution()">🐛 记录问题方案</button>
+            <button class="quick-action-btn" onclick="semanticSearch()">🔍 语义搜索</button>
+            <button class="quick-action-btn" onclick="viewRelationGraph()">🕸️ 关系图谱</button>
+        </div>
+        
+        <!-- 统计脉搏 -->
+        <div class="stats-pulse">
+            <div class="mini-card">
+                <div class="mini-card-value" id="totalMemories">45</div>
+                <div class="mini-card-label">📚 条记忆</div>
+            </div>
+            <div class="mini-card">
+                <div class="mini-card-value" id="decisionCount">12</div>
+                <div class="mini-card-label">🏛️ 个决策</div>
+            </div>
+            <div class="mini-card">
+                <div class="mini-card-value" id="solutionCount">23</div>
+                <div class="mini-card-label">🔧 个方案</div>
+            </div>
+            <div class="mini-card">
+                <div class="mini-card-value" id="importantCount">8</div>
+                <div class="mini-card-label">⭐ 条重要</div>
+            </div>
+        </div>
+        
+        <!-- 筛选导航 -->
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">全部</button>
+            <button class="filter-tab" data-filter="decision">🏛️ 决策</button>
+            <button class="filter-tab" data-filter="solution">🔧 方案</button>
+            <button class="filter-tab" data-filter="architecture">📐 架构</button>
+            <button class="filter-tab" data-filter="knowledge">💡 知识</button>
+            <button class="filter-tab" data-filter="important">⭐ 重要</button>
+        </div>
+        
+        <!-- 记忆瀑布流 -->
+        <div id="memoriesContainer">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <div style="margin-top: var(--space-4);">加载中...</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let allMemories = [];
+        let currentFilter = 'all';
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('💡 记忆空间已加载');
+            loadMemories();
+            setupFilters();
+        });
+        
+        // 加载记忆
+        async function loadMemories() {
+            try {
+                const response = await fetch('/api/memories/list?limit=100');
+                const data = await response.json();
+                
+                if (data.success && data.memories) {
+                    allMemories = data.memories;
+                    renderMemories();
+                    updateStats();
+                    console.log('✅ 记忆已加载:', allMemories.length);
+                } else {
+                    // 使用示例数据
+                    allMemories = [
+                        {
+                            id: 'MEM-001',
+                            type: 'decision',
+                            title: '采用Monorepo架构',
+                            content: '项目规模扩大，需要统一管理多个包。决定使用pnpm workspace实现Monorepo架构。',
+                            importance: 8,
+                            tags: ['architecture', 'monorepo', 'decision'],
+                            created_at: '2天前',
+                            related_count: 3
+                        },
+                        {
+                            id: 'MEM-002',
+                            type: 'solution',
+                            title: '解决Tab切换失败问题',
+                            content: 'JavaScript模板字符串反引号未转义导致语法错误。在Python f-string中添加反斜杠转义。',
+                            importance: 8,
+                            tags: ['bug', 'fix', 'javascript'],
+                            created_at: '5天前',
+                            related_count: 5
+                        },
+                        {
+                            id: 'MEM-003',
+                            type: 'knowledge',
+                            title: 'React Hooks最佳实践',
+                            content: 'useCallback优化性能，避免不必要的重渲染。依赖数组需要谨慎设置。',
+                            importance: 7,
+                            tags: ['react', 'hooks', 'performance'],
+                            created_at: '1周前',
+                            related_count: 2
+                        },
+                        {
+                            id: 'MEM-004',
+                            type: 'decision',
+                            title: '使用FastAPI构建API',
+                            content: '需要快速开发RESTful API。FastAPI提供自动文档、类型检查、异步支持。',
+                            importance: 9,
+                            tags: ['api', 'fastapi', 'python'],
+                            created_at: '2周前',
+                            related_count: 4
+                        },
+                        {
+                            id: 'MEM-005',
+                            type: 'solution',
+                            title: 'SQLite并发锁表解决',
+                            content: '多个进程同时写入导致database is locked错误。使用连接池和重试机制解决。',
+                            importance: 8,
+                            tags: ['database', 'sqlite', 'concurrency'],
+                            created_at: '10天前',
+                            related_count: 3
+                        },
+                        {
+                            id: 'MEM-006',
+                            type: 'knowledge',
+                            title: 'Dashboard缓存策略',
+                            content: '使用版本号控制缓存，Service Worker注册，meta标签禁用缓存。',
+                            importance: 7,
+                            tags: ['cache', 'frontend', 'optimization'],
+                            created_at: '1周前',
+                            related_count: 2
+                        }
+                    ];
+                    renderMemories();
+                    updateStats();
+                }
+            } catch (error) {
+                console.error('❌ 加载记忆失败:', error);
+                document.getElementById('memoriesContainer').innerHTML = `
+                    <div class="loading">
+                        <div style="color: var(--error);">加载失败: ${error.message}</div>
+                    </div>
+                `;
+            }
+        }
+        
+        // 渲染记忆
+        function renderMemories() {
+            const container = document.getElementById('memoriesContainer');
+            
+            // 过滤记忆
+            let filtered = allMemories;
+            if (currentFilter !== 'all') {
+                if (currentFilter === 'important') {
+                    filtered = allMemories.filter(m => m.importance >= 8);
+                } else {
+                    filtered = allMemories.filter(m => m.type === currentFilter);
+                }
+            }
+            
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="loading">
+                        <div style="font-size: 48px;">💡</div>
+                        <div style="margin-top: var(--space-4);">暂无记忆</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            const masonry = document.createElement('div');
+            masonry.className = 'memories-masonry';
+            
+            filtered.forEach(memory => {
+                const typeClass = memory.type || 'knowledge';
+                const card = document.createElement('div');
+                card.className = `memory-card ${typeClass}`;
+                
+                // 生成星级
+                const stars = generateStars(memory.importance);
+                
+                card.innerHTML = `
+                    <div class="memory-header">
+                        <div class="memory-icon">${getTypeIcon(memory.type)}</div>
+                        <div class="memory-type">${getTypeText(memory.type)}</div>
+                    </div>
+                    <div class="memory-title">${memory.title}</div>
+                    <div class="memory-content">${memory.content}</div>
+                    <div class="memory-importance">
+                        <div class="star-rating">${stars}</div>
+                        <div class="importance-label">重要性: ${memory.importance}/10</div>
+                    </div>
+                    <div class="memory-footer">
+                        <div class="memory-tags">
+                            ${memory.tags ? memory.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
+                        </div>
+                        <div class="memory-meta">
+                            <span>📅 ${memory.created_at}</span>
+                            <span>🔗 ${memory.related_count}个关联</span>
+                        </div>
+                        <div class="memory-actions">
+                            <button class="memory-action-btn" onclick="event.stopPropagation(); viewMemory('${memory.id}')">查看</button>
+                            <button class="memory-action-btn" onclick="event.stopPropagation(); viewRelations('${memory.id}')">关系</button>
+                        </div>
+                    </div>
+                `;
+                
+                card.addEventListener('click', function() {
+                    viewMemory(memory.id);
+                });
+                
+                masonry.appendChild(card);
+            });
+            
+            container.innerHTML = '';
+            container.appendChild(masonry);
+        }
+        
+        // 更新统计
+        function updateStats() {
+            document.getElementById('totalMemories').textContent = allMemories.length;
+            document.getElementById('decisionCount').textContent = 
+                allMemories.filter(m => m.type === 'decision').length;
+            document.getElementById('solutionCount').textContent = 
+                allMemories.filter(m => m.type === 'solution').length;
+            document.getElementById('importantCount').textContent = 
+                allMemories.filter(m => m.importance >= 8).length;
+        }
+        
+        // 设置筛选器
+        function setupFilters() {
+            const tabs = document.querySelectorAll('.filter-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.filter;
+                    renderMemories();
+                    console.log('筛选器:', currentFilter);
+                });
+            });
+        }
+        
+        // 生成星级
+        function generateStars(importance) {
+            const starCount = Math.ceil(importance);
+            let stars = '';
+            for (let i = 0; i < starCount; i++) {
+                stars += '⭐';
+            }
+            return stars;
+        }
+        
+        // 获取类型图标
+        function getTypeIcon(type) {
+            const icons = {
+                'decision': '🏛️',
+                'solution': '🔧',
+                'architecture': '📐',
+                'knowledge': '💡',
+                'problem': '🐛'
+            };
+            return icons[type] || '📝';
+        }
+        
+        // 获取类型文字
+        function getTypeText(type) {
+            const texts = {
+                'decision': 'ADR',
+                'solution': '方案',
+                'architecture': '架构',
+                'knowledge': '知识',
+                'problem': '问题'
+            };
+            return texts[type] || type;
+        }
+        
+        // 查看记忆
+        function viewMemory(memoryId) {
+            console.log('查看记忆:', memoryId);
+            alert('记忆详情功能开发中...');
+        }
+        
+        // 查看关系
+        function viewRelations(memoryId) {
+            console.log('查看关系:', memoryId);
+            alert('关系图谱功能开发中...');
+        }
+        
+        // 记录ADR
+        function recordADR() {
+            window.location.href = '/adr-recorder';
+        }
+        
+        // 记录解决方案
+        function recordSolution() {
+            alert('问题方案记录功能开发中...');
+        }
+        
+        // 语义搜索
+        function semanticSearch() {
+            alert('语义搜索功能开发中...');
+        }
+        
+        // 查看关系图谱
+        function viewRelationGraph() {
+            window.location.href = '/memory-constellation';
+        }
+        
+        // 搜索记忆
+        function searchMemories() {
+            const keyword = prompt('请输入搜索关键词:');
+            if (keyword) {
+                console.log('搜索:', keyword);
+                alert('搜索功能开发中...');
+            }
+        }
+    </script>
+</body>
+</html>
+

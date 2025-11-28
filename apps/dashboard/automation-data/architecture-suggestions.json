@@ -1,0 +1,127 @@
+{
+  "updated_at": "2025-11-20T14:08:17.603931",
+  "project_id": "TASKFLOW",
+  "total": 12,
+  "suggestions": [
+    {
+      "id": "SUGG-001",
+      "title": "实现自动化看板刷新",
+      "category": "自动化",
+      "rationale": "当前看板更新依赖人工",
+      "benefit": "效率提升50%",
+      "cost": "2.5小时",
+      "priority": "P1",
+      "estimated_hours": 2.5
+    },
+    {
+      "id": "SUGG-002",
+      "title": "前后端数据连接MVP",
+      "category": "功能实现",
+      "rationale": "Dashboard前端完整但显示静态数据",
+      "benefit": "Dashboard立即可用",
+      "cost": "10小时",
+      "priority": "P0",
+      "estimated_hours": 10.0
+    },
+    {
+      "id": "SUGG-003",
+      "title": "统一端口配置管理",
+      "category": "配置管理",
+      "rationale": "端口配置散落在多个文件",
+      "benefit": "减少配置错误",
+      "cost": "2小时",
+      "priority": "P1",
+      "estimated_hours": 2.0
+    },
+    {
+      "id": "SUGG-004",
+      "title": "添加API认证机制",
+      "category": "安全",
+      "rationale": "当前API无认证",
+      "benefit": "保障系统安全",
+      "cost": "4小时",
+      "priority": "P2",
+      "estimated_hours": 4.0
+    },
+    {
+      "id": "SUGG-005",
+      "title": "实现WebSocket实时推送",
+      "category": "实时功能",
+      "rationale": "当前Dashboard需要轮询刷新",
+      "benefit": "降低服务器负载",
+      "cost": "2小时",
+      "priority": "P2",
+      "estimated_hours": 2.0
+    },
+    {
+      "id": "SUGG-006",
+      "title": "完善测试覆盖率",
+      "category": "质量保障",
+      "rationale": "当前测试覆盖率低",
+      "benefit": "提升代码质量",
+      "cost": "8小时",
+      "priority": "P1",
+      "estimated_hours": 8.0
+    },
+    {
+      "id": "SUGG-007",
+      "title": "集成结构化日志",
+      "category": "可观测性",
+      "rationale": "当前缺少日志",
+      "benefit": "提升问题定位效率",
+      "cost": "2小时",
+      "priority": "P1",
+      "estimated_hours": 2.0
+    },
+    {
+      "id": "SUGG-008",
+      "title": "前后端分离重构",
+      "category": "架构优化",
+      "rationale": "当前前端是6815行单HTML文件",
+      "benefit": "提升可维护性",
+      "cost": "40小时",
+      "priority": "P3",
+      "estimated_hours": 40.0
+    },
+    {
+      "id": "SUGG-009",
+      "title": "实现性能监控",
+      "category": "可观测性",
+      "rationale": "缺少性能数据",
+      "benefit": "优化系统性能",
+      "cost": "3小时",
+      "priority": "P2",
+      "estimated_hours": 3.0
+    },
+    {
+      "id": "SUGG-010",
+      "title": "建立CI/CD流程",
+      "category": "DevOps",
+      "rationale": "当前手动部署",
+      "benefit": "自动化部署",
+      "cost": "6小时",
+      "priority": "P2",
+      "estimated_hours": 6.0
+    },
+    {
+      "id": "SUGG-011",
+      "title": "实现数据库自动备份",
+      "category": "数据安全",
+      "rationale": "当前没有备份机制",
+      "benefit": "防止数据丢失",
+      "cost": "2小时",
+      "priority": "P1",
+      "estimated_hours": 2.0
+    },
+    {
+      "id": "SUGG-012",
+      "title": "添加API限流保护",
+      "category": "安全",
+      "rationale": "API可能被恶意调用",
+      "benefit": "保护服务稳定",
+      "cost": "2小时",
+      "priority": "P2",
+      "estimated_hours": 2.0
+    }
+  ]
+}

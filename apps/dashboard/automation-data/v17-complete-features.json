@@ -1,0 +1,1385 @@
+{
+  "implemented": [
+    {
+      "id": "INFRA-001",
+      "name": "SQLite数据库持久化",
+      "type": "基础设施",
+      "file": "database/data/tasks.db",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "INFRA-002",
+      "name": "StateManager状态管理",
+      "type": "基础设施",
+      "file": "automation/state_manager.py",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "INFRA-003",
+      "name": "3表任务数据库",
+      "type": "基础设施",
+      "file": "database/schemas/v1_tasks_schema.sql",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "INFRA-004",
+      "name": "任务CRUD操作",
+      "type": "基础设施",
+      "file": "automation/state_manager.py",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "INFRA-005",
+      "name": "配置系统(YAML)",
+      "type": "基础设施",
+      "file": "automation/config.py",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "INFRA-006",
+      "name": "知识库数据库扩展(12表)",
+      "type": "基础设施",
+      "file": "database/schemas/v2_knowledge_schema.sql",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "INFRA-007",
+      "name": "数据库迁移工具",
+      "type": "基础设施",
+      "file": "database/migrations/migrate.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "INFRA-008",
+      "name": "端口管理器(PortManager)",
+      "type": "基础设施",
+      "file": "packages/shared-utils/port_manager.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "INFRA-009",
+      "name": "Monorepo目录结构",
+      "type": "基础设施",
+      "file": "docs/adr/0001-monorepo-structure.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "TASK-001",
+      "name": "任务创建和编辑",
+      "type": "任务管理",
+      "file": "automation/state_manager.py",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "TASK-002",
+      "name": "任务状态流转(5状态)",
+      "type": "任务管理",
+      "file": "automation/models.py",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "TASK-003",
+      "name": "任务优先级管理(P0-P3)",
+      "type": "任务管理",
+      "file": "automation/models.py",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "TASK-004",
+      "name": "任务依赖关系",
+      "type": "任务管理",
+      "file": "database/schemas/v1_tasks_schema.sql",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "TASK-005",
+      "name": "任务完成详情记录",
+      "type": "任务管理",
+      "file": "database/schemas/v1_tasks_schema.sql",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "TASK-006",
+      "name": "任务分配给Worker",
+      "type": "任务管理",
+      "file": "automation/task_scheduler.py",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "DEP-001",
+      "name": "循环依赖检测(DFS算法)",
+      "type": "算法",
+      "file": "automation/dependency_analyzer.py",
+      "version": "v1.5",
+      "completion": 1.0
+    },
+    {
+      "id": "DEP-002",
+      "name": "拓扑排序(Kahn算法)",
+      "type": "算法",
+      "file": "automation/dependency_analyzer.py",
+      "version": "v1.5",
+      "completion": 1.0
+    },
+    {
+      "id": "DEP-003",
+      "name": "关键路径分析(CPM)",
+      "type": "算法",
+      "file": "automation/dependency_analyzer.py",
+      "version": "v1.5",
+      "completion": 1.0
+    },
+    {
+      "id": "DEP-004",
+      "name": "并行任务分组",
+      "type": "算法",
+      "file": "automation/dependency_analyzer.py",
+      "version": "v1.5",
+      "completion": 1.0
+    },
+    {
+      "id": "SCHED-001",
+      "name": "Worker注册管理",
+      "type": "调度",
+      "file": "automation/task_scheduler.py",
+      "version": "v1.5",
+      "completion": 1.0
+    },
+    {
+      "id": "SCHED-002",
+      "name": "任务负载均衡",
+      "type": "调度",
+      "file": "automation/task_scheduler.py",
+      "version": "v1.5",
+      "completion": 1.0
+    },
+    {
+      "id": "SCHED-003",
+      "name": "能力匹配分配",
+      "type": "调度",
+      "file": "automation/task_scheduler.py",
+      "version": "v1.5",
+      "completion": 1.0
+    },
+    {
+      "id": "SCHED-004",
+      "name": "Worker健康检查",
+      "type": "调度",
+      "file": "automation/task_scheduler.py",
+      "version": "v1.5",
+      "completion": 1.0
+    },
+    {
+      "id": "UI-001",
+      "name": "实时任务列表",
+      "type": "前端",
+      "file": "industrial_dashboard/dashboard.py",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "UI-002",
+      "name": "统计卡片(4个指标)",
+      "type": "前端",
+      "file": "industrial_dashboard/templates.py",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "UI-003",
+      "name": "进度条可视化",
+      "type": "前端",
+      "file": "industrial_dashboard/templates.py",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "UI-004",
+      "name": "自动刷新(10秒)",
+      "type": "前端",
+      "file": "industrial_dashboard/templates.py",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "UI-005",
+      "name": "工业美学设计",
+      "type": "前端",
+      "file": "industrial_dashboard/templates.py",
+      "version": "v1.6",
+      "completion": 1.0
+    },
+    {
+      "id": "UI-006",
+      "name": "浅色主题+等宽字体",
+      "type": "前端",
+      "file": "industrial_dashboard/templates.py",
+      "version": "v1.6",
+      "completion": 1.0
+    },
+    {
+      "id": "UI-007",
+      "name": "Tab切换功能",
+      "type": "前端",
+      "file": "industrial_dashboard/templates.py",
+      "version": "v1.6",
+      "completion": 1.0
+    },
+    {
+      "id": "UI-008",
+      "name": "多模块Dashboard",
+      "type": "前端",
+      "file": "industrial_dashboard/templates.py",
+      "version": "v1.6",
+      "completion": 1.0
+    },
+    {
+      "id": "API-001",
+      "name": "RESTful API框架(FastAPI)",
+      "type": "后端API",
+      "file": "industrial_dashboard/dashboard.py",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "API-002",
+      "name": "GET /api/tasks",
+      "type": "后端API",
+      "file": "industrial_dashboard/dashboard.py",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "API-003",
+      "name": "GET /api/stats",
+      "type": "后端API",
+      "file": "industrial_dashboard/dashboard.py",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "API-004",
+      "name": "GET /health健康检查",
+      "type": "后端API",
+      "file": "industrial_dashboard/dashboard.py",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "API-005",
+      "name": "CORS跨域配置",
+      "type": "后端API",
+      "file": "industrial_dashboard/dashboard.py",
+      "version": "v1.0",
+      "completion": 1.0
+    },
+    {
+      "id": "API-006",
+      "name": "GET /api/dependencies/*",
+      "type": "后端API",
+      "file": "industrial_dashboard/dashboard.py",
+      "version": "v1.5",
+      "completion": 1.0
+    },
+    {
+      "id": "API-007",
+      "name": "GET /api/project_scan",
+      "type": "后端API",
+      "file": "industrial_dashboard/dashboard.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "API-008",
+      "name": "GET /api/architect_monitor",
+      "type": "后端API",
+      "file": "industrial_dashboard/dashboard.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "API-009",
+      "name": "GET /api/architect_events",
+      "type": "后端API",
+      "file": "industrial_dashboard/dashboard.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "API-010",
+      "name": "GET /api/developer_knowledge/*",
+      "type": "后端API",
+      "file": "industrial_dashboard/dashboard.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "API-011",
+      "name": "GET /api/tester_knowledge/*",
+      "type": "后端API",
+      "file": "industrial_dashboard/dashboard.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "API-012",
+      "name": "GET /api/ops_knowledge/*",
+      "type": "后端API",
+      "file": "industrial_dashboard/dashboard.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "API-013",
+      "name": "GET /api/delivery_docs/*",
+      "type": "后端API",
+      "file": "industrial_dashboard/dashboard.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "API-014",
+      "name": "Architect API路由(6个端点)",
+      "type": "后端API",
+      "file": "apps/api/src/routes/architect.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "AI-001",
+      "name": "架构师AI Prompt(8000字)",
+      "type": "AI文档",
+      "file": "docs/ai/architect-system-prompt-expert.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "AI-002",
+      "name": "全栈工程师AI Prompt(7000字)",
+      "type": "AI文档",
+      "file": "docs/ai/fullstack-engineer-system-prompt.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "AI-003",
+      "name": "代码管家AI Prompt(5000字)",
+      "type": "AI文档",
+      "file": "docs/ai/code-steward-system-prompt.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "AI-004",
+      "name": "SRE AI Prompt(4500字)",
+      "type": "AI文档",
+      "file": "docs/ai/sre-system-prompt.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "AI-005",
+      "name": "AI团队协作指南",
+      "type": "AI文档",
+      "file": "docs/ai/AI-TEAM-GUIDE.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "AI-006",
+      "name": "Cursor使用指南",
+      "type": "AI文档",
+      "file": "docs/ai/how-to-use-architect-with-cursor.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "AI-007",
+      "name": "架构师入职清单",
+      "type": "AI文档",
+      "file": "docs/ai/architect-onboarding-checklist.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "AI-008",
+      "name": "任务提示词模板",
+      "type": "AI文档",
+      "file": "docs/ai/task-prompt-template.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "AI-009",
+      "name": "ArchitectOrchestrator服务",
+      "type": "AI服务",
+      "file": "apps/api/src/services/architect_orchestrator.py",
+      "version": "v1.7",
+      "completion": 0.9
+    },
+    {
+      "id": "AI-010",
+      "name": "架构分析JSON模型(Pydantic)",
+      "type": "AI服务",
+      "file": "apps/api/src/services/architect_orchestrator.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "AI-011",
+      "name": "任务看板Markdown生成",
+      "type": "AI服务",
+      "file": "apps/api/src/services/architect_orchestrator.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "AI-012",
+      "name": "交接快照保存",
+      "type": "AI服务",
+      "file": "apps/api/src/services/architect_orchestrator.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "KB-001",
+      "name": "projects项目表",
+      "type": "知识库",
+      "file": "database/schemas/v2_knowledge_schema.sql",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "KB-002",
+      "name": "components组件表",
+      "type": "知识库",
+      "file": "database/schemas/v2_knowledge_schema.sql",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "KB-003",
+      "name": "issues问题记录表",
+      "type": "知识库",
+      "file": "database/schemas/v2_knowledge_schema.sql",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "KB-004",
+      "name": "solutions解决方案表",
+      "type": "知识库",
+      "file": "database/schemas/v2_knowledge_schema.sql",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "KB-005",
+      "name": "decisions技术决策表",
+      "type": "知识库",
+      "file": "database/schemas/v2_knowledge_schema.sql",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "KB-006",
+      "name": "knowledge_articles知识文章表",
+      "type": "知识库",
+      "file": "database/schemas/v2_knowledge_schema.sql",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "KB-007",
+      "name": "tools工具表",
+      "type": "知识库",
+      "file": "database/schemas/v2_knowledge_schema.sql",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "KB-008",
+      "name": "component_tools组件工具关联",
+      "type": "知识库",
+      "file": "database/schemas/v2_knowledge_schema.sql",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "KB-009",
+      "name": "deployments部署记录表",
+      "type": "知识库",
+      "file": "database/schemas/v2_knowledge_schema.sql",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "KB-010",
+      "name": "知识图谱查询能力",
+      "type": "知识库",
+      "file": "database/schemas/v2_knowledge_schema.sql",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DATA-001",
+      "name": "开发者知识库(4文档)",
+      "type": "Dashboard数据",
+      "file": "automation-data/developer-knowledge/",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DATA-002",
+      "name": "测试知识库(2文档)",
+      "type": "Dashboard数据",
+      "file": "automation-data/tester-knowledge/",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DATA-003",
+      "name": "运维知识库(4文档)",
+      "type": "Dashboard数据",
+      "file": "automation-data/ops/",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DATA-004",
+      "name": "交付文档(2文档)",
+      "type": "Dashboard数据",
+      "file": "automation-data/delivery-docs/",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DATA-005",
+      "name": "项目背景(2文档)",
+      "type": "Dashboard数据",
+      "file": "automation-data/01-background/",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DATA-006",
+      "name": "模块数据库(2JSON)",
+      "type": "Dashboard数据",
+      "file": "automation-data/02-modules-db/",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DATA-007",
+      "name": "标准规范文档",
+      "type": "Dashboard数据",
+      "file": "automation-data/08-standards/",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DATA-008",
+      "name": "架构师监控数据",
+      "type": "Dashboard数据",
+      "file": "automation-data/architect_monitor.json",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DATA-009",
+      "name": "架构师事件流(12事件)",
+      "type": "Dashboard数据",
+      "file": "automation-data/architect_events.json",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DATA-010",
+      "name": "架构师对话记录",
+      "type": "Dashboard数据",
+      "file": "automation-data/architect-conversations.json",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DATA-011",
+      "name": "架构师重要信息(4文档)",
+      "type": "Dashboard数据",
+      "file": "automation-data/architect-notes/",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DATA-012",
+      "name": "AI提示词加载(172KB)",
+      "type": "Dashboard数据",
+      "file": "automation-data/09-role-prompts/",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DOC-001",
+      "name": "架构审查报告(9000字)",
+      "type": "文档",
+      "file": "docs/arch/architecture-review.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DOC-002",
+      "name": "任务看板文档",
+      "type": "文档",
+      "file": "docs/tasks/task-board.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DOC-003",
+      "name": "ADR架构决策记录",
+      "type": "文档",
+      "file": "docs/adr/0001-monorepo-structure.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DOC-004",
+      "name": "架构师工作流程文档",
+      "type": "文档",
+      "file": "docs/arch/architect-workflow.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DOC-005",
+      "name": "Phase完成报告(6份)",
+      "type": "文档",
+      "file": "docs/reports/",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DOC-006",
+      "name": "快速使用指南",
+      "type": "文档",
+      "file": "📖快速使用指南.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DOC-007",
+      "name": "AI文档完整索引",
+      "type": "文档",
+      "file": "📚AI文档完整索引.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "DOC-008",
+      "name": "START_HERE入口文档",
+      "type": "文档",
+      "file": "📍START_HERE.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "TOOL-001",
+      "name": "任务录入脚本",
+      "type": "工具",
+      "file": "scripts/create_v17_tasks.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "TOOL-002",
+      "name": "Schema修复脚本",
+      "type": "工具",
+      "file": "scripts/fix_schema_for_dashboard.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "TOOL-003",
+      "name": "Dashboard数据更新脚本",
+      "type": "工具",
+      "file": "scripts/update_dashboard_data_v17.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "TOOL-004",
+      "name": "数据库测试脚本",
+      "type": "工具",
+      "file": "scripts/test_knowledge_db.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "TOOL-005",
+      "name": "一键启动脚本",
+      "type": "工具",
+      "file": "🚀启动任务所.bat",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "MOD-001",
+      "name": "功能清单模块(3 Tab)",
+      "type": "Dashboard模块",
+      "file": "industrial_dashboard/templates.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "MOD-002",
+      "name": "待完成任务列表",
+      "type": "Dashboard模块",
+      "file": "industrial_dashboard/templates.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "MOD-003",
+      "name": "ARCHITECT MONITOR(4 Tab)",
+      "type": "Dashboard模块",
+      "file": "industrial_dashboard/templates.py",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "MOD-004",
+      "name": "AI代码管家模块",
+      "type": "Dashboard模块",
+      "file": "industrial_dashboard/templates.py",
+      "version": "v1.6",
+      "completion": 1.0
+    },
+    {
+      "id": "MOD-005",
+      "name": "测试工程师模块",
+      "type": "Dashboard模块",
+      "file": "industrial_dashboard/templates.py",
+      "version": "v1.6",
+      "completion": 1.0
+    },
+    {
+      "id": "MOD-006",
+      "name": "交付工程师模块",
+      "type": "Dashboard模块",
+      "file": "industrial_dashboard/templates.py",
+      "version": "v1.6",
+      "completion": 1.0
+    },
+    {
+      "id": "MOD-007",
+      "name": "运维SRE模块",
+      "type": "Dashboard模块",
+      "file": "industrial_dashboard/templates.py",
+      "version": "v1.6",
+      "completion": 1.0
+    },
+    {
+      "id": "MOD-008",
+      "name": "UX/UI确认模块",
+      "type": "Dashboard模块",
+      "file": "industrial_dashboard/templates.py",
+      "version": "v1.6",
+      "completion": 1.0
+    },
+    {
+      "id": "ARCH-001",
+      "name": "代码扫描能力",
+      "type": "架构审查",
+      "file": "docs/arch/architecture-review.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "ARCH-002",
+      "name": "功能识别(已实现/半成品)",
+      "type": "架构审查",
+      "file": "docs/arch/architecture-review.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "ARCH-003",
+      "name": "问题识别(Critical/High/Medium)",
+      "type": "架构审查",
+      "file": "docs/arch/architecture-review.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "ARCH-004",
+      "name": "代码质量评分(7维度)",
+      "type": "架构审查",
+      "file": "docs/arch/architecture-review.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "ARCH-005",
+      "name": "任务自动拆解",
+      "type": "架构审查",
+      "file": "docs/tasks/task-board.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "ARCH-006",
+      "name": "依赖关系识别",
+      "type": "架构审查",
+      "file": "database/data/tasks.db",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "ARCH-007",
+      "name": "优先级自动标注",
+      "type": "架构审查",
+      "file": "docs/tasks/task-board.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "ARCH-008",
+      "name": "工时自动预估",
+      "type": "架构审查",
+      "file": "docs/tasks/task-board.md",
+      "version": "v1.7",
+      "completion": 1.0
+    },
+    {
+      "id": "ARCH-DOC-001",
+      "name": "架构清单文档(architecture-inventory.md)",
+      "type": "架构文档",
+      "file": "docs/arch/architecture-inventory.md",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "完整的项目架构清单,5000+字,包含技术栈/目录结构/核心模块/技术债务"
+    },
+    {
+      "id": "ARCH-DOC-002",
+      "name": "重构计划文档(refactor-plan.md)",
+      "type": "架构文档",
+      "file": "docs/arch/refactor-plan.md",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "Phase C/D/E完整重构计划,8000+字,包含详细实现要点和价值分析"
+    },
+    {
+      "id": "ARCH-DOC-003",
+      "name": "架构审查报告更新",
+      "type": "架构文档",
+      "file": "docs/arch/architecture-review.md",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "修正进度数据(60%→46.3%),更新审查时间"
+    },
+    {
+      "id": "ARCH-DOC-004",
+      "name": "任务看板更新",
+      "type": "架构文档",
+      "file": "docs/tasks/task-board.md",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "更新项目状态(54个任务统计),修正端口信息"
+    },
+    {
+      "id": "ARCH-WORK-001",
+      "name": "架构师工作总结文档",
+      "type": "架构文档",
+      "file": "📍架构师工作总结-2025-11-19-06-00.md",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "Phase 0-4完整工作记录,核心发现与建议,15000字"
+    },
+    {
+      "id": "ARCH-ANALYSIS-001",
+      "name": "架构师Phase 0-4工作流程",
+      "type": "架构师能力",
+      "file": "docs/ai/architect-system-prompt-expert.md",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "完成启动/扫描/映射/审查/任务板5个阶段,30分钟产出5份文档"
+    },
+    {
+      "id": "ARCH-DEPLOY-001",
+      "name": "GitHub仓库发布",
+      "type": "部署发布",
+      "file": "git repository",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "完整代码上传GitHub (544文件,150,684行) - https://github.com/eva-wanxin-git/taskflow-v1.7-monorepo"
+    },
+    {
+      "id": "ARCH-DOC-005",
+      "name": "架构清单文档(architecture-inventory.md)",
+      "type": "架构文档",
+      "file": "docs/arch/architecture-inventory.md",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "2025-11-19架构师完整扫描生成,5500+字,包含技术栈/目录结构/18个数据库表/代码规模统计"
+    },
+    {
+      "id": "ARCH-DOC-006",
+      "name": "项目状态总结(architecture-status-summary.md)",
+      "type": "架构文档",
+      "file": "docs/arch/architecture-status-summary.md",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "完整功能清单(108已实现+17部分+13冲突),代码质量评分,改进建议优先级"
+    },
+    {
+      "id": "KB-011",
+      "name": "project_events事件表",
+      "type": "知识库",
+      "file": "database/schemas/v3_events_schema.sql",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "事件系统核心表,记录28种事件类型,支持事件追踪和审计"
+    },
+    {
+      "id": "KB-012",
+      "name": "event_types事件类型定义表",
+      "type": "知识库",
+      "file": "database/schemas/v3_events_schema.sql",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "预定义18种标准事件类型,用于规范化事件管理"
+    },
+    {
+      "id": "KB-013",
+      "name": "event_stats事件统计表",
+      "type": "知识库",
+      "file": "database/schemas/v3_events_schema.sql",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "实时事件统计,按类型/严重性/项目维度聚合"
+    },
+    {
+      "id": "EVENT-001",
+      "name": "EventService事件发射存储服务",
+      "type": "事件系统",
+      "file": "packages/core-domain/src/services/event_service.py",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "完整的事件发射和存储系统,支持28种事件类型"
+    },
+    {
+      "id": "EVENT-002",
+      "name": "EventHelper事件辅助工具",
+      "type": "事件系统",
+      "file": "packages/shared-utils/event_helper.py",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "670行事件辅助工具,提供便捷的事件操作API,批量操作,事件筛选"
+    },
+    {
+      "id": "EVENT-003",
+      "name": "EventStreamProvider事件流提供器",
+      "type": "事件系统",
+      "file": "apps/dashboard/src/industrial_dashboard/event_stream_provider.py",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "Dashboard事件流集成,实时事件可视化"
+    },
+    {
+      "id": "MEMORY-001",
+      "name": "ProjectMemoryService项目记忆服务",
+      "type": "知识库",
+      "file": "packages/core-domain/src/services/project_memory_service.py",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "项目记忆空间,记忆创建/查询/语义搜索/记忆管理"
+    },
+    {
+      "id": "CACHE-001",
+      "name": "VersionCacheManager版本缓存管理器",
+      "type": "基础设施",
+      "file": "packages/shared-utils/version_cache_manager.py",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "自动版本号生成,缓存控制,Service Worker集成,解决端口冲突问题"
+    },
+    {
+      "id": "TOKEN-001",
+      "name": "TokenSync Token同步服务",
+      "type": "基础设施",
+      "file": "packages/shared-utils/token_sync.py",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "Claude API Token实时查询,余量显示,自动同步"
+    },
+    {
+      "id": "ENUM-001",
+      "name": "EventTypes事件类型枚举",
+      "type": "领域模型",
+      "file": "packages/core-domain/enums/event_types.py",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "28种事件类型完整枚举定义"
+    },
+    {
+      "id": "SERVICE-001",
+      "name": "SmartTaskDetector智能任务检测器",
+      "type": "自动化服务",
+      "file": "services/smart_task_detector.py",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "智能检测pending任务,自动触发状态转换"
+    },
+    {
+      "id": "SERVICE-002",
+      "name": "TaskAutoMonitor任务自动监控",
+      "type": "自动化服务",
+      "file": "services/task_auto_monitor.py",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "后台自动监控任务状态,异常检测"
+    },
+    {
+      "id": "SERVICE-003",
+      "name": "TaskStatusPoller状态轮询器",
+      "type": "自动化服务",
+      "file": "services/task_status_poller.py",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "定期轮询任务状态,保持Dashboard实时性"
+    },
+    {
+      "id": "WORKFLOW-001",
+      "name": "李明收到任务.py脚本",
+      "type": "工作流工具",
+      "file": "scripts/李明收到任务.py",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "一键接收任务,自动更新状态为in_progress,发射task_received事件"
+    },
+    {
+      "id": "WORKFLOW-002",
+      "name": "李明提交完成.py脚本",
+      "type": "工作流工具",
+      "file": "scripts/李明提交完成.py",
+      "version": "v1.7",
+      "completion": 1.0,
+      "details": "一键提交完成,记录工时,生成完成报告,发射task_completed事件"
+    },
+    {
+      "id": "TASK-C-1",
+      "name": "创建FastAPI主应用入口",
+      "type": "任务功能",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P0"
+    },
+    {
+      "id": "TASK-C-3",
+      "name": "端到端测试架构师API",
+      "type": "任务功能",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P0"
+    },
+    {
+      "id": "REQ-001",
+      "name": "端口冲突彻底解决方案",
+      "type": "需求实现",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P1"
+    },
+    {
+      "id": "REQ-002",
+      "name": "项目记忆空间创立",
+      "type": "需求实现",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P1"
+    },
+    {
+      "id": "REQ-003",
+      "name": "对话历史库功能",
+      "type": "需求实现",
+      "file": "frontend-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P2"
+    },
+    {
+      "id": "REQ-006",
+      "name": "Token显示准确实时同步",
+      "type": "需求实现",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P1"
+    },
+    {
+      "id": "TASK-004-A1",
+      "name": "创建企业级目录结构模板",
+      "type": "任务功能",
+      "file": "architect",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P0"
+    },
+    {
+      "id": "TASK-VERIFY-001",
+      "name": "验证REQ-001缓存清除功能是否集成",
+      "type": "任务功能",
+      "file": "architect",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P0"
+    },
+    {
+      "id": "TASK-VERIFY-006",
+      "name": "验证REQ-006 Token同步功能是否集成",
+      "type": "任务功能",
+      "file": "architect",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P0"
+    },
+    {
+      "id": "REQ-010",
+      "name": "项目全局事件流系统",
+      "type": "需求实现",
+      "file": "architect",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P0"
+    },
+    {
+      "id": "REQ-010-A",
+      "name": "设计项目事件类型体系",
+      "type": "需求实现",
+      "file": "architect",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P0"
+    },
+    {
+      "id": "REQ-010-B",
+      "name": "实现事件发射和存储系统",
+      "type": "需求实现",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P0"
+    },
+    {
+      "id": "REQ-010-C",
+      "name": "集成事件触发点到所有脚本和API",
+      "type": "需求实现",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P0"
+    },
+    {
+      "id": "REQ-010-D",
+      "name": "实现架构师事件监听器",
+      "type": "需求实现",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P1"
+    },
+    {
+      "id": "REQ-010-E",
+      "name": "Dashboard事件流可视化升级",
+      "type": "需求实现",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P1"
+    },
+    {
+      "id": "REQ-009",
+      "name": "任务三态流转系统",
+      "type": "需求实现",
+      "file": "architect",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P0"
+    },
+    {
+      "id": "REQ-009-A",
+      "name": "实现Dashboard一键复制按钮",
+      "type": "需求实现",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P0"
+    },
+    {
+      "id": "REQ-009-B",
+      "name": "实现李明状态管理脚本和API",
+      "type": "需求实现",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P0"
+    },
+    {
+      "id": "REQ-009-C",
+      "name": "Dashboard任务列表自动刷新",
+      "type": "需求实现",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P1"
+    },
+    {
+      "id": "REQ-011",
+      "name": "Dashboard动态进度计算",
+      "type": "需求实现",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P1"
+    },
+    {
+      "id": "BUG-001",
+      "name": "紧急修复：全栈开发工程师任务列表加载失败",
+      "type": "任务完成",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P0"
+    },
+    {
+      "id": "INTEGRATE-002",
+      "name": "集成REQ-003对话历史库功能",
+      "type": "集成功能",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P0"
+    },
+    {
+      "id": "INTEGRATE-004",
+      "name": "集成REQ-009任务三态流转系统",
+      "type": "集成功能",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P1"
+    },
+    {
+      "id": "INTEGRATE-006",
+      "name": "集成REQ-011动态进度计算功能",
+      "type": "集成功能",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P1"
+    },
+    {
+      "id": "INTEGRATE-007",
+      "name": "E2E集成测试",
+      "type": "集成功能",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P0"
+    },
+    {
+      "id": "INTEGRATE-012",
+      "name": "集成TASK-004-A1企业级目录结构模板",
+      "type": "集成功能",
+      "file": "architect",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P2"
+    },
+    {
+      "id": "TASK-UI-001",
+      "name": "实现Dashboard项目记忆空间Tab",
+      "type": "任务功能",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P1"
+    },
+    {
+      "id": "TASK-AUTO-001",
+      "name": "实现自动化看板刷新脚本",
+      "type": "任务功能",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P1"
+    },
+    {
+      "id": "TASK-UI-002",
+      "name": "完善Dashboard事件流Tab（增强版）",
+      "type": "任务功能",
+      "file": "fullstack-engineer",
+      "version": "v1.9",
+      "completion": 1.0,
+      "completed_at": null,
+      "priority": "P2"
+    }
+  ],
+  "summary": {
+    "total": 161,
+    "last_scan": "2025-11-22T16:30:55.721736",
+    "scan_stats": {
+      "total_files": 665,
+      "py_files": 533,
+      "html_files": 102,
+      "json_files": 30,
+      "total_lines": 115074
+    }
+  }
+}

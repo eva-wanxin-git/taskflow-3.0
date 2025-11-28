@@ -1,0 +1,397 @@
+{
+  "updated_at": "2025-11-20T14:08:17.603072",
+  "project_id": "TASKFLOW",
+  "total": 24,
+  "partial_features": [
+    {
+      "id": "PARTIAL-001",
+      "name": "REQ-010-D 事件监听器",
+      "category": "事件系统",
+      "progress": 60,
+      "completed_parts": [
+        "事件类型定义",
+        "EventEmitter实现",
+        "EventStore实现"
+      ],
+      "missing_parts": [
+        "自动化监听器",
+        "智能推荐功能"
+      ],
+      "estimated_hours": 2.0,
+      "priority": "P1"
+    },
+    {
+      "id": "PARTIAL-002",
+      "name": "Dashboard事件流完整可视化",
+      "category": "前端UI",
+      "progress": 75,
+      "completed_parts": [
+        "基础事件流展示",
+        "事件列表渲染"
+      ],
+      "missing_parts": [
+        "事件筛选UI增强",
+        "统计图表",
+        "实时推送"
+      ],
+      "estimated_hours": 2.0,
+      "priority": "P0"
+    },
+    {
+      "id": "PARTIAL-003",
+      "name": "项目记忆空间Dashboard UI",
+      "category": "前端UI",
+      "progress": 50,
+      "completed_parts": [
+        "ProjectMemoryService完整",
+        "API端点完整(11个)"
+      ],
+      "missing_parts": [
+        "Dashboard记忆空间Tab UI",
+        "记忆搜索UI",
+        "记忆关系可视化"
+      ],
+      "estimated_hours": 3.0,
+      "priority": "P0"
+    },
+    {
+      "id": "PARTIAL-004",
+      "name": "对话历史库Dashboard集成",
+      "category": "前端UI",
+      "progress": 70,
+      "completed_parts": [
+        "conversations表和API",
+        "INTEGRATE-002完成"
+      ],
+      "missing_parts": [
+        "Dashboard对话历史展示",
+        "对话搜索UI"
+      ],
+      "estimated_hours": 1.0,
+      "priority": "P1"
+    },
+    {
+      "id": "PARTIAL-005",
+      "name": "端口配置统一",
+      "category": "配置管理",
+      "progress": 40,
+      "completed_parts": [
+        "PortManager实现",
+        "端口冲突检测"
+      ],
+      "missing_parts": [
+        "main.py、ports.json、文档端口不一致"
+      ],
+      "estimated_hours": 2.0,
+      "priority": "P1"
+    },
+    {
+      "id": "PARTIAL-006",
+      "name": "看板自动刷新功能",
+      "category": "自动化",
+      "progress": 30,
+      "completed_parts": [
+        "事件流系统就绪",
+        "数据库事件记录完整"
+      ],
+      "missing_parts": [
+        "监听事件自动更新看板脚本",
+        "增量更新Markdown"
+      ],
+      "estimated_hours": 1.5,
+      "priority": "P1"
+    },
+    {
+      "id": "PARTIAL-007",
+      "name": "Phase C 终检",
+      "category": "测试验证",
+      "progress": 50,
+      "completed_parts": [
+        "main.py完成",
+        "E2E测试通过"
+      ],
+      "missing_parts": [
+        "数据库一致性验证",
+        "端口路径验证",
+        "完整集成测试"
+      ],
+      "estimated_hours": 2.0,
+      "priority": "P0"
+    },
+    {
+      "id": "PARTIAL-008",
+      "name": "提示词管理系统",
+      "category": "AI功能",
+      "progress": 60,
+      "completed_parts": [
+        "4个AI System Prompts完整",
+        "Markdown文件存在"
+      ],
+      "missing_parts": [
+        "提示词管理API",
+        "版本控制",
+        "动态加载"
+      ],
+      "estimated_hours": 2.0,
+      "priority": "P2"
+    },
+    {
+      "id": "PARTIAL-009",
+      "name": "Dashboard统计卡片数据连接",
+      "category": "前端集成",
+      "progress": 20,
+      "completed_parts": [
+        "9个统计卡片UI完整"
+      ],
+      "missing_parts": [
+        "GET /api/stats/overview端点",
+        "前端fetch调用",
+        "自动刷新"
+      ],
+      "estimated_hours": 2.0,
+      "priority": "P0"
+    },
+    {
+      "id": "PARTIAL-010",
+      "name": "任务看板拖拽功能",
+      "category": "前端交互",
+      "progress": 40,
+      "completed_parts": [
+        "看板UI布局完整",
+        "任务卡片渲染"
+      ],
+      "missing_parts": [
+        "拖拽交互实现",
+        "状态更新API调用"
+      ],
+      "estimated_hours": 3.0,
+      "priority": "P1"
+    },
+    {
+      "id": "PARTIAL-011",
+      "name": "代码审查结果展示",
+      "category": "前端UI",
+      "progress": 30,
+      "completed_parts": [
+        "审查清单UI设计"
+      ],
+      "missing_parts": [
+        "GET /api/code-reviews端点",
+        "数据渲染",
+        "审查提交功能"
+      ],
+      "estimated_hours": 2.0,
+      "priority": "P1"
+    },
+    {
+      "id": "PARTIAL-012",
+      "name": "技术文档树形展示",
+      "category": "前端UI",
+      "progress": 25,
+      "completed_parts": [
+        "文档列表UI框架"
+      ],
+      "missing_parts": [
+        "GET /api/documents端点",
+        "树形结构渲染",
+        "文档内容预览"
+      ],
+      "estimated_hours": 2.5,
+      "priority": "P1"
+    },
+    {
+      "id": "PARTIAL-013",
+      "name": "运维日志查询和筛选",
+      "category": "运维功能",
+      "progress": 35,
+      "completed_parts": [
+        "日志时间轴UI",
+        "级别筛选UI"
+      ],
+      "missing_parts": [
+        "GET /api/logs/operations端点",
+        "实时日志推送"
+      ],
+      "estimated_hours": 1.5,
+      "priority": "P1"
+    },
+    {
+      "id": "PARTIAL-014",
+      "name": "Bug看板管理",
+      "category": "问题追踪",
+      "progress": 40,
+      "completed_parts": [
+        "Bug看板UI完整",
+        "issues表结构"
+      ],
+      "missing_parts": [
+        "GET /api/bugs端点",
+        "Bug创建和更新功能"
+      ],
+      "estimated_hours": 2.0,
+      "priority": "P1"
+    },
+    {
+      "id": "PARTIAL-015",
+      "name": "系统监控Dashboard",
+      "category": "监控",
+      "progress": 45,
+      "completed_parts": [
+        "6个服务监控卡片UI",
+        "基础健康检查"
+      ],
+      "missing_parts": [
+        "详细监控指标",
+        "实时数据更新",
+        "告警功能"
+      ],
+      "estimated_hours": 3.0,
+      "priority": "P0"
+    },
+    {
+      "id": "PARTIAL-016",
+      "name": "知识库分类展示",
+      "category": "知识管理",
+      "progress": 65,
+      "completed_parts": [
+        "knowledge_articles表完整",
+        "基础API端点"
+      ],
+      "missing_parts": [
+        "分类筛选UI",
+        "全文搜索",
+        "知识推荐"
+      ],
+      "estimated_hours": 2.0,
+      "priority": "P1"
+    },
+    {
+      "id": "PARTIAL-017",
+      "name": "实时脉动系统",
+      "category": "实时监控",
+      "progress": 30,
+      "completed_parts": [
+        "实时脉动UI框架",
+        "事件流基础"
+      ],
+      "missing_parts": [
+        "GET /api/pulse/realtime端点",
+        "WebSocket推送"
+      ],
+      "estimated_hours": 2.5,
+      "priority": "P2"
+    },
+    {
+      "id": "PARTIAL-018",
+      "name": "AI协作链可视化",
+      "category": "可视化",
+      "progress": 20,
+      "completed_parts": [
+        "协作链UI设计"
+      ],
+      "missing_parts": [
+        "GET /api/collaboration/chain端点",
+        "D3.js图表集成"
+      ],
+      "estimated_hours": 2.5,
+      "priority": "P2"
+    },
+    {
+      "id": "PARTIAL-019",
+      "name": "Noah代码管家任务队列",
+      "category": "AI功能",
+      "progress": 55,
+      "completed_parts": [
+        "任务队列UI",
+        "GET /api/tasks基础端点"
+      ],
+      "missing_parts": [
+        "assigned_to筛选参数",
+        "任务认领功能"
+      ],
+      "estimated_hours": 1.0,
+      "priority": "P1"
+    },
+    {
+      "id": "PARTIAL-020",
+      "name": "代码清单目录树",
+      "category": "代码分析",
+      "progress": 25,
+      "completed_parts": [
+        "目录树UI组件"
+      ],
+      "missing_parts": [
+        "GET /api/code/inventory端点",
+        "代码扫描功能",
+        "复杂度分析"
+      ],
+      "estimated_hours": 2.5,
+      "priority": "P1"
+    },
+    {
+      "id": "PARTIAL-021",
+      "name": "需求管理模块",
+      "category": "需求管理",
+      "progress": 35,
+      "completed_parts": [
+        "待开发任务池UI",
+        "需求卡片设计"
+      ],
+      "missing_parts": [
+        "GET /api/requirements端点",
+        "需求状态更新",
+        "需求评审功能"
+      ],
+      "estimated_hours": 2.0,
+      "priority": "P1"
+    },
+    {
+      "id": "PARTIAL-022",
+      "name": "问题生成任务功能",
+      "category": "项目管理",
+      "progress": 40,
+      "completed_parts": [
+        "问题清单展示",
+        "生成任务按钮UI"
+      ],
+      "missing_parts": [
+        "POST /api/issues/{id}/generate-task端点",
+        "任务模板生成"
+      ],
+      "estimated_hours": 1.5,
+      "priority": "P1"
+    },
+    {
+      "id": "PARTIAL-023",
+      "name": "建议采纳转任务",
+      "category": "项目管理",
+      "progress": 40,
+      "completed_parts": [
+        "架构建议展示",
+        "采纳按钮UI"
+      ],
+      "missing_parts": [
+        "POST /api/suggestions/{id}/adopt端点",
+        "任务自动创建"
+      ],
+      "estimated_hours": 1.5,
+      "priority": "P1"
+    },
+    {
+      "id": "PARTIAL-024",
+      "name": "前端错误处理机制",
+      "category": "错误处理",
+      "progress": 30,
+      "completed_parts": [
+        "基础console.error"
+      ],
+      "missing_parts": [
+        "统一错误边界",
+        "错误提示Toast",
+        "网络错误重试"
+      ],
+      "estimated_hours": 2.0,
+      "priority": "P1"
+    }
+  ]
+}

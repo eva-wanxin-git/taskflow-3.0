@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目记忆空间 - 测试页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .stat-card .label {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+        
+        .stat-card .value {
+            font-size: 36px;
+            font-weight: 700;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #718096;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+        
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        
+        .memories-list {
+            display: grid;
+            gap: 16px;
+        }
+        
+        .memory-card {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .memory-card:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .memory-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 12px;
+        }
+        
+        .memory-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        .memory-meta {
+            display: flex;
+            gap: 12px;
+            font-size: 12px;
+            color: #718096;
+        }
+        
+        .memory-content {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        
+        .memory-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #718096;
+        }
+        
+        .error {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .success {
+            background: #c6f6d5;
+            color: #2f855a;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 项目记忆空间</h1>
+            <p>TASKFLOW - v1.9 测试环境</p>
+        </div>
+        
+        <!-- 统计卡片 -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="label">总记忆数</div>
+                <div class="value" id="total-memories">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">决策记忆</div>
+                <div class="value" id="decision-memories">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">解决方案</div>
+                <div class="value" id="solution-memories">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">知识条目</div>
+                <div class="value" id="knowledge-memories">-</div>
+            </div>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="content-section">
+            <div class="section-title">
+                📚 记忆列表
+                <button class="btn" onclick="refreshMemories()">🔄 刷新</button>
+            </div>
+            
+            <div class="tabs">
+                <button class="tab active" onclick="filterMemories('all')">全部</button>
+                <button class="tab" onclick="filterMemories('decision')">决策</button>
+                <button class="tab" onclick="filterMemories('solution')">方案</button>
+                <button class="tab" onclick="filterMemories('knowledge')">知识</button>
+            </div>
+            
+            <div id="status-message"></div>
+            
+            <div class="memories-list" id="memories-list">
+                <div class="loading">正在加载记忆数据...</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE = 'http://localhost:8000';  // API服务地址
+        const PROJECT_CODE = 'TASKFLOW';
+        
+        let allMemories = [];
+        let currentFilter = 'all';
+        
+        // 加载统计数据
+        async function loadStats() {
+            try {
+                const response = await fetch(`${API_BASE}/api/projects/${PROJECT_CODE}/memories/stats`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    const stats = data.stats;
+                    document.getElementById('total-memories').textContent = stats.total_memories || 0;
+                    document.getElementById('decision-memories').textContent = stats.decision_memories || 0;
+                    document.getElementById('solution-memories').textContent = stats.solution_memories || 0;
+                    document.getElementById('knowledge-memories').textContent = stats.by_category?.knowledge || 0;
+                }
+            } catch (error) {
+                console.error('加载统计失败:', error);
+                showMessage('无法连接到API服务，请检查服务是否启动', 'error');
+            }
+        }
+        
+        // 加载记忆列表
+        async function loadMemories() {
+            try {
+                const response = await fetch(`${API_BASE}/api/projects/${PROJECT_CODE}/memories?limit=50`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    allMemories = data.memories;
+                    displayMemories(allMemories);
+                    showMessage(`成功加载 ${allMemories.length} 条记忆`, 'success');
+                } else {
+                    showMessage('加载记忆失败', 'error');
+                }
+            } catch (error) {
+                console.error('加载记忆失败:', error);
+                showMessage('无法连接到API服务', 'error');
+                displayEmptyState();
+            }
+        }
+        
+        // 显示记忆列表
+        function displayMemories(memories) {
+            const container = document.getElementById('memories-list');
+            
+            if (memories.length === 0) {
+                container.innerHTML = '<div class="loading">暂无记忆数据</div>';
+                return;
+            }
+            
+            container.innerHTML = memories.map(memory => `
+                <div class="memory-card" onclick="viewMemoryDetail('${memory.id}')">
+                    <div class="memory-header">
+                        <div class="memory-title">${memory.title}</div>
+                        <div class="memory-meta">
+                            <span>⭐ ${memory.importance || 5}/10</span>
+                            <span>${formatDate(memory.created_at)}</span>
+                        </div>
+                    </div>
+                    <div class="memory-content">
+                        ${truncate(memory.content, 150)}
+                    </div>
+                    <div class="memory-tags">
+                        <span class="tag">${memory.category}</span>
+                        <span class="tag">${memory.memory_type}</span>
+                        ${(memory.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // 空状态
+        function displayEmptyState() {
+            const container = document.getElementById('memories-list');
+            container.innerHTML = `
+                <div class="loading">
+                    <p>暂无记忆数据</p>
+                    <p style="margin-top: 12px; font-size: 14px;">
+                        API可能未启动，请运行: <code>cd apps/api && uvicorn src.main:app --reload</code>
+                    </p>
+                </div>
+            `;
+        }
+        
+        // 过滤记忆
+        function filterMemories(filter) {
+            currentFilter = filter;
+            
+            // 更新标签页状态
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // 过滤数据
+            let filtered = allMemories;
+            if (filter !== 'all') {
+                filtered = allMemories.filter(m => m.memory_type === filter || m.category === filter);
+            }
+            
+            displayMemories(filtered);
+        }
+        
+        // 刷新数据
+        function refreshMemories() {
+            showMessage('正在刷新...', 'info');
+            loadStats();
+            loadMemories();
+        }
+        
+        // 查看详情
+        function viewMemoryDetail(memoryId) {
+            alert(`记忆详情 - ${memoryId}\n\n完整的详情页面将在后续版本实现。`);
+        }
+        
+        // 显示消息
+        function showMessage(message, type) {
+            const container = document.getElementById('status-message');
+            const className = type === 'error' ? 'error' : type === 'success' ? 'success' : 'loading';
+            container.innerHTML = `<div class="${className}">${message}</div>`;
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 3000);
+        }
+        
+        // 工具函数
+        function truncate(text, length) {
+            if (!text) return '';
+            return text.length > length ? text.substring(0, length) + '...' : text;
+        }
+        
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' });
+        }
+        
+        // 初始化
+        window.addEventListener('DOMContentLoaded', () => {
+            loadStats();
+            loadMemories();
+        });
+    </script>
+</body>
+</html>
+
